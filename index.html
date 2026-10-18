@@ -207,10 +207,10 @@ body.theme-crimson{--bg:#250608;--panel:#4a1018;--panel2:#701c28}
 <div class="result" id="megaWheelResult">Çarkı açtıktan sonra çevirebilirsin.</div>
 </div>
 <div class="mode" id="goldWheel">
-<h2>✨ Altın Çark</h2><p class="desc">Bir çeviriş $1. Ödül seçenekleri $1 ile $200.000 arasında; eksi sonuç yok.</p>
+<h2>✨ Altın Çark</h2><p class="desc">Bir çeviriş 1 C48. Ödül seçenekleri $1 ile $200.000 arasında; eksi sonuç yok.</p>
 <div class="wheelbox"><div class="pointer">▼</div><div class="wheel" id="goldWheelArt"><div class="wheelcenter">✨<br><span style="color:#ffd166">ALTIN</span></div></div></div>
 <div class="result">10 sonuç: $1 · $10 · $100 · $500 · $1.000 · $5.000 · $10.000 · $25.000 · $100.000 · $200.000</div>
-<button class="btn primary full" id="spinGoldWheel">✨ ALTIN ÇARKI ÇEVİR ($1)</button><div class="result" id="goldWheelResult">Kayıp sonucu yok!</div>
+<button class="btn primary full" id="spinGoldWheel">✨ ALTIN ÇARKI ÇEVİR (1 C48)</button><div class="result" id="goldWheelResult">Kayıp sonucu yok!</div>
 </div>
 <div class="mode" id="c48Shop">
 <h2>🔥 C48 Parası ve Özel Eşyalar</h2><p class="desc">Profil çerçeveleri artık $30.000’dan başlıyor ve üst seviye çerçeveler çok daha pahalı. C48 parasıyla ateşli çark efektini alabilirsin. Kur: $100.000 = 1 C48.</p>
@@ -846,7 +846,7 @@ $('convertC48')?.addEventListener('click',()=>{if(s.usd<100000){toast('1 C48 iç
 $('buyFireWheel')?.addEventListener('click',()=>{if(localStorage.getItem('c48-luck-fire-wheel')==='yes')return;if(s.c48<100){toast('100 C48 gerekiyor.');return}s.c48-=100;localStorage.setItem('c48-luck-fire-wheel','yes');$('wheelArt').style.filter='drop-shadow(0 0 20px #ff4b00)';$('wheelArt').style.boxShadow='0 0 0 5px #7c2608,0 0 35px #ff4b00';save();render();renderC48Shop();toast('Ateşli çark açıldı! 🔥')});
 $('unlockMegaWheel')?.addEventListener('click',()=>{if(s.megaWheelUnlocked)return;if(s.balance<10000000){toast('₺10.000.000 gerekiyor.');return}s.balance-=10000000;s.megaWheelUnlocked=true;log('Dev çark açılış ücreti',-10000000);$('megaWheelUnlockStatus').textContent='Dev çark açıldı!';$('unlockMegaWheel').disabled=true;$('spinMegaWheel').disabled=false;save();render()});
 $('spinMegaWheel')?.addEventListener('click',async()=>{if(!s.megaWheelUnlocked||raceBusy)return;$('spinMegaWheel').disabled=true;const win=Math.random()<0.5;const gain=[100,500,1000,5000,10000,50000,100000,500000,1000000,10000000];const loss=[100,500,1000,5000,10000,50000,100000,500000,1000000,20000000];const amount=(win?gain:loss)[Math.floor(Math.random()*10)];await spinAnimation('megaWheelArt',6500);const delta=win?amount:-amount;s.balance=Math.max(0,s.balance+delta);if(delta>0)s.earned+=delta;$('megaWheelResult').innerHTML=win?`🎉 <b>KAZANDIN!</b> +${fmt(amount)}`:`💥 <b>KAYIP!</b> -${fmt(amount)}`;log('Dev çark '+(win?'kazanç':'kayıp'),delta);save();render();$('spinMegaWheel').disabled=false});
-$('spinGoldWheel')?.addEventListener('click',async()=>{if(raceBusy)return;if(s.usd<1){toast('Altın çark için $1 gerekiyor.');return}$('spinGoldWheel').disabled=true;s.usd-=1;await spinAnimation('goldWheelArt',6000);const prizes=[1,10,100,500,1000,5000,10000,25000,100000,200000];const prize=prizes[Math.floor(Math.random()*prizes.length)];s.usd+=prize;$('goldWheelResult').innerHTML=`✨ Ödülün: <b>+$${prize.toLocaleString('en-US')}</b>. Eksi sonuç yok!`;log('Altın çark +$'+prize,0);save();render();$('spinGoldWheel').disabled=false});
+$('spinGoldWheel')?.addEventListener('click',async()=>{if(raceBusy)return;if(s.c48<1){toast('Altın çark için 1 C48 gerekiyor.');return}$('spinGoldWheel').disabled=true;s.c48-=1;save();render();await spinAnimation('goldWheelArt',6000);const prizes=[1,10,100,500,1000,5000,10000,25000,100000,200000];const prize=prizes[Math.floor(Math.random()*prizes.length)];s.usd+=prize;$('goldWheelResult').innerHTML=`✨ Ödülün: <b>+$${prize.toLocaleString('en-US')}</b>. Eksi sonuç yok!`;log('Altın çark +$'+prize,0);save();render();$('spinGoldWheel').disabled=false});
 if(s.megaWheelUnlocked){$('megaWheelUnlockStatus').textContent='Dev çark açık!';$('unlockMegaWheel').disabled=true;$('spinMegaWheel').disabled=false}
 if(localStorage.getItem('c48-luck-fire-wheel')==='yes'){$('wheelArt').style.filter='drop-shadow(0 0 20px #ff4b00)';$('wheelArt').style.boxShadow='0 0 0 5px #7c2608,0 0 35px #ff4b00'}
 renderC48Shop();
