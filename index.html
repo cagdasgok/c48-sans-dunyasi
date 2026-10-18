@@ -380,11 +380,6 @@ const wheelOutcomes = (() => {
  add('-₺1M',100000,1,'loss');
  if(a.length !== 1000) throw new Error('Çark dilimi sayısı 1000 olmalı; bulunan: '+a.length);
  return a;
-// Expose only the minimal live references needed by the separate global-chat script.
-window.c48GetElement = $;
-window.c48GetSupabaseClient = () => (typeof supabaseClient !== 'undefined' ? supabaseClient : null);
-window.c48GetOnlineUser = () => (typeof onlineUser !== 'undefined' ? onlineUser : null);
-window.c48GetProfileName = () => (typeof profileName !== 'undefined' ? profileName : '');
 
 })();
 const items=[
@@ -922,6 +917,12 @@ raceButton?.addEventListener('click',()=>{
 
 render();
 setTimeout(()=>{const intro=$('c48Intro');if(intro)intro.remove()},5200);
+
+// Global Chat bridge: expose the game's scoped Supabase account to the chat script.
+window.c48GetElement = $;
+window.c48GetSupabaseClient = () => supabaseClient;
+window.c48GetOnlineUser = () => onlineUser;
+window.c48GetProfileName = () => profileName;
 })();
 </script><aside id="globalChatPanel" aria-label="Global sohbet">
   <div id="globalChatHeader">
