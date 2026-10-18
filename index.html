@@ -116,6 +116,24 @@ body.theme-crimson{--bg:#250608;--panel:#4a1018;--panel2:#701c28}
 .settings-panel .wheel-picks{margin-bottom:8px}
 @keyframes settingsPop{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:translateY(0)}}
 #megaWheelArt{background:conic-gradient(#ff595e 0deg 18deg,#ffd166 18deg 36deg,#6a4c93 36deg 54deg,#1982c4 54deg 72deg,#8ac926 72deg 90deg,#ffca3a 90deg 108deg,#ff595e 108deg 126deg,#6a4c93 126deg 144deg,#1982c4 144deg 162deg,#ffd166 162deg 180deg,#ff595e 180deg 198deg,#8ac926 198deg 216deg,#6a4c93 216deg 234deg,#ffca3a 234deg 252deg,#1982c4 252deg 270deg,#ff595e 270deg 288deg,#ffd166 288deg 306deg,#8ac926 306deg 324deg,#6a4c93 324deg 342deg,#1982c4 342deg 360deg)}#goldWheelArt{background:conic-gradient(#fff1a8 0deg 36deg,#d7a928 36deg 72deg,#fff7d1 72deg 108deg,#b78616 108deg 144deg,#ffe681 144deg 180deg,#d7a928 180deg 216deg,#fff7d1 216deg 252deg,#b78616 252deg 288deg,#ffe681 288deg 324deg,#d7a928 324deg 360deg)}.rank-avatar.c48fire{box-shadow:0 0 12px #ff4b00;border:2px solid #ff6a00}.rank-avatar.c48diamond{box-shadow:0 0 12px #4de8ff;border:2px solid #4de8ff}.rank-avatar.c48galaxy{box-shadow:0 0 12px #a56bff;border:2px solid #a56bff}.rank-avatar.c48royal{box-shadow:0 0 12px #ffd166;border:2px solid #ffd166}.rank-avatar.c48inferno{box-shadow:0 0 16px #ff2600;border:2px solid #ff2600}
+#globalChatPanel{position:fixed;right:14px;top:96px;bottom:16px;width:310px;max-height:calc(100vh - 112px);z-index:9999;display:flex;flex-direction:column;background:#101729;border:1px solid #45516b;border-radius:16px;box-shadow:0 14px 45px #0008;color:#f5f7ff;overflow:hidden;font:14px/1.4 system-ui,-apple-system,Segoe UI,sans-serif}
+#globalChatHeader{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:13px 14px;background:#17223a;border-bottom:1px solid #ffffff18}
+#globalChatSub{font-size:11px;opacity:.72;margin-top:2px}
+#globalChatToggle{border:0;border-radius:8px;background:#293750;color:white;font-size:20px;width:30px;height:30px;cursor:pointer}
+#globalChatLoginNotice{padding:8px 12px;font-size:12px;background:#1d2940;color:#d9e6ff}
+#globalChatMessages{flex:1;min-height:90px;overflow-y:auto;padding:10px;display:flex;flex-direction:column;gap:8px}
+.global-chat-message{padding:8px 10px;border-radius:10px;background:#1a2540;overflow-wrap:anywhere}
+.global-chat-message .gc-name{font-weight:800;color:#8ce6b0;font-size:12px;display:block;margin-bottom:3px}
+.global-chat-message .gc-time{font-size:10px;opacity:.55;margin-left:6px;font-weight:400}
+#globalChatForm{display:flex;gap:6px;padding:9px;border-top:1px solid #ffffff18}
+#globalChatInput{min-width:0;flex:1;background:#0b1120;color:#fff;border:1px solid #46516a;border-radius:9px;padding:10px;font:inherit}
+#globalChatSend{border:0;border-radius:9px;padding:0 11px;background:#9ce8b6;color:#07130c;font-weight:800;cursor:pointer}
+#globalChatSend:disabled{opacity:.5;cursor:not-allowed}
+#globalChatHint{padding:0 10px 8px;font-size:10px;opacity:.55}
+#globalChatPanel.gc-collapsed{height:auto;bottom:auto}
+#globalChatPanel.gc-collapsed #globalChatMessages,#globalChatPanel.gc-collapsed #globalChatForm,#globalChatPanel.gc-collapsed #globalChatHint,#globalChatPanel.gc-collapsed #globalChatLoginNotice{display:none}
+@media(max-width:900px){#globalChatPanel{top:auto;right:8px;bottom:8px;width:min(340px,calc(100vw - 16px));height:42vh;max-height:440px}body{padding-bottom:0}}
+
 </style>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
@@ -148,11 +166,12 @@ body.theme-crimson{--bg:#250608;--panel:#4a1018;--panel2:#701c28}
 <div class="grid">
 <section class="panel">
 <div class="mode active" id="wheel">
-<h2>Şans Çarkı</h2><p class="desc">Çarkta 1000 olası sonuç var: 600 kazanç (%60) ve 400 kayıp (%40). ₺2.000.000 ödülü yalnızca iki dilimde bulunur. Kayıplar bahis miktarına göre artar ve tur başına en fazla ₺1.000.000'dur.</p>
+<h2>Şans Çarkı</h2><p class="desc">Çarkta 1000 olası sonuç var: 300 kazanç (%30) ve 700 kayıp (%70). Büyük ödüller son derece nadirdir. Bahis miktarı ₺50.000.000'a kadar çıkabilir; yüksek bahis büyük kayıp riski de taşır.</p>
 
 <div class="wheelbox"><div class="pointer">▼</div><div class="wheel" id="wheelArt"><div class="wheelcenter">C48<br><span style="color:#ffd166">ŞANS</span></div></div></div>
-<div class="betrow"><label>Bahis (₺)</label><input type="number" id="wheelBet" min="1" max="10000000" step="1" value="10"></div>
-<div class="quick"><button data-bet="1">₺1</button><button data-bet="10">₺10</button><button data-bet="50">₺50</button><button data-bet="100">₺100</button><button data-bet="500">₺500</button><button data-bet="max">Maksimum</button></div>
+<div class="betrow"><label>Bahis (₺)</label><input type="number" id="wheelBet" min="1" max="50000000" step="1" value="10"></div>
+<p id="highStakeNote" class="desc" style="color:#ffd166">🔥 Yüksek bahis modu: ₺50M seçeneği açık. Büyük bahis, büyük kazanç veya kayıp demektir.</p>
+<div class="quick"><button data-bet="1">₺1</button><button data-bet="10">₺10</button><button data-bet="50">₺50</button><button data-bet="100">₺100</button><button data-bet="500">₺500</button><button data-bet="50000000">₺50M</button><button data-bet="max">Maksimum</button></div>
 <button class="btn primary full" id="spin">🎡 ÇARKI ÇEVİR</button>
 <div class="result" id="wheelResult">Çark hazır. Bahsini seçip çevirebilirsin.</div>
 </div>
@@ -332,37 +351,34 @@ const wheelOutcomes = (() => {
  const add=(label,mult,count,kind='pay',extra={})=>{
    for(let i=0;i<count;i++) a.push({label,mult,kind,...extra});
  };
- // 600 kazanç sonucu. Büyük ödül olan ₺2.000.000 yalnızca iki dilimde bulunur.
- add('₺1',0.1,119);
- add('₺5',0.5,100);
- add('₺10',1,90);
- add('₺20',2,75);
- add('₺50',5,60);
- add('₺100',10,50);
- add('₺250',25,40);
- add('₺500',50,25);
- add('₺1K',100,18);
- add('₺5K',500,10);
- add('₺10K',1000,6);
- add('₺50K',5000,3);
- add('₺100K',10000,1);
- add('₺2M',0,2,'fixed',{amount:2000000});
- add('₺1M',0,1,'fixed',{amount:1000000});
- // 400 negatif sonuç. Kayıp, bahis büyüklüğüyle artar ve tek turda ₺1.000.000 ile sınırlıdır.
- add('-₺1',0.1,80,'loss');
- add('-₺5',0.5,70,'loss');
- add('-₺10',1,70,'loss');
- add('-₺25',2.5,55,'loss');
- add('-₺50',5,45,'loss');
- add('-₺100',10,30,'loss');
- add('-₺500',50,20,'loss');
+ // Daha zor ekonomi: 300 kazanç sonucu (%30), 700 kayıp sonucu (%70).
+ // Jackpotlar çok nadir; çarkın düzenli ve hızlı servet üretmesi önlendi.
+ add('₺1',0.01,80);
+ add('₺5',0.05,65);
+ add('₺10',0.1,50);
+ add('₺20',0.2,35);
+ add('₺50',0.5,25);
+ add('₺100',1,18);
+ add('₺250',2.5,12);
+ add('₺500',5,7);
+ add('₺1K',10,4);
+ add('₺5K',50,2);
+ add('₺10K',100,1);
+ add('₺100K',1000,1);
+ add('₺1M',0,0,'fixed',{amount:1000000});
+ add('-₺1',0.1,160,'loss');
+ add('-₺5',0.5,145,'loss');
+ add('-₺10',1,125,'loss');
+ add('-₺25',2.5,100,'loss');
+ add('-₺50',5,70,'loss');
+ add('-₺100',10,45,'loss');
+ add('-₺500',50,25,'loss');
  add('-₺1K',100,15,'loss');
  add('-₺5K',500,8,'loss');
- add('-₺10K',1000,5,'loss');
- add('-₺100K',10000,1,'loss');
+ add('-₺10K',1000,4,'loss');
+ add('-₺100K',10000,2,'loss');
  add('-₺1M',100000,1,'loss');
- // Güvenlik kontrolü: 600 kazanç + 400 kayıp = 1000 dilim.
- if(a.length !== 1000) throw new Error('Çark dilim sayısı 1000 olmalı; bulunan: '+a.length);
+ if(a.length !== 1000) throw new Error('Çark dilimi sayısı 1000 olmalı; bulunan: '+a.length);
  return a;
 })();
 const items=[
@@ -660,7 +676,7 @@ setTimeout(()=>{
 // Positive outcomes pay the listed multiplier; negative outcomes subtract the listed amount.
 let delta;
 if(outcome.kind==='fixed') delta=outcome.amount;
-else if(outcome.kind==='loss') delta=-Math.min(s.balance,1000000,Math.max(1,Math.round(bet*Math.abs(outcome.mult))));
+else if(outcome.kind==='loss') delta=-Math.min(s.balance,Math.max(1,Math.round(bet*Math.abs(outcome.mult))));
 else delta=Math.round(bet*outcome.mult);
 addBalance(delta);
 const msg=delta>0?`Kazandın! Çark: ${outcome.label}.`:delta<0?`Bu tur kayıp: ${outcome.label}.`:`Bu tur ₺0 geldi.`;
@@ -855,26 +871,111 @@ renderC48Shop();
 const raceButton=$('startRace');
 raceButton?.addEventListener('click',()=>{
  if(raceBusy)return;
- const playerV=items.find(it=>it.id===$('raceVehicle').value);if(!playerV)return;
- const stake=Math.floor(Number($('raceBet').value));if(!Number.isFinite(stake)||stake<1||stake>s.balance)return;
- const botChoices=items.filter(it=>it.category==='motor'||it.category==='car');
- const botV=botChoices[Math.floor(Math.random()*botChoices.length)];
- const cc={pcx:160,motor:689,motor2:649,motor3:1103,motor4:125,motor5:999,motor6:373,car:3000,car2:4000,car3:5200,car4:1600,car5:3000,car6:0};
- const power={pcx:1,motor:1.35,motor2:1.28,motor3:1.85,motor4:.85,motor5:1.95,motor6:1.12,car:1.55,car2:1.7,car3:1.9,car4:1,car5:1.8,car6:1.5};
- const score=v=>(power[v.id]||1)*.65+Math.min(cc[v.id]||500,6000)/3000*.35;
- const playerScore=score(playerV),botScore=score(botV);
- const playerChance=Math.max(.15,Math.min(.85,playerScore/(playerScore+botScore)));
- const win=Math.random()<playerChance;
- const a=50+Math.random()*48,b=50+Math.random()*48;
- const finalA=win?Math.max(a,b+1):Math.min(a,b-1),finalB=win?Math.min(a,b-1):Math.max(a,b+1);
+ const playerV=items.find(it=>it.id===$('raceVehicle').value);
+ if(!playerV){$('raceResult').textContent='Önce bir motor veya araba satın al.';return;}
+ const stake=Math.floor(Number($('raceBet').value));
+ if(!Number.isFinite(stake)||stake<1){$('raceResult').textContent='Geçerli bir sanal bahis gir.';return;}
+ if(stake>s.balance){$('raceResult').textContent='Bakiyen bu bahse yetmiyor.';return;}
+ const botChoices=items.filter(it=>(it.category==='motor'||it.category==='car')&&!s.owned.includes(it.id));
+ const fallback=items.filter(it=>it.category==='motor'||it.category==='car');
+ const pool=botChoices.length?botChoices:fallback;
+ const botV=pool[Math.floor(Math.random()*pool.length)];
+ // Explicit vehicle specs: displacement + realistic performance tier; PCX remains an affordable scooter.
+ const specs={
+  pcx:{cc:160,power:15,kind:'motor'},motor:{cc:689,power:73,kind:'motor'},
+  motor2:{cc:649,power:68,kind:'motor'},motor3:{cc:1103,power:215,kind:'motor'},
+  motor4:{cc:125,power:11,kind:'motor'},motor5:{cc:999,power:210,kind:'motor'},
+  motor6:{cc:373,power:44,kind:'motor'},
+  car:{cc:3000,power:510,kind:'car'},car2:{cc:4000,power:530,kind:'car'},
+  car3:{cc:5200,power:610,kind:'car'},car4:{cc:1600,power:110,kind:'car'},
+  car5:{cc:3000,power:379,kind:'car'},car6:{cc:0,power:670,kind:'car'},
+  car7:{cc:3000,power:830,kind:'car'},car8:{cc:2000,power:170,kind:'car'},
+  car9:{cc:2000,power:245,kind:'car'},car10:{cc:4000,power:600,kind:'car'},
+  car11:{cc:3800,power:565,kind:'car'},car12:{cc:4000,power:710,kind:'car'},
+  car13:{cc:8000,power:1500,kind:'car'},car14:{cc:3000,power:450,kind:'car'}
+ };
+ const getSpec=v=>specs[v.id]||{cc:v.category==='car'?2000:500,power:v.category==='car'?180:35,kind:v.category};
+ const score=v=>{const q=getSpec(v);return q.power*(q.kind==='car'?1.25:1)*(1+Math.min(q.cc,8000)/8000*.12);};
+ const ps=score(playerV),bs=score(botV);
+ // A small randomness factor remains, but a 125cc bike cannot normally beat a much stronger bike.
+ const chance=Math.max(.015,Math.min(.985,ps/(ps+bs)));
+ const won=Math.random()<chance;
  raceBusy=true;raceButton.disabled=true;s.balance-=stake;log('Yarış bahsi yatırıldı',-stake);render();
- $('racer1Label').textContent=profileName||'Sen';$('racer2Label').textContent='Bot · '+botV.name;$('racer1Icon').textContent=playerV.icon;$('racer2Icon').textContent=botV.icon;$('racer1Fill').style.width='0%';$('racer2Fill').style.width='0%';
- $('raceResult').textContent=`🏁 Botun aracı: ${botV.name}. Senin tahmini kazanma şansın %${Math.round(playerChance*100)}.`;
- setTimeout(()=>{$('racer1Fill').style.width=finalA+'%';$('racer2Fill').style.width=finalB+'%'},250);
- setTimeout(()=>{if(win){s.balance+=stake*2;s.earned+=stake;log('Yarış zaferi · '+playerV.name,stake*2);$('raceResult').innerHTML=`🏆 Kazandın! ${playerV.name}, botun ${botV.name} aracını geçti. +${fmt(stake*2)}.`}else{$('raceResult').innerHTML=`🏁 Bot kazandı! Bot aracı: ${botV.name}. Kazanma şansın %${Math.round(playerChance*100)} idi; rastgelelik nedeniyle kaybedebilirsin.`;log('Yarış kaybı · bot '+botV.name,0)}raceBusy=false;save();render();raceButton.disabled=false},2300);
+ $('racer1Label').textContent=profileName||'Sen';
+ $('racer2Label').textContent='Bot · '+botV.name;
+ $('racer1Icon').textContent=playerV.icon;$('racer2Icon').textContent=botV.icon;
+ $('racer1Fill').style.width='0%';$('racer2Fill').style.width='0%';
+ $('raceResult').textContent=`Rakip: ${botV.name} · Güç puanı ${Math.round(bs)} · Senin güç puanın ${Math.round(ps)} · Kazanma şansın %${Math.round(chance*100)}.`;
+ setTimeout(()=>{$('racer1Fill').style.width=(won?96:Math.max(8,Math.random()*40))+'%';$('racer2Fill').style.width=(won?Math.max(8,Math.random()*40):96)+'%'},250);
+ setTimeout(()=>{
+  if(won){s.balance+=stake*2;s.earned+=stake;log('Yarış zaferi · '+playerV.name,stake*2);$('raceResult').innerHTML=`🏆 Kazandın! ${playerV.name}, ${botV.name} aracını geçti. Ödül: ${fmt(stake*2)}.`;}
+  else{$('raceResult').innerHTML=`🏁 Bot kazandı! Rakip aracı: ${botV.name}. Senin kazanma şansın %${Math.round(chance*100)} idi.`;log('Yarış kaybı · '+botV.name,0);}
+  raceBusy=false;save();render();raceButton.disabled=false;
+ },2300);
 },{capture:true});
 
 render();
 setTimeout(()=>{const intro=$('c48Intro');if(intro)intro.remove()},5200);
 })();
-</script></body></html>
+</script><aside id="globalChatPanel" aria-label="Global sohbet">
+  <div id="globalChatHeader">
+    <div><strong>🌍 Global Chat</strong><div id="globalChatSub">Giriş yapan oyuncular</div></div>
+    <button type="button" id="globalChatToggle" aria-label="Sohbeti küçült">−</button>
+  </div>
+  <div id="globalChatLoginNotice">Sohbete katılmak için çevrimiçi hesabına giriş yap.</div>
+  <div id="globalChatMessages" role="log" aria-live="polite"></div>
+  <form id="globalChatForm">
+    <input id="globalChatInput" maxlength="300" autocomplete="off" placeholder="Mesajını yaz..." aria-label="Sohbet mesajı">
+    <button id="globalChatSend" type="submit">Gönder</button>
+  </form>
+  <div id="globalChatHint">En fazla 300 karakter · Spam yasak</div>
+</aside>
+<script>
+// Global Chat: uses the same Supabase client and authenticated account as the online leaderboard.
+const gcPanel=$('globalChatPanel'),gcMessages=$('globalChatMessages'),gcForm=$('globalChatForm'),gcInput=$('globalChatInput'),gcNotice=$('globalChatLoginNotice');
+let gcChannel=null,gcLoadedUser=null,gcLastSend=0;
+function gcEscape(value){return String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+function gcShowNotice(message){if(gcNotice)gcNotice.textContent=message;}
+function gcAddMessage(row){
+ if(!gcMessages||!row)return;
+ const el=document.createElement('div');el.className='global-chat-message';
+ const date=row.created_at?new Date(row.created_at):new Date();
+ el.innerHTML=`<span class="gc-name">${gcEscape(row.username||'Oyuncu')}<span class="gc-time">${date.toLocaleTimeString('tr-TR',{hour:'2-digit',minute:'2-digit'})}</span></span><span>${gcEscape(row.message)}</span>`;
+ gcMessages.appendChild(el);while(gcMessages.children.length>100)gcMessages.removeChild(gcMessages.firstChild);gcMessages.scrollTop=gcMessages.scrollHeight;
+}
+async function gcStart(){
+ if(!gcMessages)return;
+ if(!supabaseClient){gcShowNotice('Önce çevrimiçi hesap bölümünden Supabase bağlantısını kur.');return}
+ if(!onlineUser){gcShowNotice('Sohbet için çevrimiçi hesabına giriş yap.');if(gcInput)gcInput.disabled=true;$('globalChatSend').disabled=true;return}
+ if(gcLoadedUser===onlineUser.id&&gcChannel)return;
+ if(gcChannel){try{await supabaseClient.removeChannel(gcChannel)}catch(e){}gcChannel=null}
+ gcLoadedUser=onlineUser.id;gcMessages.innerHTML='';gcShowNotice('Sohbete bağlanılıyor…');gcInput.disabled=false;$('globalChatSend').disabled=false;
+ const {data,error}=await supabaseClient.from('global_messages').select('id,user_id,username,message,created_at').order('created_at',{ascending:true}).limit(60);
+ if(error){gcShowNotice('Sohbet tablosu hazır değil. Aşağıdaki SQL kurulumunu çalıştır.');gcAddMessage({username:'Sistem',message:'Global sohbet için Supabase SQL kurulumunu yapmalısın.'});return}
+ (data||[]).forEach(gcAddMessage);gcShowNotice('Canlı sohbet açık · '+(onlineUser.email||'Giriş yapıldı'));
+ gcChannel=supabaseClient.channel('c48-global-chat')
+  .on('postgres_changes',{event:'INSERT',schema:'public',table:'global_messages'},payload=>{if(payload.new)gcAddMessage(payload.new)})
+  .subscribe(status=>{if(status==='CHANNEL_ERROR'||status==='TIMED_OUT')gcShowNotice('Canlı bağlantı koptu. Sayfayı yenilemeyi dene.')});
+}
+gcForm?.addEventListener('submit',async e=>{
+ e.preventDefault();const message=gcInput.value.trim();
+ if(!message)return;if(!supabaseClient||!onlineUser){gcShowNotice('Önce hesabına giriş yap.');return}
+ if(message.length>300){gcShowNotice('Mesaj en fazla 300 karakter olabilir.');return}
+ if(Date.now()-gcLastSend<1800){gcShowNotice('Mesaj göndermeden önce biraz bekle.');return}
+ gcLastSend=Date.now();$('globalChatSend').disabled=true;
+ const name=(typeof profileName==='string'&&profileName.trim())?profileName.trim():(onlineUser.email||'Oyuncu').split('@')[0];
+ const {error}=await supabaseClient.from('global_messages').insert({user_id:onlineUser.id,username:name.slice(0,24),message:message.slice(0,300)});
+ if(error){gcShowNotice('Mesaj gönderilemedi: '+error.message);$('globalChatSend').disabled=false;return}
+ gcInput.value='';$('globalChatSend').disabled=false;
+});
+$('globalChatToggle')?.addEventListener('click',()=>{gcPanel.classList.toggle('gc-collapsed');$('globalChatToggle').textContent=gcPanel.classList.contains('gc-collapsed')?'+':'−'});
+// Retry after account connection/login and keep the panel in sync with auth state.
+$('connectSupabase')?.addEventListener('click',()=>setTimeout(gcStart,700));
+$('signInOnline')?.addEventListener('click',()=>setTimeout(gcStart,900));
+$('signUpOnline')?.addEventListener('click',()=>setTimeout(gcStart,900));
+$('signOutOnline')?.addEventListener('click',()=>{if(gcChannel&&supabaseClient){supabaseClient.removeChannel(gcChannel);gcChannel=null}gcLoadedUser=null;if(gcMessages)gcMessages.innerHTML='';gcShowNotice('Sohbete katılmak için giriş yap.');if(gcInput)gcInput.disabled=true;if($('globalChatSend'))$('globalChatSend').disabled=true});
+setTimeout(gcStart,1200);
+
+
+</script>
+</body></html>
