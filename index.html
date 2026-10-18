@@ -115,6 +115,7 @@ body.theme-crimson{--bg:#250608;--panel:#4a1018;--panel2:#701c28}
 .settings-panel .theme-picks{margin-bottom:14px}
 .settings-panel .wheel-picks{margin-bottom:8px}
 @keyframes settingsPop{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:translateY(0)}}
+#megaWheelArt{background:conic-gradient(#ff595e 0deg 18deg,#ffd166 18deg 36deg,#6a4c93 36deg 54deg,#1982c4 54deg 72deg,#8ac926 72deg 90deg,#ffca3a 90deg 108deg,#ff595e 108deg 126deg,#6a4c93 126deg 144deg,#1982c4 144deg 162deg,#ffd166 162deg 180deg,#ff595e 180deg 198deg,#8ac926 198deg 216deg,#6a4c93 216deg 234deg,#ffca3a 234deg 252deg,#1982c4 252deg 270deg,#ff595e 270deg 288deg,#ffd166 288deg 306deg,#8ac926 306deg 324deg,#6a4c93 324deg 342deg,#1982c4 342deg 360deg)}#goldWheelArt{background:conic-gradient(#fff1a8 0deg 36deg,#d7a928 36deg 72deg,#fff7d1 72deg 108deg,#b78616 108deg 144deg,#ffe681 144deg 180deg,#d7a928 180deg 216deg,#fff7d1 216deg 252deg,#b78616 252deg 288deg,#ffe681 288deg 324deg,#d7a928 324deg 360deg)}.rank-avatar.c48fire{box-shadow:0 0 12px #ff4b00;border:2px solid #ff6a00}.rank-avatar.c48diamond{box-shadow:0 0 12px #4de8ff;border:2px solid #4de8ff}.rank-avatar.c48galaxy{box-shadow:0 0 12px #a56bff;border:2px solid #a56bff}.rank-avatar.c48royal{box-shadow:0 0 12px #ffd166;border:2px solid #ffd166}.rank-avatar.c48inferno{box-shadow:0 0 16px #ff2600;border:2px solid #ff2600}
 </style>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
@@ -143,7 +144,7 @@ body.theme-crimson{--bg:#250608;--panel:#4a1018;--panel2:#701c28}
 <div class="stat"><div class="label">🏆 Toplam kazanç</div><div class="val gold" id="earned">₺0</div></div>
 <div class="stat"><div class="label">🚘 Sahip olunanlar</div><div class="val" id="ownedCount">0</div></div>
 </section>
-<nav class="tabs"><button class="tab active" data-mode="wheel">🎡 Çarkı Çevir</button><button class="tab" data-mode="coin">🪙 Yazı Tura</button><button class="tab" data-mode="shop">🏡 Dükkanlar</button><button class="tab" data-mode="business">🏪 İşletmeler</button><button class="tab" data-mode="jobs">🧰 İş Bul</button><button class="tab" data-mode="jewelry">💍 Takı Dükkânı</button><button class="tab" data-mode="race">🏁 Yarış</button><button class="tab" data-mode="profile">👤 Profil & Sıralama</button></nav>
+<nav class="tabs"><button class="tab active" data-mode="wheel">🎡 Çarkı Çevir</button><button class="tab" data-mode="coin">🪙 Yazı Tura</button><button class="tab" data-mode="shop">🏡 Dükkanlar</button><button class="tab" data-mode="business">🏪 İşletmeler</button><button class="tab" data-mode="jobs">🧰 İş Bul</button><button class="tab" data-mode="jewelry">💍 Takı Dükkânı</button><button class="tab" data-mode="megaWheel">💎 10M Çarkı</button><button class="tab" data-mode="goldWheel">✨ Altın Çark</button><button class="tab" data-mode="c48Shop">🔥 C48 Dükkânı</button><button class="tab" data-mode="race">🏁 Yarış</button><button class="tab" data-mode="profile">👤 Profil & Sıralama</button></nav>
 <div class="grid">
 <section class="panel">
 <div class="mode active" id="wheel">
@@ -195,8 +196,32 @@ body.theme-crimson{--bg:#250608;--panel:#4a1018;--panel2:#701c28}
 <h2>💍 Takı ve Değerli Eşyalar</h2><p class="desc">10 farklı takı ve değerli aksesuar satın alıp koleksiyonuna ekle. Bunlar koleksiyon eşyalarıdır.</p>
 <div class="shop jewel-grid" id="jewelryList"></div>
 </div>
+
+<div class="mode" id="megaWheel">
+<h2>💎 10 Milyonluk Dev Çark</h2>
+<p class="desc">Açılış ücreti ₺10.000.000. Toplam 2.000 eşit şanslı sonuç: %50 kazanç, %50 kayıp. En yüksek kazanç +₺10.000.000, en büyük kayıp -₺20.000.000. Yalnızca oyun içi sanal para.</p>
+<div class="wheelbox"><div class="pointer">▼</div><div class="wheel" id="megaWheelArt"><div class="wheelcenter">C48<br><span style="color:#ffd166">MEGA</span></div></div></div>
+<div class="result" id="megaWheelUnlockStatus">Dev çark kilitli.</div>
+<button class="btn secondary full" id="unlockMegaWheel">🔓 ₺10.000.000 karşılığında aç</button>
+<button class="btn primary full" id="spinMegaWheel" disabled>💎 DEV ÇARKI ÇEVİR</button>
+<div class="result" id="megaWheelResult">Çarkı açtıktan sonra çevirebilirsin.</div>
+</div>
+<div class="mode" id="goldWheel">
+<h2>✨ Altın Çark</h2><p class="desc">Bir çeviriş $1. Ödül seçenekleri $1 ile $200.000 arasında; eksi sonuç yok.</p>
+<div class="wheelbox"><div class="pointer">▼</div><div class="wheel" id="goldWheelArt"><div class="wheelcenter">✨<br><span style="color:#ffd166">ALTIN</span></div></div></div>
+<div class="result">10 sonuç: $1 · $10 · $100 · $500 · $1.000 · $5.000 · $10.000 · $25.000 · $100.000 · $200.000</div>
+<button class="btn primary full" id="spinGoldWheel">✨ ALTIN ÇARKI ÇEVİR ($1)</button><div class="result" id="goldWheelResult">Kayıp sonucu yok!</div>
+</div>
+<div class="mode" id="c48Shop">
+<h2>🔥 C48 Parası ve Özel Eşyalar</h2><p class="desc">Profil çerçeveleri artık $30.000’dan başlıyor ve üst seviye çerçeveler çok daha pahalı. C48 parasıyla ateşli çark efektini alabilirsin. Kur: $100.000 = 1 C48.</p>
+<div class="result">Dolar: <b id="c48UsdBalance">$0</b> · C48: <b id="c48ShopBalance">0</b></div>
+<button class="btn secondary full" id="convertC48">💱 $100.000 → 1 C48</button>
+<div class="sectiontitle"><h3>🖼️ C48 Profil Çerçeveleri</h3></div><div id="c48FrameShop" class="shop"></div>
+<div class="sectiontitle"><h3>🔥 Ateşli Çark Efekti</h3></div>
+<div class="item"><div class="itemicon">🔥</div><div class="iteminfo"><div class="itemname">Ateşli Çark</div><div class="itemdesc">Fiyat: <b>100 C48</b> · <span id="fireWheelStatus">Henüz alınmadı.</span></div></div><button class="btn secondary" id="buyFireWheel">100 C48 ile al</button></div>
+</div>
 <div class="mode" id="race">
-<h2>🏁 Arkadaş Yarışı</h2><p class="desc">Motor veya araba koleksiyonunla kısa yarışlara katıl. Bu HTML sürümünde yarış aynı cihazda sırayla oynanır; internet üzerinden gerçek zamanlı yarış için çevrimiçi sunucu gerekir.</p>
+<h2>🏁 Arkadaş Yarışı</h2><p class="desc">Motor veya araba koleksiyonunla yarış. Kazanma şansın aracın markası, cc değeri ve performansına göre değişir; bot rakibe rastgele bir araç seçilir. Bu HTML sürümünde yarış aynı cihazda sırayla oynanır; internet üzerinden gerçek zamanlı yarış için çevrimiçi sunucu gerekir.</p>
 <div class="betrow"><label>Yarış aracın</label><select id="raceVehicle" style="flex:1;min-width:0;background:#0d1526;border:1px solid #ffffff20;border-radius:10px;padding:11px;color:var(--text);font:inherit"></select></div>
 <div class="betrow"><label>Rakip adı</label><input id="raceOpponent" maxlength="18" placeholder="Arkadaşının adı" value="Arkadaş"></div>
 <div class="race-track">
@@ -272,7 +297,7 @@ body.theme-crimson{--bg:#250608;--panel:#4a1018;--panel2:#701c28}
 </div><div class="toast" id="toast"></div>
 <script>
 (()=>{
-const initial={balance:100,usd:0,earned:0,owned:[],businesses:[],jewels:[],log:[],heads:true};
+const initial={balance:100,usd:0,c48:0,earned:0,owned:[],businesses:[],jewels:[],log:[],heads:true,megaWheelUnlocked:false};
 let s={...initial};try{let d=JSON.parse(localStorage.getItem('c48-luck-v1'));if(d)s={...initial,...d,owned:d.owned||[],businesses:d.businesses||[],jewels:d.jewels||[],usd:d.usd||0}}catch(e){}
 const $=id=>document.getElementById(id);
 let activeShop='all';
@@ -282,7 +307,12 @@ let equippedFrame=localStorage.getItem('c48-luck-equipped-frame')||'default';
 const profileFrames=[
  {id:'bronze',name:'Bronz Çerçeve',price:200,icon:'🥉',className:'bronze'},
  {id:'gold',name:'Altın Çerçeve',price:1000,icon:'🏆',className:'gold'},
- {id:'apple',name:'Elma Çerçeve',price:10000,icon:'🍏',className:'apple'}
+ {id:'apple',name:'Elma Çerçeve',price:30000,icon:'🍏',className:'apple'},
+ {id:'c48fire',name:'C48 Ateş Çerçeve',price:30000,icon:'🔥',className:'c48fire'},
+ {id:'c48diamond',name:'Elmas Çerçeve',price:75000,icon:'💎',className:'c48diamond'},
+ {id:'c48galaxy',name:'Galaksi Çerçeve',price:150000,icon:'🌌',className:'c48galaxy'},
+ {id:'c48royal',name:'Kraliyet Çerçevesi',price:300000,icon:'👑',className:'c48royal'},
+ {id:'c48inferno',name:'C48 Efsane Çerçeve',price:1000000,icon:'♨️',className:'c48inferno'}
 ];
 let ranks=[];try{ranks=JSON.parse(localStorage.getItem('c48-luck-ranks')||'[]')}catch(e){ranks=[]}
 let jobReadyAt={easy:0,hard:0,bim:0,construction:0,specialCourier:0};
@@ -293,6 +323,7 @@ document.body.classList.add('theme-'+(['red','black','blue','purple','teal','gre
 $('wheelArt').classList.add('scheme-'+savedWheelTheme);
 $('profileName').value=profileName;
 
+s.c48=Number(s.c48||0);s.megaWheelUnlocked=!!s.megaWheelUnlocked;
 const fmt=n=>'₺'+Math.floor(n).toLocaleString('tr-TR');
 const fmtUSD=n=>'$'+Number(n||0).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});
 // Tam 1000 sonuç: 600 kazanç, 400 kayıp.
@@ -546,7 +577,7 @@ function toast(t){$('toast').textContent=t;$('toast').classList.add('show');clea
 function log(text,amount){s.log.unshift({text,amount,time:new Date().toLocaleTimeString('tr-TR',{hour:'2-digit',minute:'2-digit'})});s.log=s.log.slice(0,12)}
 function addBalance(n){s.balance+=n;if(n>0)s.earned+=n}
 function render(){
-$('balance').textContent=fmt(s.balance);$('usdBalance').textContent=fmtUSD(s.usd);$('earned').textContent=fmt(s.earned);$('ownedCount').textContent=`${s.owned.length+s.businesses.length+s.jewels.length} / ${items.length+businesses.length+jewelry.length}`;
+$('balance').textContent=fmt(s.balance);$('usdBalance').textContent=fmtUSD(s.usd);$('earned').textContent=fmt(s.earned);if($('c48ShopBalance'))$('c48ShopBalance').textContent=s.c48+' C48';if($('c48UsdBalance'))$('c48UsdBalance').textContent=fmtUSD(s.usd);$('ownedCount').textContent=`${s.owned.length+s.businesses.length+s.jewels.length} / ${items.length+businesses.length+jewelry.length}`;
 $('spin').disabled=s.balance<1;$('flip').disabled=s.balance<1;
 $('shopList').innerHTML='';items.filter(it=>activeShop==='all'||(activeShop==='motor'&&it.category==='motor')||(activeShop==='car'&&it.category==='car')||(activeShop==='home'&&it.category==='home')||(activeShop==='air'&&it.category==='air')).forEach(it=>{let owned=s.owned.includes(it.id),el=document.createElement('div');el.className='item';el.innerHTML=`<div class="itemicon">${it.icon}</div><div class="iteminfo"><div class="itemname">${it.name}</div><div class="itemdesc">${it.brand} · ${it.desc}<br><b>${fmt(it.price)}</b></div></div><button class="btn ${owned?'owned':'secondary'}" ${owned||s.balance<it.price?'disabled':''}>${owned?'Sahipsin':'Satın al'}</button>`;el.querySelector('button').addEventListener('click',()=>buy(it));$('shopList').appendChild(el)});
 $('jewelryList').innerHTML='';
@@ -796,6 +827,53 @@ setInterval(()=>{
  let income=businesses.filter(b=>s.businesses.includes(b.id)).reduce((sum,b)=>sum+b.income,0);
  if(income>0){s.balance+=income;s.earned+=income;save();render();}
 },60000);
+
+// C48 2.1 additions
+const c48Frames=[
+{id:'c48fire',name:'C48 Ateş Çerçeve',price:30000,icon:'🔥',className:'c48fire'},
+{id:'c48diamond',name:'Elmas Çerçeve',price:75000,icon:'💎',className:'c48diamond'},
+{id:'c48galaxy',name:'Galaksi Çerçeve',price:150000,icon:'🌌',className:'c48galaxy'},
+{id:'c48royal',name:'Kraliyet Çerçevesi',price:300000,icon:'👑',className:'c48royal'},
+{id:'c48inferno',name:'C48 Efsane Çerçeve',price:1000000,icon:'♨️',className:'c48inferno'}];
+const frameBox=$('c48FrameShop');
+function renderC48Shop(){
+ if(!frameBox)return;frameBox.innerHTML='';
+ c48Frames.forEach(f=>{const owned=ownedFrames.includes(f.id),el=document.createElement('div');el.className='item';el.innerHTML=`<div class="itemicon">${f.icon}</div><div class="iteminfo"><div class="itemname">${f.name}</div><div class="itemdesc">Fiyat: <b>$${f.price.toLocaleString("en-US")}</b></div></div><button class="btn secondary" ${owned?'disabled':''}>${owned?'Sahipsin':'Satın al'}</button>`;el.querySelector('button').addEventListener('click',()=>{if(s.usd<f.price){toast('Yeterli doların yok.');return}if(ownedFrames.includes(f.id))return;s.usd-=f.price;ownedFrames.push(f.id);localStorage.setItem('c48-luck-owned-frames',JSON.stringify(ownedFrames));save();render();renderC48Shop();toast(f.name+' alındı!')});frameBox.appendChild(el)});
+ const fire=localStorage.getItem('c48-luck-fire-wheel')==='yes';if($('fireWheelStatus'))$('fireWheelStatus').textContent=fire?'Aktif 🔥':'Henüz alınmadı.';if($('buyFireWheel'))$('buyFireWheel').disabled=fire;
+}
+function spinAnimation(id,duration){const el=$(id);el.style.transition=`transform ${duration/1000}s cubic-bezier(.08,.72,.08,1)`;el.style.transform=`rotate(${3600+Math.floor(Math.random()*360)}deg)`;return new Promise(resolve=>setTimeout(resolve,duration))}
+$('convertC48')?.addEventListener('click',()=>{if(s.usd<100000){toast('1 C48 için $100.000 gerekiyor.');return}s.usd-=100000;s.c48++;log('$100.000 → 1 C48',0);save();render();renderC48Shop();toast('1 C48 aldın!')});
+$('buyFireWheel')?.addEventListener('click',()=>{if(localStorage.getItem('c48-luck-fire-wheel')==='yes')return;if(s.c48<100){toast('100 C48 gerekiyor.');return}s.c48-=100;localStorage.setItem('c48-luck-fire-wheel','yes');$('wheelArt').style.filter='drop-shadow(0 0 20px #ff4b00)';$('wheelArt').style.boxShadow='0 0 0 5px #7c2608,0 0 35px #ff4b00';save();render();renderC48Shop();toast('Ateşli çark açıldı! 🔥')});
+$('unlockMegaWheel')?.addEventListener('click',()=>{if(s.megaWheelUnlocked)return;if(s.balance<10000000){toast('₺10.000.000 gerekiyor.');return}s.balance-=10000000;s.megaWheelUnlocked=true;log('Dev çark açılış ücreti',-10000000);$('megaWheelUnlockStatus').textContent='Dev çark açıldı!';$('unlockMegaWheel').disabled=true;$('spinMegaWheel').disabled=false;save();render()});
+$('spinMegaWheel')?.addEventListener('click',async()=>{if(!s.megaWheelUnlocked||raceBusy)return;$('spinMegaWheel').disabled=true;const win=Math.random()<0.5;const gain=[100,500,1000,5000,10000,50000,100000,500000,1000000,10000000];const loss=[100,500,1000,5000,10000,50000,100000,500000,1000000,20000000];const amount=(win?gain:loss)[Math.floor(Math.random()*10)];await spinAnimation('megaWheelArt',6500);const delta=win?amount:-amount;s.balance=Math.max(0,s.balance+delta);if(delta>0)s.earned+=delta;$('megaWheelResult').innerHTML=win?`🎉 <b>KAZANDIN!</b> +${fmt(amount)}`:`💥 <b>KAYIP!</b> -${fmt(amount)}`;log('Dev çark '+(win?'kazanç':'kayıp'),delta);save();render();$('spinMegaWheel').disabled=false});
+$('spinGoldWheel')?.addEventListener('click',async()=>{if(raceBusy)return;if(s.usd<1){toast('Altın çark için $1 gerekiyor.');return}$('spinGoldWheel').disabled=true;s.usd-=1;await spinAnimation('goldWheelArt',6000);const prizes=[1,10,100,500,1000,5000,10000,25000,100000,200000];const prize=prizes[Math.floor(Math.random()*prizes.length)];s.usd+=prize;$('goldWheelResult').innerHTML=`✨ Ödülün: <b>+$${prize.toLocaleString('en-US')}</b>. Eksi sonuç yok!`;log('Altın çark +$'+prize,0);save();render();$('spinGoldWheel').disabled=false});
+if(s.megaWheelUnlocked){$('megaWheelUnlockStatus').textContent='Dev çark açık!';$('unlockMegaWheel').disabled=true;$('spinMegaWheel').disabled=false}
+if(localStorage.getItem('c48-luck-fire-wheel')==='yes'){$('wheelArt').style.filter='drop-shadow(0 0 20px #ff4b00)';$('wheelArt').style.boxShadow='0 0 0 5px #7c2608,0 0 35px #ff4b00'}
+renderC48Shop();
+
+// Vehicle class/cc/price changes odds; bot gets a random vehicle every race.
+const raceButton=$('startRace');
+raceButton?.addEventListener('click',()=>{
+ if(raceBusy)return;
+ const playerV=items.find(it=>it.id===$('raceVehicle').value);if(!playerV)return;
+ const stake=Math.floor(Number($('raceBet').value));if(!Number.isFinite(stake)||stake<1||stake>s.balance)return;
+ const botChoices=items.filter(it=>it.category==='motor'||it.category==='car');
+ const botV=botChoices[Math.floor(Math.random()*botChoices.length)];
+ const cc={pcx:160,motor:689,motor2:649,motor3:1103,motor4:125,motor5:999,motor6:373,car:3000,car2:4000,car3:5200,car4:1600,car5:3000,car6:0};
+ const power={pcx:1,motor:1.35,motor2:1.28,motor3:1.85,motor4:.85,motor5:1.95,motor6:1.12,car:1.55,car2:1.7,car3:1.9,car4:1,car5:1.8,car6:1.5};
+ const score=v=>(power[v.id]||1)*.65+Math.min(cc[v.id]||500,6000)/3000*.35;
+ const playerScore=score(playerV),botScore=score(botV);
+ const playerChance=Math.max(.15,Math.min(.85,playerScore/(playerScore+botScore)));
+ const win=Math.random()<playerChance;
+ const a=50+Math.random()*48,b=50+Math.random()*48;
+ const finalA=win?Math.max(a,b+1):Math.min(a,b-1),finalB=win?Math.min(a,b-1):Math.max(a,b+1);
+ raceBusy=true;raceButton.disabled=true;s.balance-=stake;log('Yarış bahsi yatırıldı',-stake);render();
+ $('racer1Label').textContent=profileName||'Sen';$('racer2Label').textContent='Bot · '+botV.name;$('racer1Icon').textContent=playerV.icon;$('racer2Icon').textContent=botV.icon;$('racer1Fill').style.width='0%';$('racer2Fill').style.width='0%';
+ $('raceResult').textContent=`🏁 Botun aracı: ${botV.name}. Senin tahmini kazanma şansın %${Math.round(playerChance*100)}.`;
+ setTimeout(()=>{$('racer1Fill').style.width=finalA+'%';$('racer2Fill').style.width=finalB+'%'},250);
+ setTimeout(()=>{if(win){s.balance+=stake*2;s.earned+=stake;log('Yarış zaferi · '+playerV.name,stake*2);$('raceResult').innerHTML=`🏆 Kazandın! ${playerV.name}, botun ${botV.name} aracını geçti. +${fmt(stake*2)}.`}else{$('raceResult').innerHTML=`🏁 Bot kazandı! Bot aracı: ${botV.name}. Kazanma şansın %${Math.round(playerChance*100)} idi; rastgelelik nedeniyle kaybedebilirsin.`;log('Yarış kaybı · bot '+botV.name,0)}raceBusy=false;save();render();raceButton.disabled=false},2300);
+},{capture:true});
+
 render();
 setTimeout(()=>{const intro=$('c48Intro');if(intro)intro.remove()},5200);
 })();
