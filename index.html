@@ -312,7 +312,7 @@ body.theme-crimson{--bg:#250608;--panel:#4a1018;--panel2:#701c28}
   <div class="desc" id="saveStatus" style="margin-top:10px">Otomatik kayıt açık.</div>
 </section>
 
-<div class="footer"><span>© C48 Studios · Güncelleme 2.0 · Sanal oyun parası, gerçek para değeri yoktur.</span><button class="smallbtn" id="reset">Oyunu sıfırla</button></div>
+<div class="footer"><span>© C48 Studios · Güncelleme 2.5 Online Fix · Sanal oyun parası, gerçek para değeri yoktur.</span><button class="smallbtn" id="reset">Oyunu sıfırla</button></div>
 </div><div class="toast" id="toast"></div>
 <script>
 (()=>{
@@ -390,6 +390,17 @@ const items=[
 {id:'motor4',name:'Honda CB125F',brand:'Honda',category:'motor',icon:'🏍️',price:130000,desc:'Şehir içi başlangıç motoru.'},
 {id:'motor5',name:'BMW S 1000 RR',brand:'BMW Motorrad',category:'motor',icon:'🏍️',price:1950000,desc:'Yüksek performanslı superbike.'},
 {id:'motor6',name:'KTM 390 Duke',brand:'KTM',category:'motor',icon:'🏍️',price:285000,desc:'Çevik şehir motoru.'},
+
+{id:'motor7',name:'KTM RC 390',icon:'🏍️',category:'motor',brand:'KTM',price:390000,desc:'373 cc · 170 km/sa · 43 bg',cc:373,topSpeed:170,power:43},
+{id:'motor8',name:'KTM 690 Duke',icon:'🏍️',category:'motor',brand:'KTM',price:690000,desc:'690 cc · 200 km/sa · 73 bg',cc:690,topSpeed:200,power:73},
+{id:'motor9',name:'Honda CBR650R',icon:'🏍️',category:'motor',brand:'Honda',price:850000,desc:'649 cc · 220 km/sa · 94 bg',cc:649,topSpeed:220,power:94},
+{id:'motor10',name:'Yamaha R7',icon:'🏍️',category:'motor',brand:'Yamaha',price:950000,desc:'689 cc · 220 km/sa · 73 bg',cc:689,topSpeed:220,power:73},
+{id:'motor11',name:'Kawasaki Ninja ZX-6R',icon:'🏍️',category:'motor',brand:'Kawasaki',price:1350000,desc:'636 cc · 250 km/sa · 127 bg',cc:636,topSpeed:250,power:127},
+{id:'motor12',name:'Triumph Street Triple 765 RS',icon:'🏍️',category:'motor',brand:'Triumph',price:1650000,desc:'765 cc · 260 km/sa · 130 bg',cc:765,topSpeed:260,power:130},
+{id:'motor13',name:'Yamaha MT-09',icon:'🏍️',category:'motor',brand:'Yamaha',price:1850000,desc:'890 cc · 250 km/sa · 119 bg',cc:890,topSpeed:250,power:119},
+{id:'motor14',name:'Honda CBR1000RR-R',icon:'🏍️',category:'motor',brand:'Honda',price:2900000,desc:'1000 cc · 299 km/sa · 217 bg',cc:1000,topSpeed:299,power:217},
+{id:'motor15',name:'BMW S 1000 RR',icon:'🏍️',category:'motor',brand:'BMW',price:3400000,desc:'999 cc · 303 km/sa · 210 bg',cc:999,topSpeed:303,power:210},
+{id:'motor16',name:'Kawasaki Ninja H2',icon:'🏍️',category:'motor',brand:'Kawasaki',price:5200000,desc:'998 cc · 330 km/sa · 231 bg',cc:998,topSpeed:330,power:231},
 {id:'car',name:'BMW M4',brand:'BMW',category:'car',icon:'🏎️',price:6500000,desc:'Sportif performans otomobili.'},
 {id:'car2',name:'Mercedes-AMG GT',brand:'Mercedes-Benz',category:'car',icon:'🚘',price:12500000,desc:'Lüks ve performans.'},
 {id:'car3',name:'Lamborghini Huracán',brand:'Lamborghini',category:'car',icon:'🏎️',price:28000000,desc:'Süper otomobil.'},
@@ -446,7 +457,17 @@ const jewelry=[
 {id:'j7',name:'Zümrüt yüzük',icon:'💚',price:110000,desc:'Zümrüt taşlı yüzük.'},
 {id:'j8',name:'Pırlanta bileklik',icon:'💎',price:250000,desc:'Lüks bileklik.'},
 {id:'j9',name:'Yakut kolye',icon:'❤️',price:450000,desc:'Yakut taşlı özel kolye.'},
-{id:'j10',name:'Kraliyet mücevher seti',icon:'👑',price:1250000,desc:'Özel koleksiyonun en değerli seti.'}
+{id:'j10',name:'Kraliyet mücevher seti',icon:'👑',price:1250000,desc:'Özel koleksiyonun en değerli seti.'},
+{id:'j11',name:'Pırlanta bileklik',icon:'💎',price:1850000,desc:'Pırlanta taşlı özel bileklik.'},
+{id:'j12',name:'Altın cep saati',icon:'⌚',price:2400000,desc:'Klasik altın cep saati.'},
+{id:'j13',name:'Safir küpe seti',icon:'💙',price:3200000,desc:'Mavi safir taşlı küpe seti.'},
+{id:'j14',name:'Yakut kolye',icon:'❤️',price:4500000,desc:'Yakut taşlı lüks kolye.'},
+{id:'j15',name:'Platin saat',icon:'⌚',price:6200000,desc:'Platin kasalı koleksiyon saati.'},
+{id:'j16',name:'Zümrüt taç',icon:'👑',price:8500000,desc:'Zümrütlerle süslenmiş taç.'},
+{id:'j17',name:'Siyah elmas yüzük',icon:'🖤',price:11000000,desc:'Nadir siyah elmas yüzük.'},
+{id:'j18',name:'Göktaşı bileklik',icon:'☄️',price:17500000,desc:'Göktaşı detaylı nadir aksesuar.'},
+{id:'j19',name:'Kraliyet kolyesi',icon:'👑',price:25000000,desc:'Kraliyet koleksiyonundan özel kolye.'},
+{id:'j20',name:'C48 ebedî mücevher',icon:'✨',price:50000000,desc:'Koleksiyonun en nadir mücevheri.'}
 ];
 
 
@@ -462,6 +483,10 @@ function save(){
 
 let supabaseClient=null;
 let onlineUser=null;
+let onlineRanksLoaded=false;
+let onlineRankChannel=null;
+let profileSyncTimer=null;
+let profileSyncBusy=false;
 const onlineStatus=(message)=>{const el=$('onlineStatus');if(el)el.textContent=message;};
 const sbUrlInput=$('sbUrl'), sbKeyInput=$('sbKey');
 try{
@@ -469,6 +494,60 @@ try{
  const savedKey=localStorage.getItem('c48-sb-publishable-key')||'';
  sbUrlInput.value=savedUrl;sbKeyInput.value=savedKey;
 }catch(e){}
+function c48SafeUsername(value){
+ let name=String(value||'').trim().replace(/\s+/g,' ').replace(/[^\p{L}\p{N}_ -]/gu,'').slice(0,18);
+ if(name.length<3)name=('Oyuncu'+Math.random().toString(36).slice(2,6)).slice(0,18);
+ return name;
+}
+function c48SuggestedUsername(){
+ const preferred=profileName||$('profileName')?.value||'';
+ if(preferred.trim().length>=3)return c48SafeUsername(preferred);
+ const email=onlineUser?.email||'';
+ const local=(email.split('@')[0]||'Oyuncu').replace(/[^\p{L}\p{N}_-]/gu,'').slice(0,12);
+ return c48SafeUsername(local.length>=3?local:'Oyuncu'+Math.random().toString(36).slice(2,5));
+}
+async function ensureOnlineProfile(){
+ if(!supabaseClient||!onlineUser)return false;
+ const base=c48SuggestedUsername();
+ const row={id:onlineUser.id,username:base,updated_at:new Date().toISOString(),balance:Math.max(0,Math.floor(Number(s.balance)||0)),earned:Math.max(0,Math.floor(Number(s.earned)||0)),owned_count:(s.owned?.length||0)+(s.businesses?.length||0)+(s.jewels?.length||0)};
+ let result=await supabaseClient.from('profiles').upsert(row,{onConflict:'id'}).select('id,username,balance,earned,owned_count,updated_at').single();
+ if(result.error && /username|duplicate|unique/i.test(result.error.message||'')){
+  row.username=c48SafeUsername((base.slice(0,12)+'_'+String(onlineUser.id).replace(/-/g,'').slice(0,4)).slice(0,18));
+  result=await supabaseClient.from('profiles').upsert(row,{onConflict:'id'}).select('id,username,balance,earned,owned_count,updated_at').single();
+ }
+ if(result.error){onlineStatus('Profil kaydedilemedi: '+result.error.message);return false;}
+ if(result.data?.username){profileName=result.data.username;try{localStorage.setItem('c48-luck-profile',profileName)}catch(e){};const input=$('profileName');if(input)input.value=profileName;}
+ return true;
+}
+function scheduleProfileSync(){
+ if(!supabaseClient||!onlineUser)return;
+ clearTimeout(profileSyncTimer);
+ profileSyncTimer=setTimeout(async()=>{
+  if(profileSyncBusy||!supabaseClient||!onlineUser)return;
+  profileSyncBusy=true;
+  try{
+   const ok=await ensureOnlineProfile();
+   if(ok)await refreshOnlineRanks(false);
+  }catch(e){console.warn('C48 profile sync:',e)}
+  finally{profileSyncBusy=false;}
+ },700);
+}
+async function refreshOnlineRanks(showStatus=false){
+ if(!supabaseClient||!onlineUser)return false;
+ const {data,error}=await supabaseClient.from('profiles').select('id,username,balance,earned,owned_count,updated_at').order('balance',{ascending:false}).limit(50);
+ if(error){if(showStatus)onlineStatus('Sıralama yüklenemedi: '+error.message);return false;}
+ ranks=(data||[]).map(r=>({id:r.id,name:r.username,balance:Number(r.balance)||0,earned:Number(r.earned)||0,owned:Number(r.owned_count)||0,frame:'default'}));
+ onlineRanksLoaded=true;renderRanks();
+ return true;
+}
+function startOnlineRankRealtime(){
+ if(!supabaseClient||!onlineUser)return;
+ if(onlineRankChannel){try{supabaseClient.removeChannel(onlineRankChannel)}catch(e){}onlineRankChannel=null;}
+ onlineRankChannel=supabaseClient.channel('c48-global-ranks')
+  .on('postgres_changes',{event:'*',schema:'public',table:'profiles'},()=>{refreshOnlineRanks(false)})
+  .subscribe();
+ refreshOnlineRanks(false);
+}
 function initSupabase(){
  const url=sbUrlInput.value.trim().replace(/\/+$/,'');
  const key=sbKeyInput.value.trim();
@@ -479,14 +558,17 @@ function initSupabase(){
   localStorage.setItem('c48-sb-url',url);localStorage.setItem('c48-sb-publishable-key',key);
   supabaseClient=window.supabase.createClient(url,key);
   onlineStatus('Supabase bağlantı ayarları hazır. Şimdi hesap oluşturabilir veya giriş yapabilirsin.');
-  supabaseClient.auth.getSession().then(({data,error})=>{
+  supabaseClient.auth.getSession().then(async ({data,error})=>{
    if(error){onlineStatus('Oturum kontrol hatası: '+error.message);return;}
    onlineUser=data.session?.user||null;
    onlineStatus(onlineUser?'Giriş yapıldı: '+onlineUser.email:'Bağlandı. Henüz giriş yapılmadı.');
+   if(onlineUser){await ensureOnlineProfile();startOnlineRankRealtime();}
   });
   supabaseClient.auth.onAuthStateChange((_event,session)=>{
    onlineUser=session?.user||null;
    onlineStatus(onlineUser?'Giriş yapıldı: '+onlineUser.email:'Oturum kapalı.');
+   if(onlineUser){setTimeout(async()=>{await ensureOnlineProfile();startOnlineRankRealtime();},0)}
+   else{onlineRanksLoaded=false;if(onlineRankChannel){try{supabaseClient.removeChannel(onlineRankChannel)}catch(e){}onlineRankChannel=null;}renderRanks();}
   });
   return true;
  }catch(e){onlineStatus('Bağlantı kurulamadı: '+e.message);return false;}
@@ -508,8 +590,9 @@ $('signUpOnline').addEventListener('click',async()=>{
  onlineStatus('Hesap oluşturuluyor…');
  const {data,error}=await supabaseClient.auth.signUp({email,password});
  if(error){onlineStatus('Hesap oluşturulamadı: '+error.message);return;}
- onlineUser=data.user;
- onlineStatus(data.session?'Hesap oluşturuldu ve giriş yapıldı.':'Hesap oluşturuldu. E-posta doğrulaması açıksa gelen kutunu kontrol edip sonra giriş yap.');
+ onlineUser=data.session?.user||null;
+ if(onlineUser){await ensureOnlineProfile();startOnlineRankRealtime();}
+ onlineStatus(data.session?'Hesap oluşturuldu, profil kaydedildi ve giriş yapıldı.':'Hesap oluşturuldu. E-posta doğrulaması açıksa gelen kutunu doğrula, sonra giriş yap; profil o zaman oluşturulacak.');
 });
 $('signInOnline').addEventListener('click',async()=>{
  if(!supabaseClient&&!initSupabase())return;
@@ -518,13 +601,13 @@ $('signInOnline').addEventListener('click',async()=>{
  onlineStatus('Giriş yapılıyor…');
  const {data,error}=await supabaseClient.auth.signInWithPassword({email,password});
  if(error){onlineStatus('Giriş başarısız: '+error.message);return;}
- onlineUser=data.user;onlineStatus('Giriş başarılı: '+data.user.email);
+ onlineUser=data.user;await ensureOnlineProfile();startOnlineRankRealtime();onlineStatus('Giriş başarılı; profil ve sıralama senkronize edildi.');
 });
 $('signOutOnline').addEventListener('click',async()=>{
  if(!supabaseClient){onlineStatus('Önce bağlantıyı kur.');return;}
  const {error}=await supabaseClient.auth.signOut();
  if(error){onlineStatus('Çıkış yapılamadı: '+error.message);return;}
- onlineUser=null;onlineStatus('Çıkış yapıldı.');
+ onlineUser=null;onlineRanksLoaded=false;if(onlineRankChannel){try{supabaseClient.removeChannel(onlineRankChannel)}catch(e){}onlineRankChannel=null;}onlineStatus('Çıkış yapıldı.');renderRanks();
 });
 $('cloudSave').addEventListener('click',async()=>{
  try{
@@ -620,6 +703,7 @@ renderFrameShop();
 renderRanks();
 updateJobTimers();
 save();
+scheduleProfileSync();
 }
 function renderFrameShop(){
  $('frameUsdBalance').textContent=fmtUSD(s.usd);
@@ -644,22 +728,25 @@ function getFrameIcon(id){return profileFrames.find(f=>f.id===id)?.icon||'👤'}
 function renderRanks(){
  const me=profileName.trim();
  if(me){
-   let old=ranks.find(r=>r.name.toLowerCase()===me.toLowerCase());
-   if(old){old.balance=s.balance;old.owned=s.owned.length;old.earned=s.earned;old.frame=equippedFrame;}
-   else ranks.push({name:me,balance:s.balance,owned:s.owned.length,earned:s.earned,frame:equippedFrame});
-   ranks.sort((a,b)=>b.balance-a.balance);ranks=ranks.slice(0,50);
-   try{localStorage.setItem('c48-luck-ranks',JSON.stringify(ranks))}catch(e){}
-   $('profileStatus').innerHTML=`<div class="profile-heading"><span class="rank-avatar ${getFrameClass(equippedFrame)}">${getFrameIcon(equippedFrame)}</span><span>Profil: <strong>${me.replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]))}</strong> · Servet: <strong>${fmt(s.balance)}</strong></span></div>`;
- }else $('profileStatus').textContent='Bir oyuncu adı belirleyerek sıralamaya katıl.';
+   if(!(onlineUser&&onlineRanksLoaded)){
+    let old=ranks.find(r=>r.name.toLowerCase()===me.toLowerCase());
+    if(old){old.balance=s.balance;old.owned=s.owned.length+s.businesses.length+s.jewels.length;old.earned=s.earned;old.frame=equippedFrame;}
+    else ranks.push({name:me,balance:s.balance,owned:s.owned.length+s.businesses.length+s.jewels.length,earned:s.earned,frame:equippedFrame});
+    ranks.sort((a,b)=>b.balance-a.balance);ranks=ranks.slice(0,50);
+    try{localStorage.setItem('c48-luck-ranks',JSON.stringify(ranks))}catch(e){}
+   }
+   const safeMe=me.replace(/[&<>\"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','\"':'&quot;'}[c]));
+   $('profileStatus').innerHTML=`<div class="profile-heading"><span class="rank-avatar ${getFrameClass(equippedFrame)}">${getFrameIcon(equippedFrame)}</span><span>Profil: <strong>${safeMe}</strong> · Servet: <strong>${fmt(s.balance)}</strong>${onlineUser?' · 🌐 Çevrimiçi':''}</span></div>`;
+ }else $('profileStatus').textContent='Bir oyuncu adı belirleyerek sıralamaya kat.';
  const sorted=[...ranks].sort((a,b)=>b.balance-a.balance);
  $('leaderboard').innerHTML='';
  if(!sorted.length){$('leaderboard').innerHTML='<div class="result">Henüz sıralama kaydı yok. Profil adını kaydet!</div>';return}
  sorted.slice(0,10).forEach((r,i)=>{
    const el=document.createElement('div');el.className='rankrow';
-   const safe=r.name.replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+   const safe=String(r.name||'Oyuncu').replace(/[&<>\"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','\"':'&quot;'}[c]));
    el.classList.add('frame-'+getFrameClass(r.frame||''));
-el.innerHTML=`<div class="ranknum">${i+1}</div><div class="profile-heading"><span class="rank-avatar ${getFrameClass(r.frame||'')}">${getFrameIcon(r.frame||'default')}</span><div><div class="rankname">${safe}</div><div class="rankmeta">${r.owned||0} varlık · Toplam kazanç ${fmt(r.earned||0)}</div></div></div><div class="rankmoney">${fmt(r.balance)}</div><button class="smallbtn view-profile">Profili gör</button>`;
-   el.querySelector('.view-profile').addEventListener('click',()=>{const box=$('friendProfile');box.style.display='block';box.innerHTML=`<div class="profile-heading"><span class="rank-avatar ${getFrameClass(r.frame||'')}">${getFrameIcon(r.frame||'default')}</span><b>${safe}</b></div><br>💰 Kayıtlı bakiye: <b>${fmt(r.balance)}</b><br>🎒 Kayıtlı varlık sayısı: <b>${r.owned||0}</b><br>🏆 Toplam kazanç: <b>${fmt(r.earned||0)}</b><br><span class="desc">Bu, bu tarayıcıdaki son kayıtlı profil bilgisidir.</span>`;});
+   el.innerHTML=`<div class="ranknum">${i+1}</div><div class="profile-heading"><span class="rank-avatar ${getFrameClass(r.frame||'')}">${getFrameIcon(r.frame||'default')}</span><div><div class="rankname">${safe}</div><div class="rankmeta">${r.owned||0} varlık · Toplam kazanç ${fmt(r.earned||0)}</div></div></div><div class="rankmoney">${fmt(r.balance)}</div><button class="smallbtn view-profile">Profili gör</button>`;
+   el.querySelector('.view-profile').addEventListener('click',()=>{const box=$('friendProfile');box.style.display='block';box.innerHTML=`<div class="profile-heading"><span class="rank-avatar ${getFrameClass(r.frame||'')}">${getFrameIcon(r.frame||'default')}</span><b>${safe}</b></div><br>💰 Kayıtlı bakiye: <b>${fmt(r.balance)}</b><br>🎒 Kayıtlı varlık sayısı: <b>${r.owned||0}</b><br>🏆 Toplam kazanç: <b>${fmt(r.earned||0)}</b><br><span class="desc">Bu profil bilgisi çevrimiçi sıralamadan yüklenir.</span>`;});
    $('leaderboard').appendChild(el);
  });
 }
@@ -837,7 +924,7 @@ $('saveProfile').addEventListener('click',()=>{
  localStorage.setItem('c48-luck-profile',profileName);
  let old=ranks.find(r=>r.name.toLowerCase()===profileName.toLowerCase());
  if(!old)ranks.push({name:profileName,balance:s.balance,owned:s.owned.length,earned:s.earned});
- render();toast('Profil kaydedildi!');
+ render();scheduleProfileSync();toast('Profil kaydedildi!');
 });
 $('refreshRanks').addEventListener('click',()=>{renderRanks();toast('Sıralama yenilendi.')});
 setInterval(()=>{
@@ -877,42 +964,33 @@ raceButton?.addEventListener('click',()=>{
  const stake=Math.floor(Number($('raceBet').value));
  if(!Number.isFinite(stake)||stake<1){$('raceResult').textContent='Geçerli bir sanal bahis gir.';return;}
  if(stake>s.balance){$('raceResult').textContent='Bakiyen bu bahse yetmiyor.';return;}
- const botChoices=items.filter(it=>(it.category==='motor'||it.category==='car')&&!s.owned.includes(it.id));
- const fallback=items.filter(it=>it.category==='motor'||it.category==='car');
- const pool=botChoices.length?botChoices:fallback;
- const botV=pool[Math.floor(Math.random()*pool.length)];
- // Explicit vehicle specs: displacement + realistic performance tier; PCX remains an affordable scooter.
- const specs={
-  pcx:{cc:160,power:15,kind:'motor'},motor:{cc:689,power:73,kind:'motor'},
-  motor2:{cc:649,power:68,kind:'motor'},motor3:{cc:1103,power:215,kind:'motor'},
-  motor4:{cc:125,power:11,kind:'motor'},motor5:{cc:999,power:210,kind:'motor'},
-  motor6:{cc:373,power:44,kind:'motor'},
-  car:{cc:3000,power:510,kind:'car'},car2:{cc:4000,power:530,kind:'car'},
-  car3:{cc:5200,power:610,kind:'car'},car4:{cc:1600,power:110,kind:'car'},
-  car5:{cc:3000,power:379,kind:'car'},car6:{cc:0,power:670,kind:'car'},
-  car7:{cc:3000,power:830,kind:'car'},car8:{cc:2000,power:170,kind:'car'},
-  car9:{cc:2000,power:245,kind:'car'},car10:{cc:4000,power:600,kind:'car'},
-  car11:{cc:3800,power:565,kind:'car'},car12:{cc:4000,power:710,kind:'car'},
-  car13:{cc:8000,power:1500,kind:'car'},car14:{cc:3000,power:450,kind:'car'}
+ const fallback={
+ pcx:{cc:160,power:15,topSpeed:110,kind:'motor'},motor:{cc:689,power:73,topSpeed:200,kind:'motor'},
+ motor2:{cc:649,power:68,topSpeed:190,kind:'motor'},motor3:{cc:1103,power:215,topSpeed:299,kind:'motor'},
+ motor4:{cc:125,power:11,topSpeed:105,kind:'motor'},motor5:{cc:999,power:210,topSpeed:303,kind:'motor'},
+ motor6:{cc:373,power:44,topSpeed:170,kind:'motor'}
  };
- const getSpec=v=>specs[v.id]||{cc:v.category==='car'?2000:500,power:v.category==='car'?180:35,kind:v.category};
- const score=v=>{const q=getSpec(v);return q.power*(q.kind==='car'?1.25:1)*(1+Math.min(q.cc,8000)/8000*.12);};
- const ps=score(playerV),bs=score(botV);
- // A small randomness factor remains, but a 125cc bike cannot normally beat a much stronger bike.
- const chance=Math.max(.015,Math.min(.985,ps/(ps+bs)));
+ const spec=v=>{
+  if(v.topSpeed&&v.power&&v.cc)return {cc:+v.cc,power:+v.power,topSpeed:+v.topSpeed,kind:v.category};
+  if(fallback[v.id])return fallback[v.id];
+  if(v.category==='car'){const p=+v.price||100000;return {cc:2000+Math.min(6000,Math.round(p/5000)),power:120+Math.min(1000,p/12000),topSpeed:160+Math.min(180,p/50000),kind:'car'};}
+  return {cc:500,power:45,topSpeed:180,kind:'motor'};
+ };
+ const pool=items.filter(it=>(it.category==='motor'||it.category==='car')&&it.id!==playerV.id);
+ if(!pool.length){$('raceResult').textContent='Rakip bulunamadı.';return;}
+ const botV=pool[Math.floor(Math.random()*pool.length)];
+ const score=v=>{const q=spec(v);return q.topSpeed*.72+q.power*.45+Math.sqrt(q.cc)*.35;};
+ const ps=score(playerV),bs=score(botV),diff=ps-bs;
+ const chance=Math.max(.02,Math.min(.98,.5+diff/Math.max(ps,bs,1)*.35));
  const won=Math.random()<chance;
+ const pSpec=spec(playerV),bSpec=spec(botV);
  raceBusy=true;raceButton.disabled=true;s.balance-=stake;log('Yarış bahsi yatırıldı',-stake);render();
- $('racer1Label').textContent=profileName||'Sen';
- $('racer2Label').textContent='Bot · '+botV.name;
+ $('racer1Label').textContent=profileName||'Sen';$('racer2Label').textContent='Bot · '+botV.name;
  $('racer1Icon').textContent=playerV.icon;$('racer2Icon').textContent=botV.icon;
  $('racer1Fill').style.width='0%';$('racer2Fill').style.width='0%';
- $('raceResult').textContent=`Rakip: ${botV.name} · Güç puanı ${Math.round(bs)} · Senin güç puanın ${Math.round(ps)} · Kazanma şansın %${Math.round(chance*100)}.`;
- setTimeout(()=>{$('racer1Fill').style.width=(won?96:Math.max(8,Math.random()*40))+'%';$('racer2Fill').style.width=(won?Math.max(8,Math.random()*40):96)+'%'},250);
- setTimeout(()=>{
-  if(won){s.balance+=stake*2;s.earned+=stake;log('Yarış zaferi · '+playerV.name,stake*2);$('raceResult').innerHTML=`🏆 Kazandın! ${playerV.name}, ${botV.name} aracını geçti. Ödül: ${fmt(stake*2)}.`;}
-  else{$('raceResult').innerHTML=`🏁 Bot kazandı! Rakip aracı: ${botV.name}. Senin kazanma şansın %${Math.round(chance*100)} idi.`;log('Yarış kaybı · '+botV.name,0);}
-  raceBusy=false;save();render();raceButton.disabled=false;
- },2300);
+ $('raceResult').textContent=`Sen: ${pSpec.cc} cc · ${pSpec.topSpeed} km/sa · ${pSpec.power} bg | Bot: ${botV.name} (${bSpec.cc} cc · ${bSpec.topSpeed} km/sa · ${bSpec.power} bg) | Kazanma şansın %${Math.round(chance*100)}.`;
+ setTimeout(()=>{$('racer1Fill').style.width=(won?96:Math.max(10,Math.random()*30))+'%';$('racer2Fill').style.width=(won?Math.max(10,Math.random()*30):96)+'%'},250);
+ setTimeout(()=>{if(won){s.balance+=stake*2;s.earned+=stake;log('Yarış zaferi · '+playerV.name,stake*2);$('raceResult').innerHTML=`🏆 Kazandın! ${playerV.name}, ${botV.name} aracını geçti. Ödül: ${fmt(stake*2)}.`;}else{$('raceResult').innerHTML=`🏁 Bot kazandı! Rakip: ${botV.name}. Senin kazanma şansın %${Math.round(chance*100)} idi.`;log('Yarış kaybı · '+botV.name,0);}raceBusy=false;save();render();raceButton.disabled=false;},2300);
 },{capture:true});
 
 render();
