@@ -206,8 +206,12 @@ body.theme-sunset{--bg:#241018;--panel:#47202a;--panel2:#6b3032}
   <div id="frameShop" class="frame-grid"></div>
 </div>
 <div class="result" id="profileStatus">Bir oyuncu adı belirleyerek sıralamaya katıl.</div>
-<div class="sectiontitle"><h3>🏆 En zengin oyuncular</h3><button class="smallbtn" id="refreshRanks">Yenile</button></div><div id="leaderboard"></div>
-<div class="result" id="friendProfile" style="display:none;margin-top:12px"></div><div class="desc" style="margin-top:12px">Arkadaş profillerini görüntülemek için sıralamadaki “Profili gör” düğmesini kullan. Burada yalnızca bu tarayıcıda kayıtlı profiller görünür. Not: Bu sürümde sıralama bu cihazın/tarayıcının kayıtlarıyla sınırlıdır. Arkadaşlarına HTML dosyasını gönderebilirsin; herkes kendi cihazında oynar. Ortak çevrimiçi sıralama için ayrıca sunucu gerekir.</div>
+<div class="sectiontitle"><h3>🏆 Bu cihazdaki sıralama</h3><button class="smallbtn" id="refreshRanks">Yenile</button></div><div id="leaderboard"></div>
+<div class="result" id="friendProfile" style="display:none;margin-top:12px"></div>
+<div class="sectiontitle" style="margin-top:18px"><h3>🌍 Dünya sıralaması</h3><div style="display:flex;gap:8px;flex-wrap:wrap"><button class="smallbtn" id="publishGlobalRank">Sıralamaya katıl / güncelle</button><button class="smallbtn" id="refreshGlobalRanks">Yenile</button></div></div>
+<div class="desc">Dünya sıralamasına katılmak için aşağıdaki çevrimiçi hesap bölümünden giriş yap, bir oyuncu adı kaydet ve “Sıralamaya katıl / güncelle” düğmesine bas. Sıralamada yalnızca herkese açık oyuncu adı ve oyun istatistikleri gösterilir; e-posta adresin gösterilmez.</div>
+<div id="globalLeaderboard"><div class="result">Dünya sıralamasını görmek için çevrimiçi hesabına giriş yapıp Yenile'ye bas.</div></div>
+<div class="result" id="globalRankStatus" role="status" style="margin-top:10px">Çevrimiçi sıralama henüz yüklenmedi.</div>
 </div>
 </section>
 <aside class="panel">
@@ -435,6 +439,82 @@ async function ensureOnline(){
  }
  return true;
 }
+
+const globalRankStatus=(message)=>{const el=$('globalRankStatus');if(el)el.textContent=message;};
+function safeText(value){
+ return String(value??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+}
+async function publishGlobalRank(silent=false){
+ try{
+  if(!await ensureOnline())return false;
+  const typedName=($('profileName').value||profileName||'').trim().replace(/\s+/g,' ').slice(0,18);
+  if(!typedName){globalRankStatus('Önce Profil bölümünde oyuncu adını yazıp “Profili kaydet” düğmesine bas.');return false;}
+  profileName=typedName;
+  $('profileName').value=typedName;
+  try{localStorage.setItem('c48-luck-profile',profileName);}catch(e){}
+  const payload={
+   id:onlineUser.id,
+   username:profileName,
+   balance:Math.max(0,Math.floor(Number(s.balance)||0)),
+   earned:Math.max(0,Math.floor(Number(s.earned)||0)),
+   owned_count:(Array.isArray(s.owned)?s.owned.length:0)+(Array.isArray(s.businesses)?s.businesses.length:0)+(Array.isArray(s.jewels)?s.jewels.length:0),
+   updated_at:new Date().toISOString()
+  };
+  const {error}=await supabaseClient.from('profiles').upsert(payload,{onConflict:'id'});
+  if(error){
+   globalRankStatus('Sıralama güncellenemedi: '+error.message+' — Supabase SQL güncellemesini çalıştırmış olman gerekiyor.');
+   if(!silent)onlineStatus('Dünya sıralaması güncellenemedi. Supabase tablo/politikalarını kontrol et.');
+   return false;
+  }
+  globalRankStatus('Dünya sıralamasına katıldın! Oyuncu adın: '+profileName);
+  if(!silent)onlineStatus('Profilin dünya sıralamasına kaydedildi.');
+  await refreshGlobalRanks();
+  return true;
+ }catch(e){
+  globalRankStatus('Sıralama güncellenemedi: '+e.message);
+  return false;
+ }
+}
+async function refreshGlobalRanks(){
+ const target=$('globalLeaderboard');
+ if(!target)return;
+ if(!supabaseClient&&!initSupabase()){
+  globalRankStatus('Önce çevrimiçi hesap bölümünde Supabase bağlantısını kur.');
+  return;
+ }
+ try{
+  const {data,error}=await supabaseClient.from('profiles')
+   .select('username,balance,earned,owned_count,updated_at')
+   .order('balance',{ascending:false}).limit(20);
+  if(error){
+   target.innerHTML='<div class="result">Dünya sıralaması alınamadı. Giriş yap ve Supabase tablo/politikalarını kontrol et.</div>';
+   globalRankStatus('Dünya sıralaması hatası: '+error.message);
+   return;
+  }
+  target.innerHTML='';
+  if(!data||!data.length){
+   target.innerHTML='<div class="result">Henüz dünya sıralamasında oyuncu yok. İlk sen katıl!</div>';
+   globalRankStatus('Sıralama güncel.');
+   return;
+  }
+  data.forEach((r,i)=>{
+   const row=document.createElement('div');
+   row.className='rankrow';
+   const name=safeText(r.username||'Oyuncu');
+   const balance=fmt(Math.max(0,Number(r.balance)||0));
+   const earned=fmt(Math.max(0,Number(r.earned)||0));
+   const owned=Math.max(0,Number(r.owned_count)||0);
+   row.innerHTML=`<div class="ranknum">${i+1}</div><div class="profile-heading"><span class="rank-avatar">${i===0?'👑':i===1?'🥈':i===2?'🥉':'👤'}</span><div><div class="rankname">${name}</div><div class="rankmeta">${owned} varlık · Toplam kazanç ${earned}</div></div></div><div class="rankmoney">${balance}</div>`;
+   target.appendChild(row);
+  });
+  globalRankStatus('Dünya sıralaması güncellendi · '+data.length+' oyuncu gösteriliyor.');
+ }catch(e){
+  globalRankStatus('Dünya sıralaması alınamadı: '+e.message);
+ }
+}
+$('publishGlobalRank').addEventListener('click',()=>publishGlobalRank(false));
+$('refreshGlobalRanks').addEventListener('click',()=>refreshGlobalRanks());
+
 $('connectSupabase').addEventListener('click',initSupabase);
 $('signUpOnline').addEventListener('click',async()=>{
  if(!supabaseClient&&!initSupabase())return;
@@ -453,7 +533,7 @@ $('signInOnline').addEventListener('click',async()=>{
  onlineStatus('Giriş yapılıyor…');
  const {data,error}=await supabaseClient.auth.signInWithPassword({email,password});
  if(error){onlineStatus('Giriş başarısız: '+error.message);return;}
- onlineUser=data.user;onlineStatus('Giriş başarılı: '+data.user.email);
+ onlineUser=data.user;onlineStatus('Giriş başarılı: '+data.user.email);await refreshGlobalRanks();
 });
 $('signOutOnline').addEventListener('click',async()=>{
  if(!supabaseClient){onlineStatus('Önce bağlantıyı kur.');return;}
@@ -471,6 +551,7 @@ $('cloudSave').addEventListener('click',async()=>{
   },{onConflict:'user_id'});
   if(error){onlineStatus('Sunucu kaydı başarısız: '+error.message);return;}
   onlineStatus('Oyun sunucuya kaydedildi! Bu hesaba başka cihazdan giriş yapınca yükleyebilirsin.');
+  if(profileName.trim()) await publishGlobalRank(true);
  }catch(e){onlineStatus('Sunucu kaydı başarısız: '+e.message);}
 });
 $('cloudLoad').addEventListener('click',async()=>{
