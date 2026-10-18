@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>C48 Şans Dünyası</title>
+<title>C48 Şans Dünyası · Güncelleme 1.9.2</title>
 <style>
 :root{--bg:#0b1020;--panel:#151f35;--panel2:#1b2944;--text:#f5f7ff;--muted:#9eacc8;--green:#67e8a5;--gold:#ffd166;--red:#ff7b86;--blue:#83b3ff}
 *{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at top,#1b3154 0%,var(--bg) 58%);color:var(--text);font-family:Inter,system-ui,Segoe UI,Arial,sans-serif;min-height:100vh}.wrap{max-width:1120px;margin:auto;padding:22px}
@@ -33,6 +33,9 @@ body.theme-rose{--bg:#260b10;--panel:#4a1721;--panel2:#69202e}
 body.theme-indigo{--bg:#0c102b;--panel:#1c2452;--panel2:#293572}
 body.theme-lime{--bg:#151d06;--panel:#303f10;--panel2:#465b17}
 body.theme-sunset{--bg:#241018;--panel:#47202a;--panel2:#6b3032}
+body.theme-midnight{--bg:#070d20;--panel:#111d3a;--panel2:#1a2b50}
+body.theme-ice{--bg:#071a24;--panel:#123747;--panel2:#1b5368}
+body.theme-crimson{--bg:#250608;--panel:#4a1018;--panel2:#701c28}
 .theme-picks button[data-theme="teal"]{background:#116466}
 .theme-picks button[data-theme="green"]{background:#167344}
 .theme-picks button[data-theme="orange"]{background:#b85a17}
@@ -43,6 +46,9 @@ body.theme-sunset{--bg:#241018;--panel:#47202a;--panel2:#6b3032}
 .theme-picks button[data-theme="indigo"]{background:#3949ab}
 .theme-picks button[data-theme="lime"]{background:#668b16}
 .theme-picks button[data-theme="sunset"]{background:linear-gradient(120deg,#e85d3f,#873a72)}
+.theme-picks button[data-theme="midnight"]{background:linear-gradient(120deg,#101a3a,#394b80)}
+.theme-picks button[data-theme="ice"]{background:linear-gradient(120deg,#1b5368,#72cfe8)}
+.theme-picks button[data-theme="crimson"]{background:linear-gradient(120deg,#701c28,#d92d48)}
 
 .theme-picks{display:flex;gap:7px;flex-wrap:wrap;margin:0 0 16px}
 .theme-picks button{border:1px solid #ffffff30;border-radius:10px;padding:8px 11px;color:white;cursor:pointer;font-weight:700}
@@ -127,9 +133,9 @@ body.theme-sunset{--bg:#241018;--panel:#47202a;--panel2:#6b3032}
 <h3>🎨 Arka plan rengi</h3><div class="theme-picks" id="backgroundThemeChoices">
 <span class="muted" style="align-self:center;font-size:12px">Arka plan:</span>
 <button type="button" data-theme="red">🔴 Kırmızı</button><button type="button" data-theme="black">⚫ Siyah</button><button type="button" data-theme="blue">🔵 Mavi</button><button type="button" data-theme="purple">🟣 Mor</button>
-<button type="button" data-theme="teal">🩵 Turkuaz</button><button type="button" data-theme="green">🟢 Yeşil</button><button type="button" data-theme="orange">🟠 Turuncu</button><button type="button" data-theme="pink">🩷 Pembe</button><button type="button" data-theme="gold">🟡 Altın</button><button type="button" data-theme="cyan">🔹 Camgöbeği</button><button type="button" data-theme="rose">🌹 Gül</button><button type="button" data-theme="indigo">🔷 İndigo</button><button type="button" data-theme="lime">🍋 Limon</button><button type="button" data-theme="sunset">🌇 Gün batımı</button>
+<button type="button" data-theme="teal">🩵 Turkuaz</button><button type="button" data-theme="green">🟢 Yeşil</button><button type="button" data-theme="orange">🟠 Turuncu</button><button type="button" data-theme="pink">🩷 Pembe</button><button type="button" data-theme="gold">🟡 Altın</button><button type="button" data-theme="cyan">🔹 Camgöbeği</button><button type="button" data-theme="rose">🌹 Gül</button><button type="button" data-theme="indigo">🔷 İndigo</button><button type="button" data-theme="lime">🍋 Limon</button><button type="button" data-theme="sunset">🌇 Gün batımı</button><button type="button" data-theme="midnight">🌌 Gece</button><button type="button" data-theme="ice">🧊 Buz</button><button type="button" data-theme="crimson">🩸 Koyu kırmızı</button>
 </div>
-<h3>🎡 Çark renkleri</h3><div class="wheel-picks" id="wheelThemeChoices"><span class="muted" style="font-size:12px">Çark renkleri:</span><button type="button" data-wheel-theme="redblack">🔴 Kırmızı + Siyah</button><button type="button" data-wheel-theme="bluegold">🔵 Mavi + Altın</button><button type="button" data-wheel-theme="purplepink">🟣 Mor + Pembe</button><button type="button" data-wheel-theme="greengold">🟢 Yeşil + Altın</button></div>
+<h3>🎡 Çark renkleri</h3><div class="wheel-picks" id="wheelThemeChoices"><span class="muted" style="font-size:12px">Çark renkleri:</span><button type="button" data-wheel-theme="redblack">🔴 Kırmızı + Siyah</button><button type="button" data-wheel-theme="bluegold">🔵 Mavi + Altın</button><button type="button" data-wheel-theme="purplepink">🟣 Mor + Pembe</button><button type="button" data-wheel-theme="greengold">🟢 Yeşil + Altın</button><button type="button" data-wheel-theme="orangeblue">🟠 Turuncu + Mavi</button><button type="button" data-wheel-theme="cyanblack">🩵 Camgöbeği + Siyah</button><button type="button" data-wheel-theme="rainbow">🌈 Gökkuşağı</button></div>
 </section>
 <section class="stats">
 <div class="stat"><div class="label">💸 Cüzdan</div><div class="val green" id="balance">₺100</div></div>
@@ -180,6 +186,9 @@ body.theme-sunset{--bg:#241018;--panel:#47202a;--panel2:#6b3032}
 <h2>İş Bul ve Para Kazan</h2><p class="desc">Bakiye azaldığında çalışarak para kazan. İşler sanal para verir; her işin bekleme süresi vardır.</p>
 <div class="job-card"><div class="job-icon">📦</div><div class="job-info"><div class="job-title">Paketçi</div><div class="job-desc">Ödül: ₺100 · Bekleme: 10 saniye. Bu işe girmek için Honda PCX satın almalısın (₺10.000).</div><div class="cooldown" id="easyTimer">Hazır!</div></div><button class="btn primary" id="easyJob">Paket dağıt +₺100</button></div>
 <div class="job-card"><div class="job-icon">🔧</div><div class="job-info"><div class="job-title">Tamirci</div><div class="job-desc">Arızayı bulup tamir et. Ödül: ₺10 · Bekleme: 5 saniye.</div><div class="cooldown" id="hardTimer">Hazır!</div></div><button class="btn secondary" id="hardJob">Tamir et +₺10</button></div>
+<div class="job-card"><div class="job-icon">🛒</div><div class="job-info"><div class="job-title">BİM Kasiyeri</div><div class="job-desc">Kasada müşterilere yardımcı ol. Ödül: ₺30 · Bekleme: 10 saniye.</div><div class="cooldown" id="bimTimer">Hazır!</div></div><button class="btn secondary" id="bimJob">Kasiyerlik yap +₺30</button></div>
+<div class="job-card"><div class="job-icon">🦺</div><div class="job-info"><div class="job-title">İnşaat İşçisi</div><div class="job-desc">İnşaatta çalış. Ödül: ₺40 · Bekleme: 15 saniye.</div><div class="cooldown" id="constructionTimer">Hazır!</div></div><button class="btn secondary" id="constructionJob">İnşaatta çalış +₺40</button></div>
+<div class="job-card"><div class="job-icon">🏍️</div><div class="job-info"><div class="job-title">Özel Paketçi</div><div class="job-desc">Ödül: $1.000 · Bekleme: 30 saniye. Bu işe girmek için Yamaha MT-07 veya BMW S 1000 RR sahibi olmalısın.</div><div class="cooldown" id="specialCourierTimer">Motor gerekli</div></div><button class="btn secondary" id="specialCourierJob">Özel paket teslim et +$1.000</button></div>
 <div class="job-status" id="jobStatus">İşlerden kazandığın para cüzdanına eklenir. Her işin bekleme süresi ayrı işler.</div>
 </div>
 <div class="mode" id="jewelry">
@@ -206,12 +215,8 @@ body.theme-sunset{--bg:#241018;--panel:#47202a;--panel2:#6b3032}
   <div id="frameShop" class="frame-grid"></div>
 </div>
 <div class="result" id="profileStatus">Bir oyuncu adı belirleyerek sıralamaya katıl.</div>
-<div class="sectiontitle"><h3>🏆 Bu cihazdaki sıralama</h3><button class="smallbtn" id="refreshRanks">Yenile</button></div><div id="leaderboard"></div>
-<div class="result" id="friendProfile" style="display:none;margin-top:12px"></div>
-<div class="sectiontitle" style="margin-top:18px"><h3>🌍 Dünya sıralaması</h3><div style="display:flex;gap:8px;flex-wrap:wrap"><button class="smallbtn" id="publishGlobalRank">Sıralamaya katıl / güncelle</button><button class="smallbtn" id="refreshGlobalRanks">Yenile</button></div></div>
-<div class="desc">Dünya sıralamasına katılmak için aşağıdaki çevrimiçi hesap bölümünden giriş yap, bir oyuncu adı kaydet ve “Sıralamaya katıl / güncelle” düğmesine bas. Sıralamada yalnızca herkese açık oyuncu adı ve oyun istatistikleri gösterilir; e-posta adresin gösterilmez.</div>
-<div id="globalLeaderboard"><div class="result">Dünya sıralamasını görmek için çevrimiçi hesabına giriş yapıp Yenile'ye bas.</div></div>
-<div class="result" id="globalRankStatus" role="status" style="margin-top:10px">Çevrimiçi sıralama henüz yüklenmedi.</div>
+<div class="sectiontitle"><h3>🏆 En zengin oyuncular</h3><button class="smallbtn" id="refreshRanks">Yenile</button></div><div id="leaderboard"></div>
+<div class="result" id="friendProfile" style="display:none;margin-top:12px"></div><div class="desc" style="margin-top:12px">Arkadaş profillerini görüntülemek için sıralamadaki “Profili gör” düğmesini kullan. Burada yalnızca bu tarayıcıda kayıtlı profiller görünür. Not: Bu sürümde sıralama bu cihazın/tarayıcının kayıtlarıyla sınırlıdır. Arkadaşlarına HTML dosyasını gönderebilirsin; herkes kendi cihazında oynar. Ortak çevrimiçi sıralama için ayrıca sunucu gerekir.</div>
 </div>
 </section>
 <aside class="panel">
@@ -261,7 +266,7 @@ body.theme-sunset{--bg:#241018;--panel:#47202a;--panel2:#6b3032}
   <div class="desc" id="saveStatus" style="margin-top:10px">Otomatik kayıt açık.</div>
 </section>
 
-<div class="footer"><span>© C48 Studios · Sanal oyun parası, gerçek para değeri yoktur.</span><button class="smallbtn" id="reset">Oyunu sıfırla</button></div>
+<div class="footer"><span>© C48 Studios · Güncelleme 1.9.2 · Sanal oyun parası, gerçek para değeri yoktur.</span><button class="smallbtn" id="reset">Oyunu sıfırla</button></div>
 </div><div class="toast" id="toast"></div>
 <script>
 (()=>{
@@ -278,11 +283,11 @@ const profileFrames=[
  {id:'apple',name:'Elma Çerçeve',price:10000,icon:'🍏',className:'apple'}
 ];
 let ranks=[];try{ranks=JSON.parse(localStorage.getItem('c48-luck-ranks')||'[]')}catch(e){ranks=[]}
-let jobReadyAt={easy:0,hard:0};
+let jobReadyAt={easy:0,hard:0,bim:0,construction:0,specialCourier:0};
 let raceBusy=false;
 const savedTheme=localStorage.getItem('c48-luck-theme')||'blue';
 const savedWheelTheme=localStorage.getItem('c48-luck-wheel-theme')||'redblack';
-document.body.classList.add('theme-'+(['red','black','blue','purple','teal','green','orange','pink','gold','cyan','rose','indigo','lime','sunset'].includes(savedTheme)?savedTheme:'blue'));
+document.body.classList.add('theme-'+(['red','black','blue','purple','teal','green','orange','pink','gold','cyan','rose','indigo','lime','sunset','midnight','ice','crimson'].includes(savedTheme)?savedTheme:'blue'));
 $('wheelArt').classList.add('scheme-'+savedWheelTheme);
 $('profileName').value=profileName;
 
@@ -350,6 +355,9 @@ const items=[
 {id:'car13',name:'Bugatti Chiron',brand:'Bugatti',category:'car',icon:'🚘',price:185000000,desc:'Ultra lüks hiper otomobil.'},
 {id:'car14',name:'Range Rover Sport',brand:'Land Rover',category:'car',icon:'🚙',price:12500000,desc:'Lüks SUV.'},
 {id:'car15',name:'Ford Mustang GT',brand:'Ford',category:'car',icon:'🐎',price:6200000,desc:'V8 karakterli Amerikan coupe.'},
+{id:'car16',name:'Renault Clio',brand:'Renault',category:'car',icon:'🚗',price:950000,desc:'Şehir içi ekonomik hatchback.'},
+{id:'car17',name:'Porsche Taycan',brand:'Porsche',category:'car',icon:'⚡',price:9200000,desc:'Elektrikli spor sedan.'},
+{id:'car18',name:'Jeep Wrangler',brand:'Jeep',category:'car',icon:'🚙',price:5700000,desc:'Araziye uygun güçlü SUV.'},
 {id:'home',name:'Modern daire',brand:'C48 Emlak',category:'home',icon:'🏢',price:4500000,desc:'Şehir merkezinde modern ev.'},
 {id:'home2',name:'Müstakil villa',brand:'C48 Emlak',category:'home',icon:'🏡',price:18500000,desc:'Bahçeli lüks villa.'},
 {id:'home3',name:'Sahil malikânesi',brand:'C48 Emlak',category:'home',icon:'🏰',price:95000000,desc:'Deniz manzaralı malikâne.'},
@@ -362,18 +370,21 @@ const items=[
 {id:'home10',name:'Orman Villası',brand:'C48 Emlak',category:'home',icon:'🌲',price:12500000,desc:'Orman manzaralı geniş villa.'},
 {id:'home11',name:'Akıllı Lüks Villa',brand:'C48 Emlak',category:'home',icon:'🏡',price:27500000,desc:'Akıllı ev sistemli modern villa.'},
 {id:'home12',name:'Özel Ada Evi',brand:'C48 Emlak',category:'home',icon:'🏝️',price:125000000,desc:'Kendi adanda lüks bir yaşam.'},
+{id:'home13',name:'Tiny House',brand:'C48 Emlak',category:'home',icon:'🚐',price:450000,desc:'Küçük, taşınabilir ve modern yaşam alanı.'},
+{id:'home14',name:'Göl Kenarı Evi',brand:'C48 Emlak',category:'home',icon:'🏞️',price:6800000,desc:'Göl manzaralı huzurlu ev.'},
+{id:'home15',name:'Cam Köşk',brand:'C48 Emlak',category:'home',icon:'💎',price:42000000,desc:'Panoramik cam cepheli tasarım evi.'},
 {id:'yacht',name:'Azimut yat',brand:'Azimut',category:'air',icon:'🛥️',price:65000000,desc:'Lüks yat koleksiyonu.'},
 {id:'helicopter',name:'Airbus helikopter',brand:'Airbus',category:'air',icon:'🚁',price:110000000,desc:'Özel helikopter.'},
 {id:'jet',name:'Gulfstream özel jet',brand:'Gulfstream',category:'air',icon:'✈️',price:650000000,desc:'Uzun mesafe özel uçak.'},
 {id:'ship',name:'Kargo gemisi',brand:'C48 Marine',category:'air',icon:'🚢',price:1250000000,desc:'Koleksiyonun dev parçası.'}
 ];
 const businesses=[
-{id:'market',name:'Mahalle Marketi',brand:'C48 Perakende',icon:'🏪',price:250000,income:2500,desc:'Her saniye ₺2.500 gelir.'},
-{id:'shoeshop',name:'Ayakkabıcı',brand:'C48 Moda',icon:'👟',price:650000,income:6500,desc:'Her saniye ₺6.500 gelir.'},
-{id:'turgutoto',name:'Turgut Oto Elektrik',brand:'Özel işletme',icon:'🔧',price:1250000,income:12500,desc:'Özel işletme · Her saniye ₺12.500 gelir.'},
-{id:'supermarket',name:'Süpermarket',brand:'C48 Perakende',icon:'🛒',price:7500000,income:85000,desc:'Her saniye ₺85.000 gelir.'},
-{id:'shoefactory',name:'Ayakkabı mağazası zinciri',brand:'C48 Moda',icon:'👞',price:18000000,income:210000,desc:'Her saniye ₺210.000 gelir.'},
-{id:'autocenter',name:'Oto elektrik servis merkezi',brand:'Turgut Oto Elektrik',icon:'🧰',price:65000000,income:850000,desc:'Her saniye ₺850.000 gelir.'}
+{id:'market',name:'Mahalle Marketi',brand:'C48 Perakende',icon:'🏪',price:250000,income:2500,desc:'Her dakika ₺2.500 gelir.'},
+{id:'shoeshop',name:'Ayakkabıcı',brand:'C48 Moda',icon:'👟',price:650000,income:6500,desc:'Her dakika ₺6.500 gelir.'},
+{id:'turgutoto',name:'Turgut Oto Elektrik',brand:'Özel işletme',icon:'🔧',price:1250000,income:12500,desc:'Özel işletme · Her dakika ₺12.500 gelir.'},
+{id:'supermarket',name:'Süpermarket',brand:'C48 Perakende',icon:'🛒',price:7500000,income:85000,desc:'Her dakika ₺85.000 gelir.'},
+{id:'shoefactory',name:'Ayakkabı mağazası zinciri',brand:'C48 Moda',icon:'👞',price:18000000,income:210000,desc:'Her dakika ₺210.000 gelir.'},
+{id:'autocenter',name:'Oto elektrik servis merkezi',brand:'Turgut Oto Elektrik',icon:'🧰',price:65000000,income:850000,desc:'Her dakika ₺850.000 gelir.'}
 ];
 const jewelry=[
 {id:'j1',name:'Gümüş bileklik',icon:'📿',price:2500,desc:'Günlük koleksiyon parçası.'},
@@ -439,82 +450,6 @@ async function ensureOnline(){
  }
  return true;
 }
-
-const globalRankStatus=(message)=>{const el=$('globalRankStatus');if(el)el.textContent=message;};
-function safeText(value){
- return String(value??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-}
-async function publishGlobalRank(silent=false){
- try{
-  if(!await ensureOnline())return false;
-  const typedName=($('profileName').value||profileName||'').trim().replace(/\s+/g,' ').slice(0,18);
-  if(!typedName){globalRankStatus('Önce Profil bölümünde oyuncu adını yazıp “Profili kaydet” düğmesine bas.');return false;}
-  profileName=typedName;
-  $('profileName').value=typedName;
-  try{localStorage.setItem('c48-luck-profile',profileName);}catch(e){}
-  const payload={
-   id:onlineUser.id,
-   username:profileName,
-   balance:Math.max(0,Math.floor(Number(s.balance)||0)),
-   earned:Math.max(0,Math.floor(Number(s.earned)||0)),
-   owned_count:(Array.isArray(s.owned)?s.owned.length:0)+(Array.isArray(s.businesses)?s.businesses.length:0)+(Array.isArray(s.jewels)?s.jewels.length:0),
-   updated_at:new Date().toISOString()
-  };
-  const {error}=await supabaseClient.from('profiles').upsert(payload,{onConflict:'id'});
-  if(error){
-   globalRankStatus('Sıralama güncellenemedi: '+error.message+' — Supabase SQL güncellemesini çalıştırmış olman gerekiyor.');
-   if(!silent)onlineStatus('Dünya sıralaması güncellenemedi. Supabase tablo/politikalarını kontrol et.');
-   return false;
-  }
-  globalRankStatus('Dünya sıralamasına katıldın! Oyuncu adın: '+profileName);
-  if(!silent)onlineStatus('Profilin dünya sıralamasına kaydedildi.');
-  await refreshGlobalRanks();
-  return true;
- }catch(e){
-  globalRankStatus('Sıralama güncellenemedi: '+e.message);
-  return false;
- }
-}
-async function refreshGlobalRanks(){
- const target=$('globalLeaderboard');
- if(!target)return;
- if(!supabaseClient&&!initSupabase()){
-  globalRankStatus('Önce çevrimiçi hesap bölümünde Supabase bağlantısını kur.');
-  return;
- }
- try{
-  const {data,error}=await supabaseClient.from('profiles')
-   .select('username,balance,earned,owned_count,updated_at')
-   .order('balance',{ascending:false}).limit(20);
-  if(error){
-   target.innerHTML='<div class="result">Dünya sıralaması alınamadı. Giriş yap ve Supabase tablo/politikalarını kontrol et.</div>';
-   globalRankStatus('Dünya sıralaması hatası: '+error.message);
-   return;
-  }
-  target.innerHTML='';
-  if(!data||!data.length){
-   target.innerHTML='<div class="result">Henüz dünya sıralamasında oyuncu yok. İlk sen katıl!</div>';
-   globalRankStatus('Sıralama güncel.');
-   return;
-  }
-  data.forEach((r,i)=>{
-   const row=document.createElement('div');
-   row.className='rankrow';
-   const name=safeText(r.username||'Oyuncu');
-   const balance=fmt(Math.max(0,Number(r.balance)||0));
-   const earned=fmt(Math.max(0,Number(r.earned)||0));
-   const owned=Math.max(0,Number(r.owned_count)||0);
-   row.innerHTML=`<div class="ranknum">${i+1}</div><div class="profile-heading"><span class="rank-avatar">${i===0?'👑':i===1?'🥈':i===2?'🥉':'👤'}</span><div><div class="rankname">${name}</div><div class="rankmeta">${owned} varlık · Toplam kazanç ${earned}</div></div></div><div class="rankmoney">${balance}</div>`;
-   target.appendChild(row);
-  });
-  globalRankStatus('Dünya sıralaması güncellendi · '+data.length+' oyuncu gösteriliyor.');
- }catch(e){
-  globalRankStatus('Dünya sıralaması alınamadı: '+e.message);
- }
-}
-$('publishGlobalRank').addEventListener('click',()=>publishGlobalRank(false));
-$('refreshGlobalRanks').addEventListener('click',()=>refreshGlobalRanks());
-
 $('connectSupabase').addEventListener('click',initSupabase);
 $('signUpOnline').addEventListener('click',async()=>{
  if(!supabaseClient&&!initSupabase())return;
@@ -533,7 +468,7 @@ $('signInOnline').addEventListener('click',async()=>{
  onlineStatus('Giriş yapılıyor…');
  const {data,error}=await supabaseClient.auth.signInWithPassword({email,password});
  if(error){onlineStatus('Giriş başarısız: '+error.message);return;}
- onlineUser=data.user;onlineStatus('Giriş başarılı: '+data.user.email);await refreshGlobalRanks();
+ onlineUser=data.user;onlineStatus('Giriş başarılı: '+data.user.email);
 });
 $('signOutOnline').addEventListener('click',async()=>{
  if(!supabaseClient){onlineStatus('Önce bağlantıyı kur.');return;}
@@ -551,7 +486,6 @@ $('cloudSave').addEventListener('click',async()=>{
   },{onConflict:'user_id'});
   if(error){onlineStatus('Sunucu kaydı başarısız: '+error.message);return;}
   onlineStatus('Oyun sunucuya kaydedildi! Bu hesaba başka cihazdan giriş yapınca yükleyebilirsin.');
-  if(profileName.trim()) await publishGlobalRank(true);
  }catch(e){onlineStatus('Sunucu kaydı başarısız: '+e.message);}
 });
 $('cloudLoad').addEventListener('click',async()=>{
@@ -599,7 +533,7 @@ function importSaveFile(file){
     document.body.classList.remove(...['red','black','blue','purple','teal','green','orange','pink','gold','cyan','rose','indigo','lime','sunset'].map(t=>'theme-'+t));document.body.classList.add('theme-'+data.theme);localStorage.setItem('c48-luck-theme',data.theme);
    }
    if(['redblack','bluegold','purplepink','greengold'].includes(data.wheelTheme)){
-    $('wheelArt').classList.remove('scheme-redblack','scheme-bluegold','scheme-purplepink','scheme-greengold');$('wheelArt').classList.add('scheme-'+data.wheelTheme);localStorage.setItem('c48-luck-wheel-theme',data.wheelTheme);
+    $('wheelArt').classList.remove('scheme-redblack','scheme-bluegold','scheme-purplepink','scheme-greengold','scheme-orangeblue','scheme-cyanblack','scheme-rainbow');$('wheelArt').classList.add('scheme-'+data.wheelTheme);localStorage.setItem('c48-luck-wheel-theme',data.wheelTheme);
    }
    save();render();toast('Oyun kaydı yüklendi!');
   }catch(e){alert('Bu dosya geçerli bir C48 oyun kaydı değil.');}
@@ -627,7 +561,7 @@ $('startRace').disabled=!vehicles.length||raceBusy;
 $('businessList').innerHTML='';
 businesses.forEach(biz=>{
  const owned=s.businesses.includes(biz.id),el=document.createElement('div');el.className='item';
- el.innerHTML=`<div class="itemicon">${biz.icon}</div><div class="iteminfo"><div class="itemname">${biz.name}</div><div class="itemdesc">${biz.brand} · ${biz.desc}<div class="business-income">Gelir: ${fmt(biz.income)}/sn</div><b>${owned?'Satış fiyatı: '+fmt(Math.floor(biz.price/2)):'Satın alma: '+fmt(biz.price)}</b></div></div><button class="btn ${owned?'danger':'secondary'}" ${!owned&&s.balance<biz.price?'disabled':''}>${owned?'Sat':'Satın al'}</button>`;
+ el.innerHTML=`<div class="itemicon">${biz.icon}</div><div class="iteminfo"><div class="itemname">${biz.name}</div><div class="itemdesc">${biz.brand} · ${biz.desc}<div class="business-income">Gelir: ${fmt(biz.income)}/dk</div><b>${owned?'Satış fiyatı: '+fmt(Math.floor(biz.price/2)):'Satın alma: '+fmt(biz.price)}</b></div></div><button class="btn ${owned?'danger':'secondary'}" ${!owned&&s.balance<biz.price?'disabled':''}>${owned?'Sat':'Satın al'}</button>`;
  el.querySelector('button').addEventListener('click',()=>owned?sellBusiness(biz):buyBusiness(biz));$('businessList').appendChild(el);
 });
 $('collection').innerHTML='';let own=items.filter(i=>s.owned.includes(i.id));let ownJewels=jewelry.filter(j=>s.jewels.includes(j.id));if(!own.length&&!ownJewels.length)$('collection').innerHTML='<div class="result">Henüz eşyan yok. Şansını dene ve ilk eşyanı al!</div>';else {own.forEach(it=>{let el=document.createElement('div');el.className='item';el.innerHTML=`<div class="itemicon">${it.icon}</div><div class="iteminfo"><div class="itemname">${it.name}</div><div class="itemdesc">Koleksiyonunda ✓<br>Satış fiyatı: <b>${fmt(Math.floor(it.price/2))}</b></div></div><button class="btn danger">Sat</button>`;el.querySelector('button').addEventListener('click',()=>sellItem(it));$('collection').appendChild(el)});ownJewels.forEach(j=>{let el=document.createElement('div');el.className='item';el.innerHTML=`<div class="itemicon">${j.icon}</div><div class="iteminfo"><div class="itemname">${j.name}</div><div class="itemdesc">Koleksiyonunda ✓<br>Satış fiyatı: <b>${fmt(Math.floor(j.price/2))}</b></div></div><button class="btn danger">Sat</button>`;el.querySelector('button').addEventListener('click',()=>sellJewelry(j));$('collection').appendChild(el)});}
@@ -716,29 +650,49 @@ function buyJewelry(j){
  if(s.jewels.includes(j.id)||s.balance<j.price)return;
  s.balance-=j.price;s.jewels.push(j.id);log(j.name+' satın alındı',-j.price);toast(j.name+' koleksiyonuna eklendi!');render();
 }
+const jobConfig={
+ easy:{reward:100,delay:10000,button:'easyJob',timer:'easyTimer',title:'Paket teslimatı işi',message:'Teslimat tamamlandı! ₺100 kazandın.'},
+ hard:{reward:10,delay:5000,button:'hardJob',timer:'hardTimer',title:'Oto elektrik tamiri işi',message:'Arızayı çözdün! ₺10 kazandın.'},
+ bim:{reward:30,delay:10000,button:'bimJob',timer:'bimTimer',title:'BİM kasiyerliği',message:'Vardiyan bitti! ₺30 kazandın.'},
+ construction:{reward:40,delay:15000,button:'constructionJob',timer:'constructionTimer',title:'İnşaat işçiliği',message:'İş tamamlandı! ₺40 kazandın.'},
+ specialCourier:{reward:1000,delay:30000,button:'specialCourierJob',timer:'specialCourierTimer',title:'Özel paket teslimatı',message:'Özel teslimat tamamlandı! $1.000 kazandın.'}
+};
+function hasSpecialCourierVehicle(){return s.owned.includes('motor')||s.owned.includes('motor5')}
 function doJob(kind){
+ const cfg=jobConfig[kind];if(!cfg)return;
  const now=Date.now(),ready=jobReadyAt[kind]||0;
  if(now<ready){toast('Bu iş için biraz beklemelisin.');return}
- const easy=kind==='easy';
- if(easy&&!s.owned.includes('pcx')){toast('Paketçi olmak için önce Honda PCX (₺10.000) satın almalısın.');$('jobStatus').textContent='Paketçilik için Honda PCX gerekiyor. Dükkanlar bölümünden satın alabilirsin.';return}
- const reward=easy?100:10,delay=easy?10000:5000;
- s.balance+=reward;s.earned+=reward;jobReadyAt[kind]=now+delay;
- log(easy?'Paket teslimatı işi':'Oto elektrik tamiri işi',reward);
- $('jobStatus').textContent=easy?'Teslimat tamamlandı! ₺100 kazandın.':'Arızayı çözdün! ₺10 kazandın.';
- render();updateJobTimers();
+ if(kind==='easy'&&!s.owned.includes('pcx')){toast('Paketçi olmak için önce Honda PCX (₺10.000) satın almalısın.');$('jobStatus').textContent='Paketçilik için Honda PCX gerekiyor. Dükkanlar bölümünden satın alabilirsin.';return}
+ if(kind==='specialCourier'&&!hasSpecialCourierVehicle()){toast('Özel Paketçi işi için Yamaha MT-07 veya BMW S 1000 RR gerekli.');$('jobStatus').textContent='Özel Paketçi işi için Yamaha MT-07 veya BMW S 1000 RR satın almalısın.';return}
+ if(kind==='specialCourier'){
+  s.usd=Number((s.usd+cfg.reward).toFixed(2));
+ }else{
+  s.balance+=cfg.reward;s.earned+=cfg.reward;
+ }
+ jobReadyAt[kind]=now+cfg.delay;
+ log(cfg.title,kind==='specialCourier'?0:cfg.reward);
+ $('jobStatus').textContent=cfg.message;
+ save();render();updateJobTimers();
 }
 function updateJobTimers(){
  const now=Date.now();
- for(const k of ['easy','hard']){
-  const left=Math.max(0,(jobReadyAt[k]||0)-now);
-  const el=$(k==='easy'?'easyTimer':'hardTimer'),btn=$(k==='easy'?'easyJob':'hardJob');
-  if(k==='easy'&&!s.owned.includes('pcx')){el.textContent='Honda PCX gerekli (₺10.000)';btn.disabled=true;btn.title='Önce Honda PCX satın al';continue}
-  if(left>0){el.textContent='Tekrar hazır: '+Math.ceil(left/1000)+' sn';btn.disabled=true}
-  else{el.textContent='Hazır!';btn.disabled=false}
- }
+ Object.entries(jobConfig).forEach(([k,cfg])=>{
+  const left=Math.max(0,(jobReadyAt[k]||0)-now),el=$(cfg.timer),btn=$(cfg.button);
+  if(k==='easy'&&!s.owned.includes('pcx')){el.textContent='Honda PCX gerekli (₺10.000)';btn.disabled=true;btn.title='Önce Honda PCX satın al';return}
+  if(k==='specialCourier'&&!hasSpecialCourierVehicle()){el.textContent='MT-07 veya BMW S 1000 RR gerekli';btn.disabled=true;btn.title='Önce gerekli motorlardan birini satın al';return}
+  if(left>0){
+   const totalSec=Math.ceil(left/1000),mins=Math.floor(totalSec/60),secs=totalSec%60;
+   el.textContent='Tekrar hazır: '+(mins>0?(mins+' dk '+String(secs).padStart(2,'0')+' sn'):(secs+' sn'));
+   btn.disabled=true
+  }
+  else{el.textContent='Hazır!';btn.disabled=false;btn.title=''}
+ });
 }
 $('easyJob').addEventListener('click',()=>doJob('easy'));
 $('hardJob').addEventListener('click',()=>doJob('hard'));
+$('bimJob').addEventListener('click',()=>doJob('bim'));
+$('constructionJob').addEventListener('click',()=>doJob('construction'));
+$('specialCourierJob').addEventListener('click',()=>doJob('specialCourier'));
 setInterval(updateJobTimers,500);
 $('startRace').addEventListener('click',()=>{
  if(raceBusy)return;
@@ -794,11 +748,11 @@ $('loadSaveFile').addEventListener('change',e=>{importSaveFile(e.target.files&&e
 
 $('reset').addEventListener('click',()=>{if(confirm('Oyunu sıfırlayıp ₺100 başlangıç parasıyla yeniden başlamak istiyor musun?')){s={...initial,owned:[],log:[]};$('wheelResult').textContent='Çark hazır. Bahsini seçip çevirebilirsin.';$('coinResult').textContent='Seçimini yap, bahis miktarını belirle ve başla.';$('coinArt').textContent='C48';$('wheelArt').style.transform='rotate(0deg)';render();toast('Yeni oyun başladı!')}})
 document.querySelectorAll('[data-wheel-theme]').forEach(b=>b.addEventListener('click',()=>{
- $('wheelArt').classList.remove('scheme-redblack','scheme-bluegold','scheme-purplepink','scheme-greengold');
+ $('wheelArt').classList.remove('scheme-redblack','scheme-bluegold','scheme-purplepink','scheme-greengold','scheme-orangeblue','scheme-cyanblack','scheme-rainbow');
  $('wheelArt').classList.add('scheme-'+b.dataset.wheelTheme);
  localStorage.setItem('c48-luck-wheel-theme',b.dataset.wheelTheme);
 }));
-const allBackgroundThemes=['red','black','blue','purple','teal','green','orange','pink','gold','cyan','rose','indigo','lime','sunset'];
+const allBackgroundThemes=['red','black','blue','purple','teal','green','orange','pink','gold','cyan','rose','indigo','lime','sunset','midnight','ice','crimson'];
 $('openSettings').addEventListener('click',()=>{$('settingsPanel').hidden=false;$('settingsPanel').scrollIntoView({behavior:'smooth',block:'start'});});
 $('closeSettings').addEventListener('click',()=>{$('settingsPanel').hidden=true;});
 function applyBackgroundTheme(theme){
@@ -831,7 +785,7 @@ $('refreshRanks').addEventListener('click',()=>{renderRanks();toast('Sıralama y
 setInterval(()=>{
  let income=businesses.filter(b=>s.businesses.includes(b.id)).reduce((sum,b)=>sum+b.income,0);
  if(income>0){s.balance+=income;s.earned+=income;save();render();}
-},1000);
+},60000);
 render();
 setTimeout(()=>{const intro=$('c48Intro');if(intro)intro.remove()},5200);
 })();
