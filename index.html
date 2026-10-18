@@ -380,6 +380,12 @@ const wheelOutcomes = (() => {
  add('-₺1M',100000,1,'loss');
  if(a.length !== 1000) throw new Error('Çark dilimi sayısı 1000 olmalı; bulunan: '+a.length);
  return a;
+// Expose only the minimal live references needed by the separate global-chat script.
+window.c48GetElement = $;
+window.c48GetSupabaseClient = () => (typeof supabaseClient !== 'undefined' ? supabaseClient : null);
+window.c48GetOnlineUser = () => (typeof onlineUser !== 'undefined' ? onlineUser : null);
+window.c48GetProfileName = () => (typeof profileName !== 'undefined' ? profileName : '');
+
 })();
 const items=[
 {id:'pcx',name:'Honda PCX',brand:'Honda',category:'motor',icon:'🛵',price:10000,desc:'Paketçilik işi için gerekli şehir scooterı.'},
@@ -932,7 +938,11 @@ setTimeout(()=>{const intro=$('c48Intro');if(intro)intro.remove()},5200);
 </aside>
 <script>
 // Global Chat: uses the same Supabase client and authenticated account as the online leaderboard.
-const gcPanel=$('globalChatPanel'),gcMessages=$('globalChatMessages'),gcForm=$('globalChatForm'),gcInput=$('globalChatInput'),gcNotice=$('globalChatLoginNotice');
+const gcEl=id=>document.getElementById(id);
+const gcPanel=gcEl('globalChatPanel'),gcMessages=gcEl('globalChatMessages'),gcForm=gcEl('globalChatForm'),gcInput=gcEl('globalChatInput'),gcNotice=gcEl('globalChatLoginNotice');
+const gcClient=()=>window.c48GetSupabaseClient?.()||null;
+const gcUser=()=>window.c48GetOnlineUser?.()||null;
+const gcProfile=()=>window.c48GetProfileName?.()||'';
 let gcChannel=null,gcLoadedUser=null,gcLastSend=0;
 function gcEscape(value){return String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
 function gcShowNotice(message){if(gcNotice)gcNotice.textContent=message;}
@@ -945,35 +955,41 @@ function gcAddMessage(row){
 }
 async function gcStart(){
  if(!gcMessages)return;
- if(!supabaseClient){gcShowNotice('Önce çevrimiçi hesap bölümünden Supabase bağlantısını kur.');return}
- if(!onlineUser){gcShowNotice('Sohbet için çevrimiçi hesabına giriş yap.');if(gcInput)gcInput.disabled=true;$('globalChatSend').disabled=true;return}
- if(gcLoadedUser===onlineUser.id&&gcChannel)return;
- if(gcChannel){try{await supabaseClient.removeChannel(gcChannel)}catch(e){}gcChannel=null}
- gcLoadedUser=onlineUser.id;gcMessages.innerHTML='';gcShowNotice('Sohbete bağlanılıyor…');gcInput.disabled=false;$('globalChatSend').disabled=false;
- const {data,error}=await supabaseClient.from('global_messages').select('id,user_id,username,message,created_at').order('created_at',{ascending:true}).limit(60);
+ if(!gcClient()){gcShowNotice('Önce çevrimiçi hesap bölümünden Supabase bağlantısını kur.');return}
+ if(!gcUser()){gcShowNotice('Sohbet için çevrimiçi hesabına giriş yap.');if(gcInput)gcInput.disabled=true;gcEl('globalChatSend').disabled=true;return}
+ if(gcLoadedUser===gcUser().id&&gcChannel)return;
+ if(gcChannel){try{await gcClient().removeChannel(gcChannel)}catch(e){}gcChannel=null}
+ gcLoadedUser=gcUser().id;gcMessages.innerHTML='';gcShowNotice('Sohbete bağlanılıyor…');gcInput.disabled=false;gcEl('globalChatSend').disabled=false;
+ const {data,error}=await gcClient().from('global_messages').select('id,user_id,username,message,created_at').order('created_at',{ascending:true}).limit(60);
  if(error){gcShowNotice('Sohbet tablosu hazır değil. Aşağıdaki SQL kurulumunu çalıştır.');gcAddMessage({username:'Sistem',message:'Global sohbet için Supabase SQL kurulumunu yapmalısın.'});return}
- (data||[]).forEach(gcAddMessage);gcShowNotice('Canlı sohbet açık · '+(onlineUser.email||'Giriş yapıldı'));
- gcChannel=supabaseClient.channel('c48-global-chat')
+ (data||[]).forEach(gcAddMessage);gcShowNotice('Canlı sohbet açık · '+(gcUser()?.email||'Giriş yapıldı'));
+ gcChannel=gcClient().channel('c48-global-chat')
   .on('postgres_changes',{event:'INSERT',schema:'public',table:'global_messages'},payload=>{if(payload.new)gcAddMessage(payload.new)})
   .subscribe(status=>{if(status==='CHANNEL_ERROR'||status==='TIMED_OUT')gcShowNotice('Canlı bağlantı koptu. Sayfayı yenilemeyi dene.')});
 }
 gcForm?.addEventListener('submit',async e=>{
  e.preventDefault();const message=gcInput.value.trim();
- if(!message)return;if(!supabaseClient||!onlineUser){gcShowNotice('Önce hesabına giriş yap.');return}
+ if(!message)return;if(!gcClient()||!gcUser()){gcShowNotice('Önce çevrimiçi hesabına giriş yap ve Supabase bağlantını kur.');return}
  if(message.length>300){gcShowNotice('Mesaj en fazla 300 karakter olabilir.');return}
  if(Date.now()-gcLastSend<1800){gcShowNotice('Mesaj göndermeden önce biraz bekle.');return}
- gcLastSend=Date.now();$('globalChatSend').disabled=true;
- const name=(typeof profileName==='string'&&profileName.trim())?profileName.trim():(onlineUser.email||'Oyuncu').split('@')[0];
- const {error}=await supabaseClient.from('global_messages').insert({user_id:onlineUser.id,username:name.slice(0,24),message:message.slice(0,300)});
- if(error){gcShowNotice('Mesaj gönderilemedi: '+error.message);$('globalChatSend').disabled=false;return}
- gcInput.value='';$('globalChatSend').disabled=false;
+ gcLastSend=Date.now();gcEl('globalChatSend').disabled=true;
+ const name=(typeof gcProfile()==='string'&&gcProfile().trim())?gcProfile().trim():(gcUser()?.email||'Oyuncu').split('@')[0];
+ let result;
+ try {
+  result=await gcClient().from('global_messages').insert({user_id:gcUser().id,username:name.slice(0,24),message:message.slice(0,300)});
+ } catch(err) {
+  gcShowNotice('Mesaj gönderilemedi: '+(err?.message||'Bağlantı hatası'));
+  gcEl('globalChatSend').disabled=false;return;
+ }
+ if(result.error){gcShowNotice('Mesaj gönderilemedi: '+result.error.message);gcEl('globalChatSend').disabled=false;return}
+ gcInput.value='';gcShowNotice('Mesaj gönderildi.');gcEl('globalChatSend').disabled=false;
 });
-$('globalChatToggle')?.addEventListener('click',()=>{gcPanel.classList.toggle('gc-collapsed');$('globalChatToggle').textContent=gcPanel.classList.contains('gc-collapsed')?'+':'−'});
+gcEl('globalChatToggle')?.addEventListener('click',()=>{gcPanel.classList.toggle('gc-collapsed');gcEl('globalChatToggle').textContent=gcPanel.classList.contains('gc-collapsed')?'+':'−'});
 // Retry after account connection/login and keep the panel in sync with auth state.
-$('connectSupabase')?.addEventListener('click',()=>setTimeout(gcStart,700));
-$('signInOnline')?.addEventListener('click',()=>setTimeout(gcStart,900));
-$('signUpOnline')?.addEventListener('click',()=>setTimeout(gcStart,900));
-$('signOutOnline')?.addEventListener('click',()=>{if(gcChannel&&supabaseClient){supabaseClient.removeChannel(gcChannel);gcChannel=null}gcLoadedUser=null;if(gcMessages)gcMessages.innerHTML='';gcShowNotice('Sohbete katılmak için giriş yap.');if(gcInput)gcInput.disabled=true;if($('globalChatSend'))$('globalChatSend').disabled=true});
+gcEl('connectSupabase')?.addEventListener('click',()=>setTimeout(gcStart,700));
+gcEl('signInOnline')?.addEventListener('click',()=>setTimeout(gcStart,900));
+gcEl('signUpOnline')?.addEventListener('click',()=>setTimeout(gcStart,900));
+gcEl('signOutOnline')?.addEventListener('click',()=>{if(gcChannel&&supabaseClient){gcClient().removeChannel(gcChannel);gcChannel=null}gcLoadedUser=null;if(gcMessages)gcMessages.innerHTML='';gcShowNotice('Sohbete katılmak için giriş yap.');if(gcInput)gcInput.disabled=true;if(gcEl('globalChatSend'))gcEl('globalChatSend').disabled=true});
 setTimeout(gcStart,1200);
 
 
