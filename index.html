@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>C48 Şans Dünyası · Güncelleme 1.9.2</title>
+<title>C48 Şans Dünyası · Güncelleme 2.0</title>
 <style>
 :root{--bg:#0b1020;--panel:#151f35;--panel2:#1b2944;--text:#f5f7ff;--muted:#9eacc8;--green:#67e8a5;--gold:#ffd166;--red:#ff7b86;--blue:#83b3ff}
 *{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at top,#1b3154 0%,var(--bg) 58%);color:var(--text);font-family:Inter,system-ui,Segoe UI,Arial,sans-serif;min-height:100vh}.wrap{max-width:1120px;margin:auto;padding:22px}
@@ -203,6 +203,8 @@ body.theme-crimson{--bg:#250608;--panel:#4a1018;--panel2:#701c28}
 <div class="racerow"><span id="racer1Label">Sen</span><div class="trackbar"><div class="trackfill" id="racer1Fill"></div></div><span id="racer1Icon">🏁</span></div>
 <div class="racerow"><span id="racer2Label">Arkadaş</span><div class="trackbar"><div class="trackfill" id="racer2Fill"></div></div><span id="racer2Icon">🏎️</span></div>
 </div>
+<div class="betrow" style="margin:12px 0"><label for="raceBet">Yarış bahsi (yalnızca oyun içi sanal ₺)</label><input id="raceBet" type="number" min="0" step="50" value="100" placeholder="Bahis miktarı"></div>
+<div class="choice" style="margin-bottom:10px"><button type="button" id="raceBet50">₺50</button><button type="button" id="raceBet100">₺100</button><button type="button" id="raceBet500">₺500</button><button type="button" id="raceBetMax">Maksimum</button></div>
 <button class="btn primary full" id="startRace">🏁 YARIŞI BAŞLAT</button>
 <div class="job-status" id="raceResult">Motor veya araba satın alarak yarış seçeneğini aç. Yarış ödülü: kazanana ₺50 sanal para.</div>
 </div>
@@ -266,7 +268,7 @@ body.theme-crimson{--bg:#250608;--panel:#4a1018;--panel2:#701c28}
   <div class="desc" id="saveStatus" style="margin-top:10px">Otomatik kayıt açık.</div>
 </section>
 
-<div class="footer"><span>© C48 Studios · Güncelleme 1.9.2 · Sanal oyun parası, gerçek para değeri yoktur.</span><button class="smallbtn" id="reset">Oyunu sıfırla</button></div>
+<div class="footer"><span>© C48 Studios · Güncelleme 2.0 · Sanal oyun parası, gerçek para değeri yoktur.</span><button class="smallbtn" id="reset">Oyunu sıfırla</button></div>
 </div><div class="toast" id="toast"></div>
 <script>
 (()=>{
@@ -334,12 +336,12 @@ const wheelOutcomes = (() => {
 })();
 const items=[
 {id:'pcx',name:'Honda PCX',brand:'Honda',category:'motor',icon:'🛵',price:10000,desc:'Paketçilik işi için gerekli şehir scooterı.'},
-{id:'motor',name:'Yamaha MT-07',brand:'Yamaha',category:'motor',icon:'🏍️',price:185000,desc:'Sportif naked motor.'},
-{id:'motor2',name:'Kawasaki Ninja 650',brand:'Kawasaki',category:'motor',icon:'🏍️',price:260000,desc:'Yeşil ruhlu spor motor.'},
-{id:'motor3',name:'Ducati Panigale V4',brand:'Ducati',category:'motor',icon:'🏍️',price:1250000,desc:'Premium pist motoru.'},
-{id:'motor4',name:'Honda CB125F',brand:'Honda',category:'motor',icon:'🏍️',price:95000,desc:'Şehir içi başlangıç motoru.'},
-{id:'motor5',name:'BMW S 1000 RR',brand:'BMW Motorrad',category:'motor',icon:'🏍️',price:1450000,desc:'Yüksek performanslı superbike.'},
-{id:'motor6',name:'KTM 390 Duke',brand:'KTM',category:'motor',icon:'🏍️',price:210000,desc:'Çevik şehir motoru.'},
+{id:'motor',name:'Yamaha MT-07',brand:'Yamaha',category:'motor',icon:'🏍️',price:250000,desc:'Sportif naked motor.'},
+{id:'motor2',name:'Kawasaki Ninja 650',brand:'Kawasaki',category:'motor',icon:'🏍️',price:350000,desc:'Yeşil ruhlu spor motor.'},
+{id:'motor3',name:'Ducati Panigale V4',brand:'Ducati',category:'motor',icon:'🏍️',price:1650000,desc:'Premium pist motoru.'},
+{id:'motor4',name:'Honda CB125F',brand:'Honda',category:'motor',icon:'🏍️',price:130000,desc:'Şehir içi başlangıç motoru.'},
+{id:'motor5',name:'BMW S 1000 RR',brand:'BMW Motorrad',category:'motor',icon:'🏍️',price:1950000,desc:'Yüksek performanslı superbike.'},
+{id:'motor6',name:'KTM 390 Duke',brand:'KTM',category:'motor',icon:'🏍️',price:285000,desc:'Çevik şehir motoru.'},
 {id:'car',name:'BMW M4',brand:'BMW',category:'car',icon:'🏎️',price:6500000,desc:'Sportif performans otomobili.'},
 {id:'car2',name:'Mercedes-AMG GT',brand:'Mercedes-Benz',category:'car',icon:'🚘',price:12500000,desc:'Lüks ve performans.'},
 {id:'car3',name:'Lamborghini Huracán',brand:'Lamborghini',category:'car',icon:'🏎️',price:28000000,desc:'Süper otomobil.'},
@@ -621,7 +623,7 @@ $('spin').addEventListener('click',()=>{
 let bet=betValue('wheelBet');if(!bet){toast('Geçerli bir bahis yaz.');return}if(bet>s.balance){toast('Bakiyen bu bahse yetmiyor.');return}
 $('spin').disabled=true;
 const outcome=wheelOutcomes[Math.floor(Math.random()*wheelOutcomes.length)];
-const idx=wheelOutcomes.indexOf(outcome);$('wheelArt').style.transform=`rotate(${1800+(360-idx*(360/1000)-(180/1000))}deg)`;
+const idx=wheelOutcomes.indexOf(outcome);$('wheelArt').style.transition='transform 5.2s cubic-bezier(.08,.72,.08,1)';$('wheelArt').style.transform=`rotate(${3600+(360-idx*(360/1000)-(180/1000))}deg)`;
 setTimeout(()=>{
 // Outcome value is a net change relative to bet, scaled by the chosen stake.
 // Positive outcomes pay the listed multiplier; negative outcomes subtract the listed amount.
@@ -633,7 +635,7 @@ addBalance(delta);
 const msg=delta>0?`Kazandın! Çark: ${outcome.label}.`:delta<0?`Bu tur kayıp: ${outcome.label}.`:`Bu tur ₺0 geldi.`;
 $('wheelResult').innerHTML=`<strong>${msg}</strong><br>Net değişim: <b class="${delta>0?'positive':delta<0?'negative':''}">${delta>0?'+':''}${fmt(delta)}</b>`;
 log('Çark sonucu '+outcome.label,delta);render();$('spin').disabled=false;
-},2100);
+},5300);
 });
 let chosen='Yazı';
 $('heads').addEventListener('click',()=>{chosen='Yazı';$('heads').classList.add('selected');$('tails').classList.remove('selected')});
@@ -694,23 +696,31 @@ $('bimJob').addEventListener('click',()=>doJob('bim'));
 $('constructionJob').addEventListener('click',()=>doJob('construction'));
 $('specialCourierJob').addEventListener('click',()=>doJob('specialCourier'));
 setInterval(updateJobTimers,500);
+$('raceBet50').addEventListener('click',()=>{$('raceBet').value=50});
+$('raceBet100').addEventListener('click',()=>{$('raceBet').value=100});
+$('raceBet500').addEventListener('click',()=>{$('raceBet').value=500});
+$('raceBetMax').addEventListener('click',()=>{$('raceBet').value=Math.max(0,Math.floor(s.balance))});
 $('startRace').addEventListener('click',()=>{
  if(raceBusy)return;
  const v=items.find(it=>it.id===$('raceVehicle').value);
  if(!v){$('raceResult').textContent='Yarışmak için önce motor veya araba satın almalısın.';return}
- const opponent=($('raceOpponent').value.trim()||'Arkadaş').slice(0,18);
+ const stake=Math.floor(Number($('raceBet').value));
+ if(!Number.isFinite(stake)||stake<1){$('raceResult').textContent='En az ₺1 sanal bahis gir.';return}
+ if(stake>s.balance){$('raceResult').textContent='Bu bahse bakiyen yetmiyor.';return}
+ const opponent=($('raceOpponent').value.trim()||'Rakip').slice(0,18);
  raceBusy=true;$('startRace').disabled=true;
+ s.balance-=stake;log('Yarış bahsi yatırıldı',-stake);render();
  $('racer1Label').textContent=profileName||'Sen';$('racer2Label').textContent=opponent;
  $('racer1Fill').style.width='0%';$('racer2Fill').style.width='0%';
- $('raceResult').textContent='Motorlar çalışıyor... Yarış başladı!';
+ $('raceResult').textContent='🏁 Motorlar çalışıyor... Bahsin yatırıldı, yarış başlıyor!';
  const a=50+Math.random()*48, b=50+Math.random()*48;
- setTimeout(()=>{$('racer1Fill').style.width=a+'%';$('racer2Fill').style.width=b+'%';},100);
+ setTimeout(()=>{$('racer1Fill').style.width=a+'%';$('racer2Fill').style.width=b+'%';},150);
  setTimeout(()=>{
-  const win=a>=b, reward=50;
-  if(win){s.balance+=reward;s.earned+=reward;log('Yarış zaferi · '+v.name,reward);$('raceResult').innerHTML=`🏆 <strong>Kazandın!</strong> ${opponent} karşısında ${v.name} ile yarışı aldın. Ödül: <b class="positive">+₺50</b>`;}
-  else{$('raceResult').innerHTML=`🏁 <strong>${opponent} kazandı!</strong> Bir daha dene. Katılım ücreti yok.`;log('Yarış sonucu · '+opponent+' kazandı',0);}
+  const win=a>=b;
+  if(win){const payout=stake*2;s.balance+=payout;s.earned+=stake;log('Yarış zaferi · '+v.name,payout);$('raceResult').innerHTML=`🏆 <strong>Kazandın!</strong> ${opponent} karşısında ${v.name} ile yarışı aldın. Bahsin iki katı geri döndü: <b class="positive">+${fmt(payout)}</b> (net kâr: ${fmt(stake)}).`;}
+  else{$('raceResult').innerHTML=`🏁 <strong>${opponent} kazandı!</strong> Bu yarışta ${fmt(stake)} sanal ₺ bahsini kaybettin. İstersen daha düşük bahisle tekrar dene.`;log('Yarış kaybı · '+opponent,0);}
   raceBusy=false;render();
- },1150);
+ },4200);
 });
 function buyBusiness(biz){
  if(s.businesses.includes(biz.id)||s.balance<biz.price)return;
