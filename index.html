@@ -3,15 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>C48 Şans Dünyası · Güncelleme 2.0</title>
+<title>C48 Şans Dünyası · Dev Güncelleme</title>
 <style>
 :root{--bg:#0b1020;--panel:#151f35;--panel2:#1b2944;--text:#f5f7ff;--muted:#9eacc8;--green:#67e8a5;--gold:#ffd166;--red:#ff7b86;--blue:#83b3ff}
 *{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at top,#1b3154 0%,var(--bg) 58%);color:var(--text);font-family:Inter,system-ui,Segoe UI,Arial,sans-serif;min-height:100vh}.wrap{max-width:1120px;margin:auto;padding:22px}
-header{display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:20px}.brand{display:flex;gap:12px;align-items:center}.logo{width:54px;height:54px;border-radius:17px;background:linear-gradient(135deg,#67e8a5,#83b3ff);display:grid;place-items:center;color:#0b1624;font-weight:1000;font-size:18px;box-shadow:0 8px 25px #67e8a533}h1{font-size:clamp(24px,4vw,36px);margin:0;letter-spacing:-1px}.subtitle{font-size:13px;color:var(--muted);margin-top:4px}.pill{font-size:12px;border:1px solid #67e8a555;color:var(--green);background:#67e8a511;border-radius:99px;padding:8px 12px}
+header{display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:20px}.header-actions{display:flex;align-items:center;gap:9px;flex-wrap:wrap}.profile-shortcut{display:flex;align-items:center;gap:9px;background:#67e8a512;border:1px solid #67e8a555;color:var(--text);padding:8px 12px;border-radius:14px;font:inherit;font-weight:800;cursor:pointer}.profile-shortcut .shortcut-avatar{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:#1b2944;border:2px solid var(--gold);font-size:17px}.profile-shortcut small{display:block;color:var(--muted);font-size:10px;font-weight:600;text-align:left}.profile-shortcut span{text-align:left}.profile-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px;margin:12px 0}.profile-stat{padding:12px;border:1px solid #ffffff14;border-radius:13px;background:#ffffff06}.profile-stat strong{display:block;font-size:20px;margin-top:5px}.profile-stat span{font-size:11px;color:var(--muted)}.update-overlay{position:fixed;inset:0;z-index:10000;background:#030712d9;display:none;align-items:center;justify-content:center;padding:18px;backdrop-filter:blur(7px)}.update-overlay.show{display:flex}.update-modal{width:min(540px,100%);border:1px solid #67e8a566;border-radius:24px;padding:24px;background:linear-gradient(145deg,#1b2b46,#101727);box-shadow:0 25px 90px #0009}.update-modal h2{font-size:25px;margin:0 0 8px}.update-modal .update-tag{display:inline-block;background:#67e8a51c;color:var(--green);border:1px solid #67e8a555;border-radius:99px;padding:6px 10px;font-size:12px;font-weight:850;margin-bottom:12px}.update-modal ul{padding-left:22px;line-height:1.8;color:#dce6f8;font-size:14px}.update-modal .btn{margin-top:10px}@media(max-width:480px){.profile-stats{grid-template-columns:repeat(2,minmax(0,1fr))}.profile-shortcut{padding:6px 8px}}.brand{display:flex;gap:12px;align-items:center}.logo{width:54px;height:54px;border-radius:17px;background:linear-gradient(135deg,#67e8a5,#83b3ff);display:grid;place-items:center;color:#0b1624;font-weight:1000;font-size:18px;box-shadow:0 8px 25px #67e8a533}h1{font-size:clamp(24px,4vw,36px);margin:0;letter-spacing:-1px}.subtitle{font-size:13px;color:var(--muted);margin-top:4px}.pill{font-size:12px;border:1px solid #67e8a555;color:var(--green);background:#67e8a511;border-radius:99px;padding:8px 12px}
 .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:16px}.stat,.panel{background:linear-gradient(145deg,#192640,#11192b);border:1px solid #ffffff12;border-radius:20px;padding:17px;box-shadow:0 12px 32px #0002}.label{font-size:12px;color:var(--muted)}.val{font-size:clamp(22px,4vw,30px);font-weight:850;margin-top:6px}.green{color:var(--green)}.gold{color:var(--gold)}.muted{color:var(--muted)}
 .tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}.tab{border:1px solid #ffffff1c;background:#ffffff08;color:var(--text);padding:11px 15px;border-radius:12px;font-weight:750;cursor:pointer}.tab.active{background:#67e8a51c;border-color:#67e8a566;color:var(--green)}
 .grid{display:grid;grid-template-columns:1fr .9fr;gap:16px}.panel h2{font-size:19px;margin:0 0 6px}.desc{font-size:13px;color:var(--muted);line-height:1.5;margin:0 0 17px}
-.mode{display:none}.mode.active{display:block}.wheelbox{display:flex;align-items:center;justify-content:center;flex-direction:column;padding:10px 0 3px}.wheel{width:min(300px,75vw);aspect-ratio:1;border-radius:50%;border:8px solid #e8c875;box-shadow:0 0 0 5px #4e3c25,0 12px 40px #0007;display:grid;place-items:center;background:conic-gradient(#eabf52 0deg 18deg,#253b60 18deg 36deg,#f07d76 36deg 54deg,#263f67 54deg 72deg,#67b98c 72deg 90deg,#253b60 90deg 108deg,#eabf52 108deg 126deg,#263f67 126deg 144deg,#f07d76 144deg 162deg,#263f67 162deg 180deg,#67b98c 180deg 198deg,#263f67 198deg 216deg,#eabf52 216deg 234deg,#263f67 234deg 252deg,#f07d76 252deg 270deg,#263f67 270deg 288deg,#67b98c 288deg 306deg,#263f67 306deg 324deg,#eabf52 324deg 342deg,#263f67 342deg 360deg);transition:transform 2.1s cubic-bezier(.12,.72,.15,1);position:relative}.wheel:before{content:"";position:absolute;inset:20%;border-radius:50%;background:#101a2c;border:5px solid #e8c875;box-shadow:inset 0 0 0 3px #ffffff14}.wheelcenter{position:relative;z-index:2;text-align:center;font-size:17px;font-weight:900;line-height:1.4}.pointer{font-size:28px;color:var(--gold);margin-bottom:-7px;z-index:3}.btn{border:0;border-radius:13px;padding:13px 16px;font-weight:850;cursor:pointer;transition:transform .1s,filter .1s}.btn:active{transform:scale(.98)}.primary{background:linear-gradient(100deg,#67e8a5,#a4f4c9);color:#092117}.secondary{background:#83b3ff1c;color:var(--blue);border:1px solid #83b3ff55}.danger{background:#ff7b8615;color:var(--red);border:1px solid #ff7b8644}.btn:disabled{opacity:.4;cursor:not-allowed}.full{width:100%;margin-top:14px}.betrow{display:flex;gap:10px;align-items:center;margin:12px 0}.betrow label{font-size:13px;color:var(--muted);white-space:nowrap}.betrow input{min-width:0;flex:1;background:#0d1526;border:1px solid #ffffff20;border-radius:10px;padding:11px;color:var(--text);font:inherit}.quick{display:flex;gap:7px;flex-wrap:wrap}.quick button{font-size:12px;padding:7px 10px;border-radius:9px;background:#ffffff09;border:1px solid #ffffff1c;color:var(--text);cursor:pointer}
+.mode{display:none}.mode.active{display:block}.wheel.effect-diamond{filter:drop-shadow(0 0 14px #63dfff);box-shadow:0 0 0 5px #2c5572,0 0 30px #65dcff,0 12px 40px #0007}.wheel.effect-emerald{filter:drop-shadow(0 0 16px #35f09a);box-shadow:0 0 0 5px #145b43,0 0 36px #20e89a,0 12px 40px #0007}.wheel.scheme-blackgold{background:conic-gradient(#111 0deg 30deg,#ffd166 30deg 60deg,#111 60deg 90deg,#ffd166 90deg 120deg,#111 120deg 150deg,#ffd166 150deg 180deg,#111 180deg 210deg,#ffd166 210deg 240deg,#111 240deg 270deg,#ffd166 270deg 300deg,#111 300deg 330deg,#ffd166 330deg 360deg)}.wheel.scheme-emeraldsilver{background:conic-gradient(#087f5b 0deg 30deg,#dce6ef 30deg 60deg,#087f5b 60deg 90deg,#dce6ef 90deg 120deg,#087f5b 120deg 150deg,#dce6ef 150deg 180deg,#087f5b 180deg 210deg,#dce6ef 210deg 240deg,#087f5b 240deg 270deg,#dce6ef 270deg 300deg,#087f5b 300deg 330deg,#dce6ef 330deg 360deg)}.wheel.scheme-neonpurple{background:conic-gradient(#791cff 0deg 30deg,#ff4fd8 30deg 60deg,#791cff 60deg 90deg,#ff4fd8 90deg 120deg,#791cff 120deg 150deg,#ff4fd8 150deg 180deg,#791cff 180deg 210deg,#ff4fd8 210deg 240deg,#791cff 240deg 270deg,#ff4fd8 270deg 300deg,#791cff 300deg 330deg,#ff4fd8 330deg 360deg)}.theme-aurora{background:radial-gradient(ellipse at 15% 5%,#0e766e 0%,transparent 40%),radial-gradient(ellipse at 85% 10%,#4c1d95 0%,transparent 42%),#071321!important}.theme-galaxy{background:radial-gradient(ellipse at 20% 0%,#49216d 0%,transparent 44%),radial-gradient(ellipse at 90% 25%,#143e70 0%,transparent 40%),#080a1c!important}.race-track.race-running{animation:racePulse .65s ease-in-out infinite alternate}.race-track.race-finish{animation:raceFinish .7s ease-out 2}@keyframes racePulse{from{box-shadow:0 0 0 #ffd16600;transform:translateY(0)}to{box-shadow:0 0 22px #ffd16655;transform:translateY(-2px)}}@keyframes raceFinish{0%{box-shadow:0 0 0 #67e8a500}50%{box-shadow:0 0 28px #67e8a599}100%{box-shadow:0 0 0 #67e8a500}}.rps-choices{display:flex;gap:8px;flex-wrap:wrap}.rps-choices .btn{flex:1;min-width:100px}.market-coming{border:1px solid #ffd16655;background:linear-gradient(135deg,#ffd16612,#67e8a508);border-radius:16px;padding:24px;text-align:center}.market-coming .big{font-size:48px;margin-bottom:10px}.wheelbox{display:flex;align-items:center;justify-content:center;flex-direction:column;padding:10px 0 3px}.wheel{width:min(300px,75vw);aspect-ratio:1;border-radius:50%;border:8px solid #e8c875;box-shadow:0 0 0 5px #4e3c25,0 12px 40px #0007;display:grid;place-items:center;background:conic-gradient(#eabf52 0deg 18deg,#253b60 18deg 36deg,#f07d76 36deg 54deg,#263f67 54deg 72deg,#67b98c 72deg 90deg,#253b60 90deg 108deg,#eabf52 108deg 126deg,#263f67 126deg 144deg,#f07d76 144deg 162deg,#263f67 162deg 180deg,#67b98c 180deg 198deg,#263f67 198deg 216deg,#eabf52 216deg 234deg,#263f67 234deg 252deg,#f07d76 252deg 270deg,#263f67 270deg 288deg,#67b98c 288deg 306deg,#263f67 306deg 324deg,#eabf52 324deg 342deg,#263f67 342deg 360deg);transition:transform 2.1s cubic-bezier(.12,.72,.15,1);position:relative}.wheel:before{content:"";position:absolute;inset:20%;border-radius:50%;background:#101a2c;border:5px solid #e8c875;box-shadow:inset 0 0 0 3px #ffffff14}.wheelcenter{position:relative;z-index:2;text-align:center;font-size:17px;font-weight:900;line-height:1.4}.pointer{font-size:28px;color:var(--gold);margin-bottom:-7px;z-index:3}.btn{border:0;border-radius:13px;padding:13px 16px;font-weight:850;cursor:pointer;transition:transform .1s,filter .1s}.btn:active{transform:scale(.98)}.primary{background:linear-gradient(100deg,#67e8a5,#a4f4c9);color:#092117}.secondary{background:#83b3ff1c;color:var(--blue);border:1px solid #83b3ff55}.danger{background:#ff7b8615;color:var(--red);border:1px solid #ff7b8644}.btn:disabled{opacity:.4;cursor:not-allowed}.full{width:100%;margin-top:14px}.betrow{display:flex;gap:10px;align-items:center;margin:12px 0}.betrow label{font-size:13px;color:var(--muted);white-space:nowrap}.betrow input{min-width:0;flex:1;background:#0d1526;border:1px solid #ffffff20;border-radius:10px;padding:11px;color:var(--text);font:inherit}.quick{display:flex;gap:7px;flex-wrap:wrap}.quick button{font-size:12px;padding:7px 10px;border-radius:9px;background:#ffffff09;border:1px solid #ffffff1c;color:var(--text);cursor:pointer}
 .coinstage{min-height:245px;border-radius:17px;background:radial-gradient(circle at 50% 40%,#2e4d70,#101a2d 72%);display:grid;place-items:center;border:1px solid #ffffff12;overflow:hidden}.coin{width:142px;height:142px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#fff0b8,#e4a92e 65%,#966116);border:8px double #ffe7a0;box-shadow:0 14px 28px #0006;display:grid;place-items:center;color:#6d450a;font-size:27px;font-weight:1000;text-shadow:0 1px #fff8;transform:rotateY(0deg)}.coin.flip{animation:flip .85s ease-in-out}@keyframes flip{0%{transform:rotateY(0) rotateZ(0)}50%{transform:rotateY(900deg) rotateZ(20deg) scale(1.08)}100%{transform:rotateY(1800deg) rotateZ(0)}}.choice{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}.choice button{padding:13px;border-radius:12px;border:1px solid #ffffff22;background:#ffffff08;color:var(--text);font-weight:800;cursor:pointer}.choice button.selected{border-color:var(--gold);background:#ffd16618;color:var(--gold)}
 .result{margin-top:12px;min-height:45px;border-radius:12px;background:#ffffff07;padding:12px;font-size:13px;color:var(--muted);line-height:1.5}.result strong{color:var(--text)}
 .shop{display:grid;gap:10px}.item{display:flex;align-items:center;gap:11px;background:#ffffff06;border:1px solid #ffffff12;padding:12px;border-radius:14px}.itemicon{font-size:29px;width:43px;text-align:center}.iteminfo{flex:1;min-width:0}.itemname{font-size:14px;font-weight:800}.itemdesc{font-size:12px;color:var(--muted);margin-top:3px}.item button{white-space:nowrap;padding:9px 11px;font-size:12px}.item button.owned{background:#67e8a511;color:var(--green);border:1px solid #67e8a544;cursor:default}
@@ -115,7 +115,7 @@ body.theme-crimson{--bg:#250608;--panel:#4a1018;--panel2:#701c28}
 .settings-panel .theme-picks{margin-bottom:14px}
 .settings-panel .wheel-picks{margin-bottom:8px}
 @keyframes settingsPop{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:translateY(0)}}
-#megaWheelArt{background:conic-gradient(#ff595e 0deg 18deg,#ffd166 18deg 36deg,#6a4c93 36deg 54deg,#1982c4 54deg 72deg,#8ac926 72deg 90deg,#ffca3a 90deg 108deg,#ff595e 108deg 126deg,#6a4c93 126deg 144deg,#1982c4 144deg 162deg,#ffd166 162deg 180deg,#ff595e 180deg 198deg,#8ac926 198deg 216deg,#6a4c93 216deg 234deg,#ffca3a 234deg 252deg,#1982c4 252deg 270deg,#ff595e 270deg 288deg,#ffd166 288deg 306deg,#8ac926 306deg 324deg,#6a4c93 324deg 342deg,#1982c4 342deg 360deg)}#goldWheelArt{background:conic-gradient(#fff1a8 0deg 36deg,#d7a928 36deg 72deg,#fff7d1 72deg 108deg,#b78616 108deg 144deg,#ffe681 144deg 180deg,#d7a928 180deg 216deg,#fff7d1 216deg 252deg,#b78616 252deg 288deg,#ffe681 288deg 324deg,#d7a928 324deg 360deg)}.rank-avatar.c48fire{box-shadow:0 0 12px #ff4b00;border:2px solid #ff6a00}.rank-avatar.c48diamond{box-shadow:0 0 12px #4de8ff;border:2px solid #4de8ff}.rank-avatar.c48galaxy{box-shadow:0 0 12px #a56bff;border:2px solid #a56bff}.rank-avatar.c48royal{box-shadow:0 0 12px #ffd166;border:2px solid #ffd166}.rank-avatar.c48inferno{box-shadow:0 0 16px #ff2600;border:2px solid #ff2600}
+#goldWheelArt{background:conic-gradient(#fff1a8 0deg 36deg,#d7a928 36deg 72deg,#fff7d1 72deg 108deg,#b78616 108deg 144deg,#ffe681 144deg 180deg,#d7a928 180deg 216deg,#fff7d1 216deg 252deg,#b78616 252deg 288deg,#ffe681 288deg 324deg,#d7a928 324deg 360deg)}.rank-avatar.c48fire{box-shadow:0 0 12px #ff4b00;border:2px solid #ff6a00}.rank-avatar.c48diamond{box-shadow:0 0 12px #4de8ff;border:2px solid #4de8ff}.rank-avatar.c48galaxy{box-shadow:0 0 12px #a56bff;border:2px solid #a56bff}.rank-avatar.c48royal{box-shadow:0 0 12px #ffd166;border:2px solid #ffd166}.rank-avatar.c48inferno{box-shadow:0 0 16px #ff2600;border:2px solid #ff2600}
 #globalChatPanel{position:fixed;right:14px;top:96px;bottom:16px;width:310px;max-height:calc(100vh - 112px);z-index:9999;display:flex;flex-direction:column;background:#101729;border:1px solid #45516b;border-radius:16px;box-shadow:0 14px 45px #0008;color:#f5f7ff;overflow:hidden;font:14px/1.4 system-ui,-apple-system,Segoe UI,sans-serif}
 #globalChatHeader{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:13px 14px;background:#17223a;border-bottom:1px solid #ffffff18}
 #globalChatSub{font-size:11px;opacity:.72;margin-top:2px}
@@ -134,6 +134,7 @@ body.theme-crimson{--bg:#250608;--panel:#4a1018;--panel2:#701c28}
 #globalChatPanel.gc-collapsed #globalChatMessages,#globalChatPanel.gc-collapsed #globalChatForm,#globalChatPanel.gc-collapsed #globalChatHint,#globalChatPanel.gc-collapsed #globalChatLoginNotice{display:none}
 @media(max-width:900px){#globalChatPanel{top:auto;right:8px;bottom:8px;width:min(340px,calc(100vw - 16px));height:42vh;max-height:440px}body{padding-bottom:0}}
 
+.title-gold{color:#ffd43b!important;text-shadow:0 0 10px #ffd43b55;font-weight:900}.title-tag{display:inline-block;padding:4px 9px;border-radius:999px;background:#ffffff0b;border:1px solid #ffffff20;font-size:12px;font-weight:800}.title-list{display:flex;gap:8px;flex-wrap:wrap}.profile-detail-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px;margin-top:10px}.profile-detail-cell{padding:10px;border-radius:12px;background:#ffffff07;border:1px solid #ffffff12}.profile-detail-cell b{display:block;margin-top:4px}.frame-edit-select{width:100%}
 </style>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
@@ -144,7 +145,7 @@ body.theme-crimson{--bg:#250608;--panel:#4a1018;--panel2:#701c28}
   <div class="intro-money" aria-hidden="true"><span style="--i:0;--x:0%;--delay:-0.0s;--rot:-90deg">💵</span><span style="--i:1;--x:37%;--delay:-0.55s;--rot:-43deg">💵</span><span style="--i:2;--x:74%;--delay:-1.1s;--rot:4deg">💵</span><span style="--i:3;--x:11%;--delay:-1.6500000000000001s;--rot:51deg">💵</span><span style="--i:4;--x:48%;--delay:-2.2s;--rot:-82deg">💵</span><span style="--i:5;--x:85%;--delay:-2.75s;--rot:-35deg">💵</span><span style="--i:6;--x:22%;--delay:-3.3000000000000003s;--rot:12deg">💵</span><span style="--i:7;--x:59%;--delay:-3.8500000000000005s;--rot:59deg">💵</span><span style="--i:8;--x:96%;--delay:-4.4s;--rot:-74deg">💵</span><span style="--i:9;--x:33%;--delay:-0.0s;--rot:-27deg">💵</span><span style="--i:10;--x:70%;--delay:-0.55s;--rot:20deg">💵</span><span style="--i:11;--x:7%;--delay:-1.1s;--rot:67deg">💵</span><span style="--i:12;--x:44%;--delay:-1.6500000000000001s;--rot:-66deg">💵</span><span style="--i:13;--x:81%;--delay:-2.2s;--rot:-19deg">💵</span><span style="--i:14;--x:18%;--delay:-2.75s;--rot:28deg">💵</span><span style="--i:15;--x:55%;--delay:-3.3000000000000003s;--rot:75deg">💵</span><span style="--i:16;--x:92%;--delay:-3.8500000000000005s;--rot:-58deg">💵</span><span style="--i:17;--x:29%;--delay:-4.4s;--rot:-11deg">💵</span><span style="--i:18;--x:66%;--delay:-0.0s;--rot:36deg">💵</span><span style="--i:19;--x:3%;--delay:-0.55s;--rot:83deg">💵</span><span style="--i:20;--x:40%;--delay:-1.1s;--rot:-50deg">💵</span><span style="--i:21;--x:77%;--delay:-1.6500000000000001s;--rot:-3deg">💵</span><span style="--i:22;--x:14%;--delay:-2.2s;--rot:44deg">💵</span><span style="--i:23;--x:51%;--delay:-2.75s;--rot:-89deg">💵</span><span style="--i:24;--x:88%;--delay:-3.3000000000000003s;--rot:-42deg">💵</span><span style="--i:25;--x:25%;--delay:-3.8500000000000005s;--rot:5deg">💵</span><span style="--i:26;--x:62%;--delay:-4.4s;--rot:52deg">💵</span><span style="--i:27;--x:99%;--delay:-0.0s;--rot:-81deg">💵</span></div><div class="intro-loading">ŞANS DÜNYASI YÜKLENİYOR...</div>
 </div>
 <div class="wrap">
-<header><div class="brand"><div class="logo">C48</div><div><h1>Şans Dünyası</h1><div class="subtitle">Şansını dene, sanal servetini kur, hayalindeki araçları topla.</div></div></div><div class="pill">● Yalnızca sanal para</div></header>
+<header><div class="brand"><div class="logo">C48</div><div><h1>Şans Dünyası</h1><div class="subtitle">Şansını dene, sanal servetini kur, hayalindeki araçları topla.</div></div></div><div class="header-actions"><div class="pill">● Yalnızca sanal para</div><button type="button" class="profile-shortcut" id="quickProfile" aria-label="Profilini özelleştir"><span class="shortcut-avatar" id="quickProfileAvatar">👤</span><span><small>OYUNCU PROFİLİ</small><span id="quickProfileName">Profilini düzenle ↗</span></span></button></div></header>
 <div class="settings-launch"><button type="button" class="btn secondary" id="openSettings">⚙️ Ayarlar</button></div>
 <section id="settingsPanel" class="panel settings-panel" hidden>
 <div class="sectiontitle"><h2>⚙️ Ayarlar</h2><button type="button" class="smallbtn" id="closeSettings">Kapat ✕</button></div>
@@ -152,21 +153,21 @@ body.theme-crimson{--bg:#250608;--panel:#4a1018;--panel2:#701c28}
 <h3>🎨 Arka plan rengi</h3><div class="theme-picks" id="backgroundThemeChoices">
 <span class="muted" style="align-self:center;font-size:12px">Arka plan:</span>
 <button type="button" data-theme="red">🔴 Kırmızı</button><button type="button" data-theme="black">⚫ Siyah</button><button type="button" data-theme="blue">🔵 Mavi</button><button type="button" data-theme="purple">🟣 Mor</button>
-<button type="button" data-theme="teal">🩵 Turkuaz</button><button type="button" data-theme="green">🟢 Yeşil</button><button type="button" data-theme="orange">🟠 Turuncu</button><button type="button" data-theme="pink">🩷 Pembe</button><button type="button" data-theme="gold">🟡 Altın</button><button type="button" data-theme="cyan">🔹 Camgöbeği</button><button type="button" data-theme="rose">🌹 Gül</button><button type="button" data-theme="indigo">🔷 İndigo</button><button type="button" data-theme="lime">🍋 Limon</button><button type="button" data-theme="sunset">🌇 Gün batımı</button><button type="button" data-theme="midnight">🌌 Gece</button><button type="button" data-theme="ice">🧊 Buz</button><button type="button" data-theme="crimson">🩸 Koyu kırmızı</button>
+<button type="button" data-theme="teal">🩵 Turkuaz</button><button type="button" data-theme="green">🟢 Yeşil</button><button type="button" data-theme="orange">🟠 Turuncu</button><button type="button" data-theme="pink">🩷 Pembe</button><button type="button" data-theme="gold">🟡 Altın</button><button type="button" data-theme="cyan">🔹 Camgöbeği</button><button type="button" data-theme="rose">🌹 Gül</button><button type="button" data-theme="indigo">🔷 İndigo</button><button type="button" data-theme="lime">🍋 Limon</button><button type="button" data-theme="sunset">🌇 Gün batımı</button><button type="button" data-theme="midnight">🌌 Gece</button><button type="button" data-theme="ice">🧊 Buz</button><button type="button" data-theme="crimson">🩸 Koyu kırmızı</button><button type="button" data-theme="aurora">🌌 Kutup Işıkları</button><button type="button" data-theme="galaxy">🪐 Galaksi</button>
 </div>
-<h3>🎡 Çark renkleri</h3><div class="wheel-picks" id="wheelThemeChoices"><span class="muted" style="font-size:12px">Çark renkleri:</span><button type="button" data-wheel-theme="redblack">🔴 Kırmızı + Siyah</button><button type="button" data-wheel-theme="bluegold">🔵 Mavi + Altın</button><button type="button" data-wheel-theme="purplepink">🟣 Mor + Pembe</button><button type="button" data-wheel-theme="greengold">🟢 Yeşil + Altın</button><button type="button" data-wheel-theme="orangeblue">🟠 Turuncu + Mavi</button><button type="button" data-wheel-theme="cyanblack">🩵 Camgöbeği + Siyah</button><button type="button" data-wheel-theme="rainbow">🌈 Gökkuşağı</button></div>
+<h3>🎡 Çark renkleri</h3><div class="wheel-picks" id="wheelThemeChoices"><span class="muted" style="font-size:12px">Çark renkleri:</span><button type="button" data-wheel-theme="redblack">🔴 Kırmızı + Siyah</button><button type="button" data-wheel-theme="bluegold">🔵 Mavi + Altın</button><button type="button" data-wheel-theme="purplepink">🟣 Mor + Pembe</button><button type="button" data-wheel-theme="greengold">🟢 Yeşil + Altın</button><button type="button" data-wheel-theme="blackgold">⚫ Siyah + Altın</button><button type="button" data-wheel-theme="emeraldsilver">💚 Zümrüt + Gümüş</button><button type="button" data-wheel-theme="neonpurple">💜 Neon Mor + Pembe</button><button type="button" data-wheel-theme="rainbow">🌈 Gökkuşağı</button></div>
 </section>
 <section class="stats">
 <div class="stat"><div class="label">💸 Cüzdan</div><div class="val green" id="balance">₺100</div></div>
 <div class="stat"><div class="label">💵 Dolar cüzdanı</div><div class="val gold" id="usdBalance">$0.00</div></div>
-<div class="stat"><div class="label">🏆 Toplam kazanç</div><div class="val gold" id="earned">₺0</div></div>
+<div class="stat"><div class="label">🏆 Toplam kazanç</div><div class="val gold" id="earned">₺0</div></div><div class="stat"><div class="label">✨ C48 parası</div><div class="val gold" id="topC48Balance">0 C48</div></div>
 <div class="stat"><div class="label">🚘 Sahip olunanlar</div><div class="val" id="ownedCount">0</div></div>
 </section>
-<nav class="tabs"><button class="tab active" data-mode="wheel">🎡 Çarkı Çevir</button><button class="tab" data-mode="coin">🪙 Yazı Tura</button><button class="tab" data-mode="shop">🏡 Dükkanlar</button><button class="tab" data-mode="business">🏪 İşletmeler</button><button class="tab" data-mode="jobs">🧰 İş Bul</button><button class="tab" data-mode="jewelry">💍 Takı Dükkânı</button><button class="tab" data-mode="megaWheel">💎 10M Çarkı</button><button class="tab" data-mode="goldWheel">✨ Altın Çark</button><button class="tab" data-mode="c48Shop">🔥 C48 Dükkânı</button><button class="tab" data-mode="race">🏁 Yarış</button><button class="tab" data-mode="profile">👤 Profil & Sıralama</button></nav>
+<nav class="tabs"><button class="tab active" data-mode="wheel">🎡 Çarkı Çevir</button><button class="tab" data-mode="coin">🪙 Yazı Tura</button><button class="tab" data-mode="shop">🏡 Haneye Alma</button><button class="tab" data-mode="business">🏪 İşletmeler</button><button class="tab" data-mode="jobs">🧰 İş Bul</button><button class="tab" data-mode="jewelry">💍 Takı Dükkânı</button><button class="tab" data-mode="goldWheel">✨ Altın Çark</button><button class="tab" data-mode="c48Shop">🔥 C48 Dükkânı</button><button class="tab" data-mode="race">🏁 Yarış</button><button class="tab" data-mode="rps">✊ Taş Kâğıt Makas</button><button class="tab" data-mode="onlineMarket">🌐 Çevrim İçi Market</button><button class="tab" data-mode="profile">👤 Profil & Sıralama</button></nav>
 <div class="grid">
 <section class="panel">
 <div class="mode active" id="wheel">
-<h2>Şans Çarkı</h2><p class="desc">Çarkta 1000 olası sonuç var: 300 kazanç (%30) ve 700 kayıp (%70). Büyük ödüller son derece nadirdir. Bahis miktarı ₺50.000.000'a kadar çıkabilir; yüksek bahis büyük kayıp riski de taşır.</p>
+<h2>Şans Çarkı</h2><p class="desc">Çarkta 2.000 olası sonuç var: 800 kazanç ve 1.000 kayıp sonucu. Bunların 200 tanesi $10–$50 sanal dolar ödülüdür. Büyük kazançlar nadirdir. Bahis miktarı ₺50.000.000'a kadar çıkabilir; yüksek bahis büyük kayıp riski de taşır.</p>
 
 <div class="wheelbox"><div class="pointer">▼</div><div class="wheel" id="wheelArt"><div class="wheelcenter">C48<br><span style="color:#ffd166">ŞANS</span></div></div></div>
 <div class="betrow"><label>Bahis (₺)</label><input type="number" id="wheelBet" min="1" max="50000000" step="1" value="10"></div>
@@ -184,8 +185,8 @@ body.theme-crimson{--bg:#250608;--panel:#4a1018;--panel2:#701c28}
 <button class="btn primary full" id="flip">🪙 BOTLA OYNA</button><div class="result" id="coinResult">Seçimini yap, bahis miktarını belirle ve başla.</div>
 </div>
 <div class="mode" id="shop">
-<h2>Markalı Dükkanlar</h2><p class="desc">Her dükkanın kendine ait marka seçenekleri var. Satın aldıkların koleksiyonuna eklenir.</p>
-<div class="shop-tabs"><button class="active" data-shop="all">Hepsi</button><button data-shop="motor">🏍️ Motor</button><button data-shop="car">🚘 Araba</button><button data-shop="home">🏡 Ev</button><button data-shop="air">✈️ Hava & Deniz</button></div>
+<h2>🏡 Haneye Alma Merkezi</h2><p class="desc">Bir kategori seçerek motor, araba, ev veya hava-deniz araçlarını satın al. Satın aldıkların koleksiyonuna eklenir.</p>
+<div class="shop-tabs"><button class="active" data-shop="all">Hepsi</button><button data-shop="motor">🏍️ Motorcu</button><button data-shop="car">🚘 Arabacı</button><button data-shop="home">🏡 Emlakçı</button><button data-shop="air">🚁 Helikopterci & Gemici</button></div>
 <div class="shop" id="shopList"></div>
 </div>
 <div class="mode" id="business">
@@ -216,15 +217,6 @@ body.theme-crimson{--bg:#250608;--panel:#4a1018;--panel2:#701c28}
 <div class="shop jewel-grid" id="jewelryList"></div>
 </div>
 
-<div class="mode" id="megaWheel">
-<h2>💎 10 Milyonluk Dev Çark</h2>
-<p class="desc">Açılış ücreti ₺10.000.000. Toplam 2.000 eşit şanslı sonuç: %50 kazanç, %50 kayıp. En yüksek kazanç +₺10.000.000, en büyük kayıp -₺20.000.000. Yalnızca oyun içi sanal para.</p>
-<div class="wheelbox"><div class="pointer">▼</div><div class="wheel" id="megaWheelArt"><div class="wheelcenter">C48<br><span style="color:#ffd166">MEGA</span></div></div></div>
-<div class="result" id="megaWheelUnlockStatus">Dev çark kilitli.</div>
-<button class="btn secondary full" id="unlockMegaWheel">🔓 ₺10.000.000 karşılığında aç</button>
-<button class="btn primary full" id="spinMegaWheel" disabled>💎 DEV ÇARKI ÇEVİR</button>
-<div class="result" id="megaWheelResult">Çarkı açtıktan sonra çevirebilirsin.</div>
-</div>
 <div class="mode" id="goldWheel">
 <h2>✨ Altın Çark</h2><p class="desc">Bir çeviriş 1 C48. Ödül seçenekleri $1 ile $200.000 arasında; eksi sonuç yok.</p>
 <div class="wheelbox"><div class="pointer">▼</div><div class="wheel" id="goldWheelArt"><div class="wheelcenter">✨<br><span style="color:#ffd166">ALTIN</span></div></div></div>
@@ -232,7 +224,7 @@ body.theme-crimson{--bg:#250608;--panel:#4a1018;--panel2:#701c28}
 <button class="btn primary full" id="spinGoldWheel">✨ ALTIN ÇARKI ÇEVİR (1 C48)</button><div class="result" id="goldWheelResult">Kayıp sonucu yok!</div>
 </div>
 <div class="mode" id="c48Shop">
-<h2>🔥 C48 Parası ve Özel Eşyalar</h2><p class="desc">Profil çerçeveleri artık $30.000’dan başlıyor ve üst seviye çerçeveler çok daha pahalı. C48 parasıyla ateşli çark efektini alabilirsin. Kur: $100.000 = 1 C48.</p>
+<h2>🔥 C48 Parası ve Özel Eşyalar</h2><p class="desc">C48 parasıyla profil çerçeveleri, Altın C48 ünvanı ve özel eşyalar al. Yeni profil eşyaları sonraki güncellemelerde eklenecek. Kur: $100.000 = 1 C48.</p>
 <div class="result">Dolar: <b id="c48UsdBalance">$0</b> · C48: <b id="c48ShopBalance">0</b></div>
 <button class="btn secondary full" id="convertC48">💱 $100.000 → 1 C48</button>
 <div class="sectiontitle"><h3>🖼️ C48 Profil Çerçeveleri</h3></div><div id="c48FrameShop" class="shop"></div>
@@ -252,14 +244,24 @@ body.theme-crimson{--bg:#250608;--panel:#4a1018;--panel2:#701c28}
 <button class="btn primary full" id="startRace">🏁 YARIŞI BAŞLAT</button>
 <div class="job-status" id="raceResult">Motor veya araba satın alarak yarış seçeneğini aç. Yarış ödülü: kazanana ₺50 sanal para.</div>
 </div>
+<div class="mode" id="rps">
+<h2>✊ Taş Kâğıt Makas</h2><p class="desc">Botla oyna. Bahis yalnızca oyunun sanal dolar bakiyesinden alınır. Kazanırsan bahis miktarı kadar kâr, berabere kalırsan bahsin geri verilir.</p>
+<div class="betrow"><label for="rpsBet">Bahis (sanal $)</label><input id="rpsBet" type="number" min="1" step="1" value="10"></div><div class="rps-choices"><button type="button" class="btn secondary" data-rps="rock">✊ Taş</button><button type="button" class="btn secondary" data-rps="paper">✋ Kâğıt</button><button type="button" class="btn secondary" data-rps="scissors">✌️ Makas</button></div><div class="result" id="rpsResult">Bahsini seç ve botla oyna.</div>
+</div>
+<div class="mode" id="onlineMarket">
+<h2>🌐 Çevrim İçi Market</h2><div class="market-coming"><div class="big">🛒</div><h3>Gelecek Güncellemede!</h3><p class="desc">Çevrim içi market hazırlanıyor. Oyuncular arası alışveriş ve yeni özel ürünler sonraki güncellemede gelecek.</p><span class="update-tag">C48 STUDIOS · YAKINDA</span></div>
+</div>
 <div class="mode" id="profile">
-<h2>Profilin ve Sıralama</h2><p class="desc">Profil adını seç. Bu tarayıcıdaki kayıtlı profiller arasında toplam servetine göre sıralanırsın.</p>
+<h2>Profilin ve Sıralama</h2><p class="desc">Profil adını ve çerçeveni düzenle, oyun istatistiklerini ve kişisel rekorlarını gör. Bu tarayıcıdaki kayıtlı profiller toplam servete göre sıralanır.</p>
 <div class="profileform"><input id="profileName" maxlength="18" placeholder="Oyuncu adın (en fazla 18 karakter)"><button class="btn primary" id="saveProfile">Profili kaydet</button></div>
 <div class="profile-frame-shop">
-  <div class="sectiontitle"><h3>🛍️ Profil Çerçeve Dükkânı</h3><span class="desc">Dolar bakiyen: <b id="frameUsdBalance">$0.00</b></span></div>
-  <p class="desc">Çerçeveler sanal dolar ile alınır. Satın aldığın çerçeveyi profilinde kullanabilirsin.</p>
-  <div id="frameShop" class="frame-grid"></div>
+  <div class="sectiontitle"><h3>🪪 Profil görünümü</h3><span class="desc">Çerçeve değiştirmek için kaleme bas.</span></div>
+  <div class="profile-heading"><span id="profileCurrentFrame" class="rank-avatar">👤</span><div><b id="profileTitleLabel">Ünvan seçilmedi</b><div class="desc" id="profileFrameName">Varsayılan çerçeve</div></div><button type="button" class="smallbtn" id="editProfileFrame" title="Çerçeveyi düzenle" aria-label="Çerçeveyi düzenle">✏️</button></div>
+  <div id="profileFrameEditor" hidden style="margin-top:10px"><label for="ownedFrameSelect">Sahip olduğun çerçeve</label><select id="ownedFrameSelect" style="width:100%;padding:10px;margin:6px 0;background:#0d1526;color:var(--text);border:1px solid #ffffff20;border-radius:10px"></select><button type="button" class="btn secondary full" id="applyProfileFrame">Çerçeveyi uygula</button></div>
 </div>
+<div class="result" id="profileDetails">💵 Para birimleri, araçlar, evler ve dükkânların burada görünür.</div>
+<div class="profile-frame-shop"><div class="sectiontitle"><h3>🏅 Ünvanlar</h3><span class="desc">Ünvanlar profilinde gösterilir.</span></div><div class="shop" id="titleShop"></div></div>
+<div class="profile-frame-shop"><div class="sectiontitle"><h3>🔐 Kod kullan</h3></div><p class="desc">Özel kodunu girerek açılabilir ünvanları etkinleştir.</p><div class="profileform"><input id="titleCodeInput" maxlength="60" placeholder="Ünvan kodu"><button type="button" class="btn secondary" id="redeemTitleCode">Kodu kullan</button></div><div class="desc" id="codeStatus">Kodlar oyun içi profil açılımları içindir.</div></div>
 <div class="result" id="profileStatus">Bir oyuncu adı belirleyerek sıralamaya katıl.</div>
 <div class="sectiontitle"><h3>🏆 En zengin oyuncular</h3><button class="smallbtn" id="refreshRanks">Yenile</button></div><div id="leaderboard"></div>
 <div class="result" id="friendProfile" style="display:none;margin-top:12px"></div><div class="desc" style="margin-top:12px">Arkadaş profillerini görüntülemek için sıralamadaki “Profili gör” düğmesini kullan. Burada yalnızca bu tarayıcıda kayıtlı profiller görünür. Not: Bu sürümde sıralama bu cihazın/tarayıcının kayıtlarıyla sınırlıdır. Arkadaşlarına HTML dosyasını gönderebilirsin; herkes kendi cihazında oynar. Ortak çevrimiçi sıralama için ayrıca sunucu gerekir.</div>
@@ -312,75 +314,72 @@ body.theme-crimson{--bg:#250608;--panel:#4a1018;--panel2:#701c28}
   <div class="desc" id="saveStatus" style="margin-top:10px">Otomatik kayıt açık.</div>
 </section>
 
-<div class="footer"><span>© C48 Studios · Güncelleme 2.5 Online Fix · Sanal oyun parası, gerçek para değeri yoktur.</span><button class="smallbtn" id="reset">Oyunu sıfırla</button></div>
+<div class="footer"><span>© C48 Studios · Dev Güncelleme · Sanal oyun parası, gerçek para değeri yoktur.</span><button class="smallbtn" id="reset">Oyunu sıfırla</button></div>
 </div><div class="toast" id="toast"></div>
+<div class="update-overlay" id="updateOverlay" role="dialog" aria-modal="true" aria-labelledby="updateTitle"><div class="update-modal"><div class="update-tag">🧪 DEV GÜNCELLEME</div><h2 id="updateTitle">Şans Dünyası Dev Güncellemesi!</h2><p class="desc">C48 Studios yeni güncellemesi yayında. İşte bu sürümde gelenler:</p><ul><li>📊 Profiline oyun istatistikleri ve kişisel rekorlar eklendi.</li><li>👤 Profiline artık sağ üst köşeden hızlıca ulaşabilir, adını ve çerçeveni düzenleyebilirsin.</li><li>🏆 Profil ve sıralama ekranı geliştirildi.</li><li>🏡 Haneye Alma sekmesine yeni kategori seçenekleri eklendi.</li><li>🪪 Profil detayları, ünvanlar ve kod alanı eklendi.</li><li>🎡 Çark sonuç havuzu 2.000 sonuca çıkarıldı.</li><li>🛍️ Profil çerçeveleri C48 parasıyla C48 Dükkanı’ndan alınır.</li><li>🏍️ Yeni motorlar, tekneler ve jetskiler eklendi.</li><li>💎 Elmas ve zümrüt çark efektleri C48 Dükkanı’na geldi.</li><li>🎨 Yeni çark renkleri ve Kutup Işıkları/Galaksi arka planları eklendi.</li><li>🏁 Yarışlara kısa animasyon eklendi.</li><li>✨ Altın Çark artık 12 farklı sonuç içeriyor; 5 ve 10 C48 ödülleri çok nadir.</li><li>✊ Botla oynanan sanal dolarlı Taş Kâğıt Makas eklendi.</li><li>🌐 Çevrim İçi Market sekmesi eklendi; alışveriş özelliği gelecek güncellemede açılacak.</li></ul><p class="desc">İyi eğlenceler! İlerlemen bu tarayıcıda kayıtlı kalır.</p><button type="button" class="btn primary full" id="closeUpdate">Anladım, oyuna geç 🎮</button></div></div>
 <script>
 (()=>{
-const initial={balance:100,usd:0,c48:0,earned:0,owned:[],businesses:[],jewels:[],log:[],heads:true,megaWheelUnlocked:false};
-let s={...initial};try{let d=JSON.parse(localStorage.getItem('c48-luck-v1'));if(d)s={...initial,...d,owned:d.owned||[],businesses:d.businesses||[],jewels:d.jewels||[],usd:d.usd||0}}catch(e){}
+const initial={balance:100,usd:0,c48:0,earned:0,owned:[],businesses:[],jewels:[],log:[],heads:true,stats:{gamesPlayed:0,wins:0,losses:0,bestWin:0,bestBalance:100}};
+let s={...initial};try{let d=JSON.parse(localStorage.getItem('c48-luck-v1'));if(d)s={...initial,...d,owned:d.owned||[],businesses:d.businesses||[],jewels:d.jewels||[],usd:d.usd||0,stats:{...initial.stats,...(d.stats||{})}}}catch(e){}
 const $=id=>document.getElementById(id);
 let activeShop='all';
 let profileName=localStorage.getItem('c48-luck-profile')||'';
 let ownedFrames=[];try{ownedFrames=JSON.parse(localStorage.getItem('c48-luck-owned-frames')||'[]')}catch(e){ownedFrames=[]}
 let equippedFrame=localStorage.getItem('c48-luck-equipped-frame')||'default';
 const profileFrames=[
- {id:'bronze',name:'Bronz Çerçeve',price:200,icon:'🥉',className:'bronze'},
- {id:'gold',name:'Altın Çerçeve',price:1000,icon:'🏆',className:'gold'},
- {id:'apple',name:'Elma Çerçeve',price:30000,icon:'🍏',className:'apple'},
- {id:'c48fire',name:'C48 Ateş Çerçeve',price:30000,icon:'🔥',className:'c48fire'},
- {id:'c48diamond',name:'Elmas Çerçeve',price:75000,icon:'💎',className:'c48diamond'},
- {id:'c48galaxy',name:'Galaksi Çerçeve',price:150000,icon:'🌌',className:'c48galaxy'},
- {id:'c48royal',name:'Kraliyet Çerçevesi',price:300000,icon:'👑',className:'c48royal'},
- {id:'c48inferno',name:'C48 Efsane Çerçeve',price:1000000,icon:'♨️',className:'c48inferno'}
+ {id:'bronze',name:'Bronz Çerçeve',price:1,icon:'🥉',className:'bronze'},
+ {id:'gold',name:'Altın Çerçeve',price:5,icon:'🏆',className:'gold'},
+ {id:'apple',name:'Elma Çerçeve',price:30,icon:'🍏',className:'apple'},
+ {id:'c48fire',name:'C48 Ateş Çerçeve',price:30,icon:'🔥',className:'c48fire'},
+ {id:'c48diamond',name:'Elmas Çerçeve',price:75,icon:'💎',className:'c48diamond'},
+ {id:'c48galaxy',name:'Galaksi Çerçeve',price:150,icon:'🌌',className:'c48galaxy'},
+ {id:'c48royal',name:'Kraliyet Çerçevesi',price:300,icon:'👑',className:'c48royal'},
+ {id:'c48inferno',name:'C48 Efsane Çerçeve',price:1000,icon:'♨️',className:'c48inferno'}
 ];
 let ranks=[];try{ranks=JSON.parse(localStorage.getItem('c48-luck-ranks')||'[]')}catch(e){ranks=[]}
 let jobReadyAt={easy:0,hard:0,bim:0,construction:0,specialCourier:0};
 let raceBusy=false;
 const savedTheme=localStorage.getItem('c48-luck-theme')||'blue';
 const savedWheelTheme=localStorage.getItem('c48-luck-wheel-theme')||'redblack';
-document.body.classList.add('theme-'+(['red','black','blue','purple','teal','green','orange','pink','gold','cyan','rose','indigo','lime','sunset','midnight','ice','crimson'].includes(savedTheme)?savedTheme:'blue'));
+document.body.classList.add('theme-'+(['red','black','blue','purple','teal','green','orange','pink','gold','cyan','rose','indigo','lime','sunset','midnight','ice','crimson','aurora','galaxy'].includes(savedTheme)?savedTheme:'blue'));
 $('wheelArt').classList.add('scheme-'+savedWheelTheme);
 $('profileName').value=profileName;
 
-s.c48=Number(s.c48||0);s.megaWheelUnlocked=!!s.megaWheelUnlocked;
+s.c48=Number(s.c48||0);s.stats={...initial.stats,...(s.stats||{})};
 const fmt=n=>'₺'+Math.floor(n).toLocaleString('tr-TR');
 const fmtUSD=n=>'$'+Number(n||0).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});
-// Tam 1000 sonuç: 600 kazanç, 400 kayıp.
+// Dev Güncelleme: tam 2.000 sonuç. 800 sanal ₺ kazancı, 200 sanal dolar ödülü ve 1.000 kayıp sonucu.
 const wheelOutcomes = (() => {
  const a=[];
- const add=(label,mult,count,kind='pay',extra={})=>{
-   for(let i=0;i<count;i++) a.push({label,mult,kind,...extra});
- };
- // Daha zor ekonomi: 300 kazanç sonucu (%30), 700 kayıp sonucu (%70).
- // Jackpotlar çok nadir; çarkın düzenli ve hızlı servet üretmesi önlendi.
- add('₺1',0.01,80);
- add('₺5',0.05,65);
- add('₺10',0.1,50);
- add('₺20',0.2,35);
- add('₺50',0.5,25);
- add('₺100',1,18);
- add('₺250',2.5,12);
- add('₺500',5,7);
- add('₺1K',10,4);
- add('₺5K',50,2);
- add('₺10K',100,1);
- add('₺100K',1000,1);
- add('₺1M',0,0,'fixed',{amount:1000000});
- add('-₺1',0.1,160,'loss');
- add('-₺5',0.5,145,'loss');
- add('-₺10',1,125,'loss');
- add('-₺25',2.5,100,'loss');
- add('-₺50',5,70,'loss');
- add('-₺100',10,45,'loss');
- add('-₺500',50,25,'loss');
- add('-₺1K',100,15,'loss');
- add('-₺5K',500,8,'loss');
- add('-₺10K',1000,4,'loss');
- add('-₺100K',10000,2,'loss');
- add('-₺1M',100000,1,'loss');
- if(a.length !== 1000) throw new Error('Çark dilimi sayısı 1000 olmalı; bulunan: '+a.length);
+ const add=(label,mult,count,kind='pay',extra={})=>{for(let i=0;i<count;i++)a.push({label,mult,kind,...extra});};
+ // 800 normal sanal ₺ kazancı; büyük ödüller seyrektir.
+ add('₺1',0.01,200);
+ add('₺5',0.05,200);
+ add('₺10',0.1,100);
+ add('₺50',0.5,90);
+ add('₺100',1,80);
+ add('₺500',5,50);
+ add('₺1K',10,35);
+ add('₺10K',100,20);
+ add('₺100K',1000,15);
+ add('₺1M',0,8,'fixed',{amount:1000000});
+ add('₺5M',0,1,'fixed',{amount:5000000});
+ add('₺20M',0,1,'fixed',{amount:20000000});
+ // 200 sonuçta $10-$50 arası sanal dolar kazanılır.
+ for(let i=0;i<200;i++){const amount=10+Math.floor(Math.random()*41);a.push({label:'$'+amount,mult:0,kind:'usd',amount});}
+ // 1.000 kayıp sonucu; tek turdaki kayıp en fazla ₺22.000.000.
+ add('-₺1',0.01,200,'loss');
+ add('-₺10',0.1,180,'loss');
+ add('-₺50',0.5,160,'loss');
+ add('-₺100',1,140,'loss');
+ add('-₺1K',10,100,'loss');
+ add('-₺10K',100,80,'loss');
+ add('-₺100K',1000,60,'loss');
+ add('-₺1M',10000,40,'loss');
+ add('-₺22M',0,40,'fixedLoss',{amount:22000000});
+ // En yüksek olası tek tur kazancı ₺20.000.000 ile sınırlandırılır.
+ if(a.length !== 2000) throw new Error('Çark dilimi sayısı 2000 olmalı; bulunan: '+a.length);
  return a;
-
 })();
 const items=[
 {id:'pcx',name:'Honda PCX',brand:'Honda',category:'motor',icon:'🛵',price:10000,desc:'Paketçilik işi için gerekli şehir scooterı.'},
@@ -437,7 +436,17 @@ const items=[
 {id:'yacht',name:'Azimut yat',brand:'Azimut',category:'air',icon:'🛥️',price:65000000,desc:'Lüks yat koleksiyonu.'},
 {id:'helicopter',name:'Airbus helikopter',brand:'Airbus',category:'air',icon:'🚁',price:110000000,desc:'Özel helikopter.'},
 {id:'jet',name:'Gulfstream özel jet',brand:'Gulfstream',category:'air',icon:'✈️',price:650000000,desc:'Uzun mesafe özel uçak.'},
-{id:'ship',name:'Kargo gemisi',brand:'C48 Marine',category:'air',icon:'🚢',price:1250000000,desc:'Koleksiyonun dev parçası.'}
+{id:'ship',name:'Kargo gemisi',brand:'C48 Marine',category:'air',icon:'🚢',price:1250000000,desc:'Koleksiyonun dev parçası.'},
+{id:'motor11',name:'Yamaha MT-09',brand:'Yamaha',category:'motor',icon:'🏍️',price:980000,desc:'890 cc · güçlü naked motor.',cc:890,topSpeed:225,power:119},
+{id:'motor12',name:'Honda Africa Twin',brand:'Honda',category:'motor',icon:'🏍️',price:1150000,desc:'Macera ve uzun yol motoru.',cc:1084,topSpeed:200,power:102},
+{id:'motor13',name:'Suzuki Hayabusa',brand:'Suzuki',category:'motor',icon:'🏍️',price:1850000,desc:'Yüksek hızlı spor motosiklet.',cc:1340,topSpeed:299,power:190},
+{id:'motor14',name:'Triumph Street Triple',brand:'Triumph',category:'motor',icon:'🏍️',price:1250000,desc:'Üç silindirli performans motoru.',cc:765,topSpeed:220,power:130},
+{id:'motor15',name:'Harley-Davidson Fat Boy',brand:'Harley-Davidson',category:'motor',icon:'🏍️',price:1650000,desc:'Klasik cruiser tarzı.',cc:1868,topSpeed:175,power:94},
+{id:'boat2',name:'Sürat Teknesi',brand:'C48 Marine',category:'air',icon:'🚤',price:8500000,desc:'Denizde hızlı gezinti teknesi.'},
+{id:'boat3',name:'Lüks Motoryat',brand:'C48 Marine',category:'air',icon:'🛥️',price:42000000,desc:'Geniş güverteli özel motoryat.'},
+{id:'jetski1',name:'Sea-Doo Spark',brand:'Sea-Doo',category:'air',icon:'🌊',price:950000,desc:'Hafif ve çevik jetski.'},
+{id:'jetski2',name:'Yamaha WaveRunner',brand:'Yamaha',category:'air',icon:'🌊',price:1450000,desc:'Performans odaklı jetski.'},
+{id:'jetski3',name:'Kawasaki Jet Ski Ultra',brand:'Kawasaki',category:'air',icon:'🌊',price:2100000,desc:'Güçlü ve lüks jetski.'}
 ];
 const businesses=[
 {id:'market',name:'Mahalle Marketi',brand:'C48 Perakende',icon:'🏪',price:250000,income:2500,desc:'Her dakika ₺2.500 gelir.'},
@@ -665,8 +674,8 @@ function importSaveFile(file){
    if(['red','black','blue','purple','teal','green','orange','pink','gold','cyan','rose','indigo','lime','sunset'].includes(data.theme)){
     document.body.classList.remove(...['red','black','blue','purple','teal','green','orange','pink','gold','cyan','rose','indigo','lime','sunset'].map(t=>'theme-'+t));document.body.classList.add('theme-'+data.theme);localStorage.setItem('c48-luck-theme',data.theme);
    }
-   if(['redblack','bluegold','purplepink','greengold'].includes(data.wheelTheme)){
-    $('wheelArt').classList.remove('scheme-redblack','scheme-bluegold','scheme-purplepink','scheme-greengold','scheme-orangeblue','scheme-cyanblack','scheme-rainbow');$('wheelArt').classList.add('scheme-'+data.wheelTheme);localStorage.setItem('c48-luck-wheel-theme',data.wheelTheme);
+   if(['redblack','bluegold','purplepink','greengold','blackgold','emeraldsilver','neonpurple','rainbow'].includes(data.wheelTheme)){
+    $('wheelArt').classList.remove('scheme-redblack','scheme-bluegold','scheme-purplepink','scheme-greengold','scheme-orangeblue','scheme-cyanblack','scheme-rainbow','scheme-blackgold','scheme-emeraldsilver','scheme-neonpurple');$('wheelArt').classList.add('scheme-'+data.wheelTheme);localStorage.setItem('c48-luck-wheel-theme',data.wheelTheme);
    }
    save();render();toast('Oyun kaydı yüklendi!');
   }catch(e){alert('Bu dosya geçerli bir C48 oyun kaydı değil.');}
@@ -676,8 +685,12 @@ function importSaveFile(file){
 function toast(t){$('toast').textContent=t;$('toast').classList.add('show');clearTimeout(toast.timer);toast.timer=setTimeout(()=>$('toast').classList.remove('show'),1700)}
 function log(text,amount){s.log.unshift({text,amount,time:new Date().toLocaleTimeString('tr-TR',{hour:'2-digit',minute:'2-digit'})});s.log=s.log.slice(0,12)}
 function addBalance(n){s.balance+=n;if(n>0)s.earned+=n}
+function recordGame(won,winAmount=0){s.stats=s.stats||{...initial.stats};s.stats.gamesPlayed=(s.stats.gamesPlayed||0)+1;if(won)s.stats.wins=(s.stats.wins||0)+1;else s.stats.losses=(s.stats.losses||0)+1;if(winAmount>0)s.stats.bestWin=Math.max(s.stats.bestWin||0,winAmount);s.stats.bestBalance=Math.max(s.stats.bestBalance||100,s.balance);}
 function render(){
-$('balance').textContent=fmt(s.balance);$('usdBalance').textContent=fmtUSD(s.usd);$('earned').textContent=fmt(s.earned);if($('c48ShopBalance'))$('c48ShopBalance').textContent=s.c48+' C48';if($('c48UsdBalance'))$('c48UsdBalance').textContent=fmtUSD(s.usd);$('ownedCount').textContent=`${s.owned.length+s.businesses.length+s.jewels.length} / ${items.length+businesses.length+jewelry.length}`;
+s.stats=s.stats||{...initial.stats};s.stats.bestBalance=Math.max(s.stats.bestBalance||100,s.balance);
+const q=$('quickProfileName');if(q)q.textContent=profileName||'Profilini düzenle ↗';const qa=$('quickProfileAvatar');if(qa){qa.textContent=getFrameIcon(equippedFrame);qa.className='shortcut-avatar '+getFrameClass(equippedFrame)}
+const totalGames=s.stats.gamesPlayed||0;const totalWins=s.stats.wins||0;const totalLosses=s.stats.losses||0;if($('statGames'))$('statGames').textContent=totalGames.toLocaleString('tr-TR');if($('statWins'))$('statWins').textContent=totalWins.toLocaleString('tr-TR');if($('statLosses'))$('statLosses').textContent=totalLosses.toLocaleString('tr-TR');if($('statWinRate'))$('statWinRate').textContent=(totalGames?Math.round(totalWins/totalGames*100):0)+'%';if($('statBestWin'))$('statBestWin').textContent=fmt(s.stats.bestWin||0);if($('statBestBalance'))$('statBestBalance').textContent=fmt(s.stats.bestBalance||100);
+$('balance').textContent=fmt(s.balance);$('usdBalance').textContent=fmtUSD(s.usd);$('earned').textContent=fmt(s.earned);if($('c48ShopBalance'))$('c48ShopBalance').textContent=s.c48+' C48';if($('profileC48Balance'))$('profileC48Balance').textContent=Math.floor(s.c48||0)+' C48';if($('topC48Balance'))$('topC48Balance').textContent=Math.floor(s.c48||0)+' C48';if($('c48UsdBalance'))$('c48UsdBalance').textContent=fmtUSD(s.usd);$('ownedCount').textContent=`${s.owned.length+s.businesses.length+s.jewels.length} / ${items.length+businesses.length+jewelry.length}`;
 $('spin').disabled=s.balance<1;$('flip').disabled=s.balance<1;
 $('shopList').innerHTML='';items.filter(it=>activeShop==='all'||(activeShop==='motor'&&it.category==='motor')||(activeShop==='car'&&it.category==='car')||(activeShop==='home'&&it.category==='home')||(activeShop==='air'&&it.category==='air')).forEach(it=>{let owned=s.owned.includes(it.id),el=document.createElement('div');el.className='item';el.innerHTML=`<div class="itemicon">${it.icon}</div><div class="iteminfo"><div class="itemname">${it.name}</div><div class="itemdesc">${it.brand} · ${it.desc}<br><b>${fmt(it.price)}</b></div></div><button class="btn ${owned?'owned':'secondary'}" ${owned||s.balance<it.price?'disabled':''}>${owned?'Sahipsin':'Satın al'}</button>`;el.querySelector('button').addEventListener('click',()=>buy(it));$('shopList').appendChild(el)});
 $('jewelryList').innerHTML='';
@@ -699,24 +712,25 @@ businesses.forEach(biz=>{
 });
 $('collection').innerHTML='';let own=items.filter(i=>s.owned.includes(i.id));let ownJewels=jewelry.filter(j=>s.jewels.includes(j.id));if(!own.length&&!ownJewels.length)$('collection').innerHTML='<div class="result">Henüz eşyan yok. Şansını dene ve ilk eşyanı al!</div>';else {own.forEach(it=>{let el=document.createElement('div');el.className='item';el.innerHTML=`<div class="itemicon">${it.icon}</div><div class="iteminfo"><div class="itemname">${it.name}</div><div class="itemdesc">Koleksiyonunda ✓<br>Satış fiyatı: <b>${fmt(Math.floor(it.price/2))}</b></div></div><button class="btn danger">Sat</button>`;el.querySelector('button').addEventListener('click',()=>sellItem(it));$('collection').appendChild(el)});ownJewels.forEach(j=>{let el=document.createElement('div');el.className='item';el.innerHTML=`<div class="itemicon">${j.icon}</div><div class="iteminfo"><div class="itemname">${j.name}</div><div class="itemdesc">Koleksiyonunda ✓<br>Satış fiyatı: <b>${fmt(Math.floor(j.price/2))}</b></div></div><button class="btn danger">Sat</button>`;el.querySelector('button').addEventListener('click',()=>sellJewelry(j));$('collection').appendChild(el)});}
 $('log').innerHTML='';if(!s.log.length)$('log').innerHTML='<div class="logentry">Henüz hareket yok. İlk oyunu oyna!</div>';else s.log.forEach(l=>{let el=document.createElement('div');el.className='logentry';el.innerHTML=`<span>${l.time} · ${l.text}</span><b class="${l.amount>0?'positive':l.amount<0?'negative':''}">${l.amount===0?'—':(l.amount>0?'+':'')+fmt(l.amount)}</b>`;$('log').appendChild(el)});
-renderFrameShop();
+renderC48Shop();
 renderRanks();
+renderProfileDetails();
 updateJobTimers();
 save();
 scheduleProfileSync();
 }
 function renderFrameShop(){
- $('frameUsdBalance').textContent=fmtUSD(s.usd);
+ if($('frameUsdBalance'))$('frameUsdBalance').textContent=fmtUSD(s.usd);
  $('frameShop').innerHTML='';
  profileFrames.forEach(f=>{
   const owned=ownedFrames.includes(f.id),equipped=equippedFrame===f.id;
   const card=document.createElement('div');card.className='frame-card';
-  card.innerHTML=`<div class="frame-avatar ${f.className}">${f.icon}</div><b>${f.name}</b><span>${fmtUSD(f.price)}</span><button type="button" class="btn ${equipped?'owned':owned?'secondary':'primary'}">${equipped?'Kullanılıyor':owned?'Kullan':'Satın al'}</button>`;
+  card.innerHTML=`<div class="frame-avatar ${f.className}">${f.icon}</div><b>${f.name}</b><span>${f.price.toLocaleString('tr-TR')} C48</span><button type="button" class="btn ${equipped?'owned':owned?'secondary':'primary'}">${equipped?'Kullanılıyor':owned?'Kullan':'Satın al'}</button>`;
   card.querySelector('button').addEventListener('click',()=>{
    if(owned){equippedFrame=f.id;localStorage.setItem('c48-luck-equipped-frame',f.id);toast(f.name+' profilinde kullanılıyor.');render();return;}
-   if(s.usd<f.price){toast('Bu çerçeve için yeterli doların yok.');return;}
-   if(!confirm(f.name+' çerçevesini '+fmtUSD(f.price)+' karşılığında satın almak istiyor musun?'))return;
-   s.usd=Math.round((s.usd-f.price)*100)/100;ownedFrames.push(f.id);equippedFrame=f.id;
+   if(s.c48<f.price){toast('Bu çerçeve için yeterli C48 paran yok.');return;}
+   if(!confirm(f.name+' çerçevesini '+f.price+' C48 karşılığında satın almak istiyor musun?'))return;
+   s.c48-=f.price;ownedFrames.push(f.id);equippedFrame=f.id;
    localStorage.setItem('c48-luck-owned-frames',JSON.stringify(ownedFrames));localStorage.setItem('c48-luck-equipped-frame',f.id);
    log(f.name+' satın alındı',0);save();render();toast(f.name+' satın alındı ve kuşanıldı!');
   });
@@ -725,13 +739,48 @@ function renderFrameShop(){
 }
 function getFrameClass(id){return profileFrames.find(f=>f.id===id)?.className||''}
 function getFrameIcon(id){return profileFrames.find(f=>f.id===id)?.icon||'👤'}
+const titleCatalog=[
+ {id:'apprentice',name:'Çırak',priceUSD:1000,icon:'🧰'},
+ {id:'journeyman',name:'Kalfa',priceUSD:5000,icon:'🔧'},
+ {id:'pro',name:'Pro',priceUSD:23000,icon:'⭐'},
+ {id:'goldc48',name:'Altın C48',priceC48:500,icon:'✨',gold:true},
+ {id:'manager',name:'Yönetici',codeOnly:true,icon:'🛡️'}
+];
+let ownedTitles=[];try{ownedTitles=JSON.parse(localStorage.getItem('c48-luck-owned-titles')||'[]')}catch(e){ownedTitles=[]}
+let equippedTitle=localStorage.getItem('c48-luck-equipped-title')||'';
+function currentTitle(){return titleCatalog.find(t=>t.id===equippedTitle&&ownedTitles.includes(t.id))||null}
+function renderTitleShop(){
+ const box=$('titleShop');if(!box)return;box.innerHTML='';
+ titleCatalog.filter(t=>!t.gold).forEach(t=>{const owned=ownedTitles.includes(t.id),equipped=equippedTitle===t.id,el=document.createElement('div');el.className='item';let price=t.codeOnly?'Yalnızca kod ile':t.priceC48?`${t.priceC48} C48`:`$${t.priceUSD.toLocaleString('en-US')}`;
+ el.innerHTML=`<div class="itemicon">${t.icon}</div><div class="iteminfo"><div class="itemname ${t.gold?'title-gold':''}">${t.name}</div><div class="itemdesc">${price}${t.gold?' · <span class="title-gold">ALTIN ÜNVAN</span>':''}</div></div><button class="btn ${equipped?'owned':'secondary'}" ${(t.codeOnly&&!owned)||(!owned&&((t.priceUSD&&s.usd<t.priceUSD)||(t.priceC48&&s.c48<t.priceC48)))?'disabled':''}>${equipped?'Kullanılıyor':owned?'Kullan':t.codeOnly?'Kod gerekli':'Satın al'}</button>`;
+ el.querySelector('button').addEventListener('click',()=>{if(t.codeOnly&&!owned){toast('Yönetici ünvanı için özel kod gerekir.');return}if(owned){equippedTitle=t.id;localStorage.setItem('c48-luck-equipped-title',equippedTitle);render();return}if(t.priceUSD&&s.usd<t.priceUSD){toast('Yeterli doların yok.');return}if(t.priceC48&&s.c48<t.priceC48){toast('Yeterli C48 paran yok.');return}if(t.priceUSD)s.usd=Math.round((s.usd-t.priceUSD)*100)/100;if(t.priceC48)s.c48-=t.priceC48;ownedTitles.push(t.id);equippedTitle=t.id;localStorage.setItem('c48-luck-owned-titles',JSON.stringify(ownedTitles));localStorage.setItem('c48-luck-equipped-title',equippedTitle);save();render();toast(t.name+' ünvanı açıldı!')});box.appendChild(el)});
+ const label=$('profileTitleLabel');if(label){const t=currentTitle();label.textContent=t?t.name:'Ünvan seçilmedi';label.className=t&&t.gold?'title-gold':''}
+}
+function renderProfileDetails(){
+ const box=$('profileDetails');if(!box)return;
+ const t=currentTitle();const myRank=profileName?([...ranks].sort((a,b)=>b.balance-a.balance).findIndex(r=>String(r.name).toLowerCase()===profileName.toLowerCase())+1):0;
+ const motors=s.owned.filter(id=>items.some(it=>it.id===id&&it.category==='motor')).length;
+ const cars=s.owned.filter(id=>items.some(it=>it.id===id&&it.category==='car')).length;
+ const homes=s.owned.filter(id=>items.some(it=>it.id===id&&it.category==='home')).length;
+ const air=s.owned.filter(id=>items.some(it=>it.id===id&&it.category==='air')).length;
+ const businessNames=businesses.filter(b=>s.businesses.includes(b.id)).map(b=>b.name);
+ const frame=profileFrames.find(f=>f.id===equippedFrame);
+ const avatar=$('profileCurrentFrame');if(avatar){avatar.textContent=getFrameIcon(equippedFrame);avatar.className='rank-avatar '+getFrameClass(equippedFrame)}
+ const frameName=$('profileFrameName');if(frameName)frameName.textContent=frame?frame.name:'Varsayılan çerçeve';
+ box.innerHTML=`<b>👤 ${profileName||'Oyuncu'}${t?' · <span class="'+(t.gold?'title-gold':'')+'">'+t.name+'</span>':''}</b><div class="profile-detail-grid"><div class="profile-detail-cell">💵 Sanal TL<b>${fmt(s.balance)}</b></div><div class="profile-detail-cell">💲 Dolar<b>${fmtUSD(s.usd)}</b></div><div class="profile-detail-cell">✨ C48 parası<b>${Math.floor(s.c48||0)} C48</b></div><div class="profile-detail-cell">🏆 Sıralama<b>${myRank>0?'#'+myRank:'Sıralamada değil'}</b></div><div class="profile-detail-cell">🏍️ Motor<b>${motors}</b></div><div class="profile-detail-cell">🚘 Araba<b>${cars}</b></div><div class="profile-detail-cell">🏡 Ev<b>${homes}</b></div><div class="profile-detail-cell">🚁 Hava & deniz aracı<b>${air}</b></div><div class="profile-detail-cell">🏪 İşletme/dükkân<b>${s.businesses.length}</b></div><div class="profile-detail-cell">💍 Takı<b>${s.jewels.length}</b></div></div><div class="desc" style="margin-top:9px">Dükkânların: ${businessNames.length?businessNames.map(n=>String(n).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]))).join(', '):'Henüz dükkânın yok.'}</div>`;
+ const select=$('ownedFrameSelect');if(select){select.innerHTML='';const owned=[{id:'default',name:'Varsayılan',icon:'👤'},...profileFrames.filter(f=>ownedFrames.includes(f.id))];owned.forEach(f=>{const o=document.createElement('option');o.value=f.id;o.textContent=(f.icon||'👤')+' '+f.name;select.appendChild(o)});select.value=owned.some(f=>f.id===equippedFrame)?equippedFrame:'default'}
+ renderTitleShop();
+}
+$('editProfileFrame')?.addEventListener('click',()=>{const el=$('profileFrameEditor');el.hidden=!el.hidden;renderProfileDetails()});
+$('applyProfileFrame')?.addEventListener('click',()=>{const id=$('ownedFrameSelect')?.value||'default';if(id!=='default'&&!ownedFrames.includes(id)){toast('Bu çerçeveye sahip değilsin.');return}equippedFrame=id;localStorage.setItem('c48-luck-equipped-frame',id);render();renderC48Shop();toast('Profil çerçevesi değiştirildi.')});
+$('redeemTitleCode')?.addEventListener('click',()=>{const code=String($('titleCodeInput')?.value||'').trim();if(code==='HEK5481c48'){if(!ownedTitles.includes('manager'))ownedTitles.push('manager');equippedTitle='manager';localStorage.setItem('c48-luck-owned-titles',JSON.stringify(ownedTitles));localStorage.setItem('c48-luck-equipped-title',equippedTitle);$('codeStatus').textContent='Yönetici ünvanı açıldı ve profile takıldı.';save();render();toast('Yönetici ünvanı etkinleştirildi!')}else{$('codeStatus').textContent='Kod geçersiz. Büyük/küçük harfleri kontrol et.';toast('Kod geçersiz.')}});
 function renderRanks(){
  const me=profileName.trim();
  if(me){
    if(!(onlineUser&&onlineRanksLoaded)){
     let old=ranks.find(r=>r.name.toLowerCase()===me.toLowerCase());
-    if(old){old.balance=s.balance;old.owned=s.owned.length+s.businesses.length+s.jewels.length;old.earned=s.earned;old.frame=equippedFrame;}
-    else ranks.push({name:me,balance:s.balance,owned:s.owned.length+s.businesses.length+s.jewels.length,earned:s.earned,frame:equippedFrame});
+    if(old){old.balance=s.balance;old.owned=s.owned.length+s.businesses.length+s.jewels.length;old.earned=s.earned;old.frame=equippedFrame;old.stats={...s.stats};}
+    else ranks.push({name:me,balance:s.balance,owned:s.owned.length+s.businesses.length+s.jewels.length,earned:s.earned,frame:equippedFrame,stats:{...s.stats}});
     ranks.sort((a,b)=>b.balance-a.balance);ranks=ranks.slice(0,50);
     try{localStorage.setItem('c48-luck-ranks',JSON.stringify(ranks))}catch(e){}
    }
@@ -745,8 +794,8 @@ function renderRanks(){
    const el=document.createElement('div');el.className='rankrow';
    const safe=String(r.name||'Oyuncu').replace(/[&<>\"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','\"':'&quot;'}[c]));
    el.classList.add('frame-'+getFrameClass(r.frame||''));
-   el.innerHTML=`<div class="ranknum">${i+1}</div><div class="profile-heading"><span class="rank-avatar ${getFrameClass(r.frame||'')}">${getFrameIcon(r.frame||'default')}</span><div><div class="rankname">${safe}</div><div class="rankmeta">${r.owned||0} varlık · Toplam kazanç ${fmt(r.earned||0)}</div></div></div><div class="rankmoney">${fmt(r.balance)}</div><button class="smallbtn view-profile">Profili gör</button>`;
-   el.querySelector('.view-profile').addEventListener('click',()=>{const box=$('friendProfile');box.style.display='block';box.innerHTML=`<div class="profile-heading"><span class="rank-avatar ${getFrameClass(r.frame||'')}">${getFrameIcon(r.frame||'default')}</span><b>${safe}</b></div><br>💰 Kayıtlı bakiye: <b>${fmt(r.balance)}</b><br>🎒 Kayıtlı varlık sayısı: <b>${r.owned||0}</b><br>🏆 Toplam kazanç: <b>${fmt(r.earned||0)}</b><br><span class="desc">Bu profil bilgisi çevrimiçi sıralamadan yüklenir.</span>`;});
+   el.innerHTML=`<div class="ranknum">${i+1}</div><div class="profile-heading"><span class="rank-avatar ${getFrameClass(r.frame||'')}">${getFrameIcon(r.frame||'default')}</span><div><div class="rankname">${safe}</div><div class="rankmeta">${r.owned||0} varlık · ${r.stats?.gamesPlayed||0} oyun · Kazanma oranı ${((r.stats?.gamesPlayed||0)?Math.round((r.stats?.wins||0)/(r.stats.gamesPlayed)*100):0)}%</div></div></div><div class="rankmoney">${fmt(r.balance)}</div><button class="smallbtn view-profile">Profili gör</button>`;
+   el.querySelector('.view-profile').addEventListener('click',()=>{const box=$('friendProfile');box.style.display='block';box.innerHTML=`<div class="profile-heading"><span class="rank-avatar ${getFrameClass(r.frame||'')}">${getFrameIcon(r.frame||'default')}</span><b>${safe}</b></div><br>💰 Kayıtlı bakiye: <b>${fmt(r.balance)}</b><br>🎒 Kayıtlı varlık sayısı: <b>${r.owned||0}</b><br>🏆 Toplam kazanç: <b>${fmt(r.earned||0)}</b><br>🎮 Oynanan oyun: <b>${r.stats?.gamesPlayed||0}</b><br>📈 Kazanma oranı: <b>${((r.stats?.gamesPlayed||0)?Math.round((r.stats?.wins||0)/(r.stats.gamesPlayed)*100):0)}%</b><br><span class="desc">Sıralama bu tarayıcıdaki profilleri veya bağlı çevrimiçi hesapları gösterir. Ayrıntılı istatistikler yerel profilde saklanır.</span>`;});
    $('leaderboard').appendChild(el);
  });
 }
@@ -758,18 +807,27 @@ $('spin').addEventListener('click',()=>{
 let bet=betValue('wheelBet');if(!bet){toast('Geçerli bir bahis yaz.');return}if(bet>s.balance){toast('Bakiyen bu bahse yetmiyor.');return}
 $('spin').disabled=true;
 const outcome=wheelOutcomes[Math.floor(Math.random()*wheelOutcomes.length)];
-const idx=wheelOutcomes.indexOf(outcome);$('wheelArt').style.transition='transform 5.2s cubic-bezier(.08,.72,.08,1)';$('wheelArt').style.transform=`rotate(${3600+(360-idx*(360/1000)-(180/1000))}deg)`;
+const idx=wheelOutcomes.indexOf(outcome);$('wheelArt').style.transition='transform 5.2s cubic-bezier(.08,.72,.08,1)';$('wheelArt').style.transform=`rotate(${3600+(360-idx*(360/2000)-(180/2000))}deg)`;
 setTimeout(()=>{
 // Outcome value is a net change relative to bet, scaled by the chosen stake.
 // Positive outcomes pay the listed multiplier; negative outcomes subtract the listed amount.
-let delta;
-if(outcome.kind==='fixed') delta=outcome.amount;
-else if(outcome.kind==='loss') delta=-Math.min(s.balance,Math.max(1,Math.round(bet*Math.abs(outcome.mult))));
-else delta=Math.round(bet*outcome.mult);
-addBalance(delta);
-const msg=delta>0?`Kazandın! Çark: ${outcome.label}.`:delta<0?`Bu tur kayıp: ${outcome.label}.`:`Bu tur ₺0 geldi.`;
-$('wheelResult').innerHTML=`<strong>${msg}</strong><br>Net değişim: <b class="${delta>0?'positive':delta<0?'negative':''}">${delta>0?'+':''}${fmt(delta)}</b>`;
-log('Çark sonucu '+outcome.label,delta);render();$('spin').disabled=false;
+let delta=0;
+if(outcome.kind==='usd'){
+ s.usd=Math.round((s.usd+outcome.amount)*100)/100;
+ recordGame(true,0);
+ $('wheelResult').innerHTML=`<strong>Kazandın! Çark: ${outcome.label} sanal dolar.</strong><br>Dolar cüzdanına <b class="positive">+$${outcome.amount}</b> eklendi.`;
+ log('Çark sonucu '+outcome.label+' sanal dolar',0);
+}else{
+ if(outcome.kind==='fixed') delta=Math.min(20000000,outcome.amount);
+ else if(outcome.kind==='fixedLoss') delta=-Math.min(s.balance,22000000,outcome.amount);
+ else if(outcome.kind==='loss') delta=-Math.min(s.balance,22000000,Math.max(1,Math.round(bet*Math.abs(outcome.mult))));
+ else delta=Math.min(20000000,Math.round(bet*outcome.mult));
+ addBalance(delta);recordGame(delta>0,delta);
+ const msg=delta>0?`Kazandın! Çark: ${outcome.label}.`:delta<0?`Bu tur kayıp: ${outcome.label}.`:`Bu tur ₺0 geldi.`;
+ $('wheelResult').innerHTML=`<strong>${msg}</strong><br>Net değişim: <b class="${delta>0?'positive':delta<0?'negative':''}">${delta>0?'+':''}${fmt(delta)}</b>`;
+ log('Çark sonucu '+outcome.label,delta);
+}
+render();$('spin').disabled=false;
 },5300);
 });
 let chosen='Yazı';
@@ -778,7 +836,7 @@ $('tails').addEventListener('click',()=>{chosen='Tura';$('tails').classList.add(
 $('flip').addEventListener('click',()=>{
 let bet=betValue('coinBet');if(!bet){toast('Geçerli bir bahis yaz.');return}if(bet>s.balance){toast('Bakiyen bu bahse yetmiyor.');return}
 $('flip').disabled=true;$('coinArt').classList.remove('flip');void $('coinArt').offsetWidth;$('coinArt').classList.add('flip');
-setTimeout(()=>{const result=Math.random()<.5?'Yazı':'Tura';$('coinArt').textContent=result==='Yazı'?'☀️':'🌙';const win=result===chosen;const delta=win?bet:-bet;addBalance(delta);
+setTimeout(()=>{const result=Math.random()<.5?'Yazı':'Tura';$('coinArt').textContent=result==='Yazı'?'☀️':'🌙';const win=result===chosen;const delta=win?bet:-bet;addBalance(delta);recordGame(win,win?delta:0);
 $('coinResult').innerHTML=`<strong>Botun sonucu: ${result}.</strong> ${win?'Kazandın!':'Bu tur bot kazandı.'}<br>Net değişim: <b class="${win?'positive':'negative'}">${delta>0?'+':''}${fmt(delta)}</b>`;
 log('Yazı tura · '+result+' · '+(win?'Kazandın':'Kaybettin'),delta);render();$('flip').disabled=false;
 },850);
@@ -891,13 +949,13 @@ $('downloadSave').addEventListener('click',downloadSaveFile);
 $('loadSaveBtn').addEventListener('click',()=>$('loadSaveFile').click());
 $('loadSaveFile').addEventListener('change',e=>{importSaveFile(e.target.files&&e.target.files[0]);e.target.value=''});
 
-$('reset').addEventListener('click',()=>{if(confirm('Oyunu sıfırlayıp ₺100 başlangıç parasıyla yeniden başlamak istiyor musun?')){s={...initial,owned:[],log:[]};$('wheelResult').textContent='Çark hazır. Bahsini seçip çevirebilirsin.';$('coinResult').textContent='Seçimini yap, bahis miktarını belirle ve başla.';$('coinArt').textContent='C48';$('wheelArt').style.transform='rotate(0deg)';render();toast('Yeni oyun başladı!')}})
+$('reset').addEventListener('click',()=>{if(confirm('Oyunu sıfırlayıp ₺100 başlangıç parasıyla yeniden başlamak istiyor musun?')){s={...initial,owned:[],businesses:[],jewels:[],log:[],stats:{...initial.stats}};$('wheelResult').textContent='Çark hazır. Bahsini seçip çevirebilirsin.';$('coinResult').textContent='Seçimini yap, bahis miktarını belirle ve başla.';$('coinArt').textContent='C48';$('wheelArt').style.transform='rotate(0deg)';render();toast('Yeni oyun başladı!')}})
 document.querySelectorAll('[data-wheel-theme]').forEach(b=>b.addEventListener('click',()=>{
- $('wheelArt').classList.remove('scheme-redblack','scheme-bluegold','scheme-purplepink','scheme-greengold','scheme-orangeblue','scheme-cyanblack','scheme-rainbow');
+ $('wheelArt').classList.remove('scheme-redblack','scheme-bluegold','scheme-purplepink','scheme-greengold','scheme-orangeblue','scheme-cyanblack','scheme-rainbow','scheme-blackgold','scheme-emeraldsilver','scheme-neonpurple');
  $('wheelArt').classList.add('scheme-'+b.dataset.wheelTheme);
  localStorage.setItem('c48-luck-wheel-theme',b.dataset.wheelTheme);
 }));
-const allBackgroundThemes=['red','black','blue','purple','teal','green','orange','pink','gold','cyan','rose','indigo','lime','sunset','midnight','ice','crimson'];
+const allBackgroundThemes=['red','black','blue','purple','teal','green','orange','pink','gold','cyan','rose','indigo','lime','sunset','midnight','ice','crimson','aurora','galaxy'];
 $('openSettings').addEventListener('click',()=>{$('settingsPanel').hidden=false;$('settingsPanel').scrollIntoView({behavior:'smooth',block:'start'});});
 $('closeSettings').addEventListener('click',()=>{$('settingsPanel').hidden=true;});
 function applyBackgroundTheme(theme){
@@ -933,27 +991,36 @@ setInterval(()=>{
 },60000);
 
 // C48 2.1 additions
-const c48Frames=[
-{id:'c48fire',name:'C48 Ateş Çerçeve',price:30000,icon:'🔥',className:'c48fire'},
-{id:'c48diamond',name:'Elmas Çerçeve',price:75000,icon:'💎',className:'c48diamond'},
-{id:'c48galaxy',name:'Galaksi Çerçeve',price:150000,icon:'🌌',className:'c48galaxy'},
-{id:'c48royal',name:'Kraliyet Çerçevesi',price:300000,icon:'👑',className:'c48royal'},
-{id:'c48inferno',name:'C48 Efsane Çerçeve',price:1000000,icon:'♨️',className:'c48inferno'}];
+const c48Frames=profileFrames;
 const frameBox=$('c48FrameShop');
 function renderC48Shop(){
  if(!frameBox)return;frameBox.innerHTML='';
- c48Frames.forEach(f=>{const owned=ownedFrames.includes(f.id),el=document.createElement('div');el.className='item';el.innerHTML=`<div class="itemicon">${f.icon}</div><div class="iteminfo"><div class="itemname">${f.name}</div><div class="itemdesc">Fiyat: <b>$${f.price.toLocaleString("en-US")}</b></div></div><button class="btn secondary" ${owned?'disabled':''}>${owned?'Sahipsin':'Satın al'}</button>`;el.querySelector('button').addEventListener('click',()=>{if(s.usd<f.price){toast('Yeterli doların yok.');return}if(ownedFrames.includes(f.id))return;s.usd-=f.price;ownedFrames.push(f.id);localStorage.setItem('c48-luck-owned-frames',JSON.stringify(ownedFrames));save();render();renderC48Shop();toast(f.name+' alındı!')});frameBox.appendChild(el)});
+ c48Frames.forEach(f=>{
+  const owned=ownedFrames.includes(f.id),equipped=equippedFrame===f.id,el=document.createElement('div');el.className='item';
+  el.innerHTML=`<div class="itemicon">${f.icon}</div><div class="iteminfo"><div class="itemname">${f.name}</div><div class="itemdesc">Fiyat: <b>${f.price.toLocaleString('tr-TR')} C48</b> · ${equipped?'Profilinde kullanılıyor':owned?'Sahipsin':'Profil çerçevesi'}</div></div><button class="btn secondary" ${!owned&&s.c48<f.price?'disabled':''}>${equipped?'Kullanılıyor':owned?'Kullan':'Satın al'}</button>`;
+  el.querySelector('button').addEventListener('click',()=>{
+   if(owned){equippedFrame=f.id;localStorage.setItem('c48-luck-equipped-frame',f.id);render();renderC48Shop();toast(f.name+' profilinde kullanılıyor.');return}
+   if(s.c48<f.price){toast('Yeterli C48 paran yok.');return}
+   if(!confirm(f.name+' çerçevesini '+f.price+' C48 karşılığında satın almak istiyor musun?'))return;
+   s.c48-=f.price;ownedFrames.push(f.id);equippedFrame=f.id;
+   localStorage.setItem('c48-luck-owned-frames',JSON.stringify(ownedFrames));localStorage.setItem('c48-luck-equipped-frame',f.id);
+   log(f.name+' satın alındı',0);save();render();renderC48Shop();toast(f.name+' alındı ve kuşanıldı!');
+  });frameBox.appendChild(el);
+ });
+ // Altın C48 ünvanı, C48 parasıyla alınan diğer eşyalar gibi bu dükkânda bulunur.
+ const goldTitle=titleCatalog.find(t=>t.id==='goldc48');
+ if(goldTitle){const owned=ownedTitles.includes(goldTitle.id),equipped=equippedTitle===goldTitle.id,el=document.createElement('div');el.className='item';el.innerHTML=`<div class="itemicon">✨</div><div class="iteminfo"><div class="itemname title-gold">Altın C48 Ünvanı</div><div class="itemdesc">Fiyat: <b class="title-gold">500 C48</b> · ${equipped?'Profilinde kullanılıyor':owned?'Sahipsin':'Sarı renkli özel ünvan'}</div></div><button class="btn secondary" ${!owned&&s.c48<500?'disabled':''}>${equipped?'Kullanılıyor':owned?'Kullan':'Satın al'}</button>`;
+  el.querySelector('button').addEventListener('click',()=>{if(owned){equippedTitle='goldc48';localStorage.setItem('c48-luck-equipped-title',equippedTitle);render();renderC48Shop();return}if(s.c48<500){toast('Altın C48 ünvanı için 500 C48 gerekiyor.');return}if(!confirm('Altın C48 ünvanını 500 C48 karşılığında almak istiyor musun?'))return;s.c48-=500;ownedTitles.push('goldc48');equippedTitle='goldc48';localStorage.setItem('c48-luck-owned-titles',JSON.stringify(ownedTitles));localStorage.setItem('c48-luck-equipped-title',equippedTitle);save();render();renderC48Shop();toast('Altın C48 ünvanı açıldı!')});frameBox.appendChild(el);
+ }
  const fire=localStorage.getItem('c48-luck-fire-wheel')==='yes';if($('fireWheelStatus'))$('fireWheelStatus').textContent=fire?'Aktif 🔥':'Henüz alınmadı.';if($('buyFireWheel'))$('buyFireWheel').disabled=fire;
 }
 function spinAnimation(id,duration){const el=$(id);el.style.transition=`transform ${duration/1000}s cubic-bezier(.08,.72,.08,1)`;el.style.transform=`rotate(${3600+Math.floor(Math.random()*360)}deg)`;return new Promise(resolve=>setTimeout(resolve,duration))}
 $('convertC48')?.addEventListener('click',()=>{if(s.usd<100000){toast('1 C48 için $100.000 gerekiyor.');return}s.usd-=100000;s.c48++;log('$100.000 → 1 C48',0);save();render();renderC48Shop();toast('1 C48 aldın!')});
 $('buyFireWheel')?.addEventListener('click',()=>{if(localStorage.getItem('c48-luck-fire-wheel')==='yes')return;if(s.c48<100){toast('100 C48 gerekiyor.');return}s.c48-=100;localStorage.setItem('c48-luck-fire-wheel','yes');$('wheelArt').style.filter='drop-shadow(0 0 20px #ff4b00)';$('wheelArt').style.boxShadow='0 0 0 5px #7c2608,0 0 35px #ff4b00';save();render();renderC48Shop();toast('Ateşli çark açıldı! 🔥')});
-$('unlockMegaWheel')?.addEventListener('click',()=>{if(s.megaWheelUnlocked)return;if(s.balance<10000000){toast('₺10.000.000 gerekiyor.');return}s.balance-=10000000;s.megaWheelUnlocked=true;log('Dev çark açılış ücreti',-10000000);$('megaWheelUnlockStatus').textContent='Dev çark açıldı!';$('unlockMegaWheel').disabled=true;$('spinMegaWheel').disabled=false;save();render()});
-$('spinMegaWheel')?.addEventListener('click',async()=>{if(!s.megaWheelUnlocked||raceBusy)return;$('spinMegaWheel').disabled=true;const win=Math.random()<0.5;const gain=[100,500,1000,5000,10000,50000,100000,500000,1000000,10000000];const loss=[100,500,1000,5000,10000,50000,100000,500000,1000000,20000000];const amount=(win?gain:loss)[Math.floor(Math.random()*10)];await spinAnimation('megaWheelArt',6500);const delta=win?amount:-amount;s.balance=Math.max(0,s.balance+delta);if(delta>0)s.earned+=delta;$('megaWheelResult').innerHTML=win?`🎉 <b>KAZANDIN!</b> +${fmt(amount)}`:`💥 <b>KAYIP!</b> -${fmt(amount)}`;log('Dev çark '+(win?'kazanç':'kayıp'),delta);save();render();$('spinMegaWheel').disabled=false});
-$('spinGoldWheel')?.addEventListener('click',async()=>{if(raceBusy)return;if(s.c48<1){toast('Altın çark için 1 C48 gerekiyor.');return}$('spinGoldWheel').disabled=true;s.c48-=1;save();render();await spinAnimation('goldWheelArt',6000);const prizes=[1,10,100,500,1000,5000,10000,25000,100000,200000];const prize=prizes[Math.floor(Math.random()*prizes.length)];s.usd+=prize;$('goldWheelResult').innerHTML=`✨ Ödülün: <b>+$${prize.toLocaleString('en-US')}</b>. Eksi sonuç yok!`;log('Altın çark +$'+prize,0);save();render();$('spinGoldWheel').disabled=false});
-if(s.megaWheelUnlocked){$('megaWheelUnlockStatus').textContent='Dev çark açık!';$('unlockMegaWheel').disabled=true;$('spinMegaWheel').disabled=false}
+
 if(localStorage.getItem('c48-luck-fire-wheel')==='yes'){$('wheelArt').style.filter='drop-shadow(0 0 20px #ff4b00)';$('wheelArt').style.boxShadow='0 0 0 5px #7c2608,0 0 35px #ff4b00'}
 renderC48Shop();
+renderProfileDetails();
 
 // Vehicle class/cc/price changes odds; bot gets a random vehicle every race.
 const raceButton=$('startRace');
@@ -990,11 +1057,13 @@ raceButton?.addEventListener('click',()=>{
  $('racer1Fill').style.width='0%';$('racer2Fill').style.width='0%';
  $('raceResult').textContent=`Sen: ${pSpec.cc} cc · ${pSpec.topSpeed} km/sa · ${pSpec.power} bg | Bot: ${botV.name} (${bSpec.cc} cc · ${bSpec.topSpeed} km/sa · ${bSpec.power} bg) | Kazanma şansın %${Math.round(chance*100)}.`;
  setTimeout(()=>{$('racer1Fill').style.width=(won?96:Math.max(10,Math.random()*30))+'%';$('racer2Fill').style.width=(won?Math.max(10,Math.random()*30):96)+'%'},250);
- setTimeout(()=>{if(won){s.balance+=stake*2;s.earned+=stake;log('Yarış zaferi · '+playerV.name,stake*2);$('raceResult').innerHTML=`🏆 Kazandın! ${playerV.name}, ${botV.name} aracını geçti. Ödül: ${fmt(stake*2)}.`;}else{$('raceResult').innerHTML=`🏁 Bot kazandı! Rakip: ${botV.name}. Senin kazanma şansın %${Math.round(chance*100)} idi.`;log('Yarış kaybı · '+botV.name,0);}raceBusy=false;save();render();raceButton.disabled=false;},2300);
+ setTimeout(()=>{recordGame(won,won?stake:0);if(won){s.balance+=stake*2;s.earned+=stake;log('Yarış zaferi · '+playerV.name,stake*2);$('raceResult').innerHTML=`🏆 Kazandın! ${playerV.name}, ${botV.name} aracını geçti. Ödül: ${fmt(stake*2)}.`;}else{$('raceResult').innerHTML=`🏁 Bot kazandı! Rakip: ${botV.name}. Senin kazanma şansın %${Math.round(chance*100)} idi.`;log('Yarış kaybı · '+botV.name,0);}raceBusy=false;save();render();raceButton.disabled=false;},2300);
 },{capture:true});
 
+$('quickProfile')?.addEventListener('click',()=>{document.querySelectorAll('.tab').forEach(x=>x.classList.toggle('active',x.dataset.mode==='profile'));document.querySelectorAll('.mode').forEach(x=>x.classList.toggle('active',x.id==='profile'));$('profile').scrollIntoView({behavior:'smooth',block:'start'});});
+const updateOverlay=$('updateOverlay');const updateKey='c48-update-seen-dev-1';function closeUpdate(){if(updateOverlay)updateOverlay.classList.remove('show');try{localStorage.setItem(updateKey,'yes')}catch(e){}}$('closeUpdate')?.addEventListener('click',closeUpdate);updateOverlay?.addEventListener('click',e=>{if(e.target===updateOverlay)closeUpdate()});
 render();
-setTimeout(()=>{const intro=$('c48Intro');if(intro)intro.remove()},5200);
+setTimeout(()=>{const intro=$('c48Intro');if(intro)intro.remove();try{if(localStorage.getItem(updateKey)!=='yes')updateOverlay?.classList.add('show')}catch(e){updateOverlay?.classList.add('show')}},5200);
 
 // Global Chat bridge: expose the game's scoped Supabase account to the chat script.
 window.c48GetElement = $;
@@ -1002,6 +1071,30 @@ window.c48GetSupabaseClient = () => supabaseClient;
 window.c48GetOnlineUser = () => onlineUser;
 window.c48GetProfileName = () => profileName;
 })();
+
+// Dev Güncelleme ekleri: çark efektleri, 12 sonuçlu Altın Çark, Taş-Kâğıt-Makas.
+const wheelThemes=['redblack','bluegold','purplepink','greengold','blackgold','emeraldsilver','neonpurple','rainbow'];
+const currentWheelTheme=localStorage.getItem('c48-luck-wheel-theme')||'redblack';
+$('wheelArt').classList.remove('scheme-orangeblue','scheme-cyanblack');
+if(wheelThemes.includes(currentWheelTheme))$('wheelArt').classList.add('scheme-'+currentWheelTheme);
+const savedEffect=localStorage.getItem('c48-luck-wheel-effect')||'none';
+if(savedEffect!=='none')$('wheelArt').classList.add('effect-'+savedEffect);
+function setWheelEffect(effect){$('wheelArt').classList.remove('effect-diamond','effect-emerald');if(effect!=='none')$('wheelArt').classList.add('effect-'+effect);localStorage.setItem('c48-luck-wheel-effect',effect);}
+function weightedPick(entries){const total=entries.reduce((n,e)=>n+e.weight,0);let r=Math.random()*total;for(const e of entries){r-=e.weight;if(r<0)return e}return entries[entries.length-1]}
+// 10 sanal dolar ödülü + iki çok nadir C48 ödülü = 12 sonuç.
+const goldWheelOutcomes=[
+ {type:'usd',amount:1,label:'$1',weight:30},{type:'usd',amount:10,label:'$10',weight:30},{type:'usd',amount:100,label:'$100',weight:30},{type:'usd',amount:500,label:'$500',weight:30},{type:'usd',amount:1000,label:'$1.000',weight:30},{type:'usd',amount:5000,label:'$5.000',weight:30},{type:'usd',amount:10000,label:'$10.000',weight:30},{type:'usd',amount:25000,label:'$25.000',weight:30},{type:'usd',amount:100000,label:'$100.000',weight:30},{type:'usd',amount:200000,label:'$200.000',weight:30},{type:'c48',amount:5,label:'5 C48',weight:1},{type:'c48',amount:10,label:'10 C48',weight:1}
+];
+$('spinGoldWheel')?.addEventListener('click',async()=>{if(raceBusy)return;if(s.c48<1){toast('Altın çark için 1 C48 gerekiyor.');return}const btn=$('spinGoldWheel');btn.disabled=true;s.c48-=1;save();render();await spinAnimation('goldWheelArt',4500);const prize=weightedPick(goldWheelOutcomes);if(prize.type==='c48'){s.c48+=prize.amount;$('goldWheelResult').innerHTML=`✨ Çok nadir ödül: <b style="color:#ffd166">+${prize.amount} C48</b>!`}else{s.usd+=prize.amount;$('goldWheelResult').innerHTML=`✨ Ödülün: <b>+$${prize.amount.toLocaleString('en-US')}</b>.`}log('Altın çark ödülü: '+prize.label,0);save();render();btn.disabled=false;});
+// C48 dükkanındaki efekt satın alımları ve kuşanma.
+function renderWheelEffectItems(){const box=$('c48FrameShop');if(!box)return;const owned=(()=>{try{return JSON.parse(localStorage.getItem('c48-luck-owned-wheel-effects')||'[]')}catch(e){return []}})();[{id:'diamond',name:'Elmas Çark Efekti',icon:'💎',price:50,desc:'Çarkına mavi elmas parıltısı verir.'},{id:'emerald',name:'Zümrüt Çark Efekti',icon:'💚',price:300,desc:'Çarkına yeşil zümrüt parıltısı verir.'}].forEach(effect=>{const active=localStorage.getItem('c48-luck-wheel-effect')===effect.id;const has=owned.includes(effect.id);const el=document.createElement('div');el.className='item';el.innerHTML=`<div class="itemicon">${effect.icon}</div><div class="iteminfo"><div class="itemname">${effect.name}</div><div class="itemdesc">${effect.desc}<br>Fiyat: <b>${effect.price} C48</b> · ${active?'Kuşanıldı':has?'Sahipsin':'Yeni efekt'}</div></div><button class="btn secondary" ${!has&&s.c48<effect.price?'disabled':''}>${active?'Kuşanıldı':has?'Kuşan':'Satın al'}</button>`;el.querySelector('button').addEventListener('click',()=>{if(has){setWheelEffect(effect.id);renderC48Shop();toast(effect.name+' etkinleştirildi!');return}if(s.c48<effect.price){toast('Yeterli C48 paran yok.');return}if(!confirm(effect.name+' '+effect.price+' C48 karşılığında alınsın mı?'))return;s.c48-=effect.price;owned.push(effect.id);localStorage.setItem('c48-luck-owned-wheel-effects',JSON.stringify(owned));setWheelEffect(effect.id);save();render();renderC48Shop();toast(effect.name+' satın alındı!')});box.appendChild(el)});}
+const oldRenderC48Shop=renderC48Shop;renderC48Shop=function(){oldRenderC48Shop();renderWheelEffectItems();};renderC48Shop();
+// Taş-Kâğıt-Makas: sanal dolar, bot rakip.
+const rpsNames={rock:'Taş',paper:'Kâğıt',scissors:'Makas'};
+document.querySelectorAll('[data-rps]').forEach(btn=>btn.addEventListener('click',()=>{const bet=Math.floor(Number($('rpsBet').value));if(!Number.isFinite(bet)||bet<1){$('rpsResult').textContent='En az $1 sanal bahis gir.';return}if(bet>s.usd){$('rpsResult').textContent='Dolar bakiyen bu bahse yetmiyor.';return}const player=btn.dataset.rps,bot=['rock','paper','scissors'][Math.floor(Math.random()*3)];s.usd-=bet;let result;if(player===bot){s.usd+=bet;result=`Berabere! Sen: ${rpsNames[player]} · Bot: ${rpsNames[bot]}. $${bet.toLocaleString('en-US')} bahsin geri verildi.`}else if((player==='rock'&&bot==='scissors')||(player==='paper'&&bot==='rock')||(player==='scissors'&&bot==='paper')){s.usd+=bet*2;s.earned+=Math.floor(bet*100);s.stats.wins=(s.stats.wins||0)+1;result=`Kazandın! Sen: ${rpsNames[player]} · Bot: ${rpsNames[bot]}. Net kâr: $${bet.toLocaleString('en-US')}.`}else{s.stats.losses=(s.stats.losses||0)+1;result=`Bot kazandı! Sen: ${rpsNames[player]} · Bot: ${rpsNames[bot]}. $${bet.toLocaleString('en-US')} kaybettin.`}s.stats.gamesPlayed=(s.stats.gamesPlayed||0)+1;$('rpsResult').textContent=result;log('Taş Kâğıt Makas: '+(player===bot?'berabere':((player==='rock'&&bot==='scissors')||(player==='paper'&&bot==='rock')||(player==='scissors'&&bot==='paper')?'kazandı':'kaybetti')),0);save();render()}));
+// Küçük yarış animasyonu: yarış başlarken pist hareket eder, sonuçta kısa parıltı verir.
+const raceTrackEl=document.querySelector('.race-track');const raceStartBtn=$('startRace');raceStartBtn?.addEventListener('click',()=>{if(!raceTrackEl)return;raceTrackEl.classList.remove('race-finish');raceTrackEl.classList.add('race-running');setTimeout(()=>{raceTrackEl.classList.remove('race-running');raceTrackEl.classList.add('race-finish');setTimeout(()=>raceTrackEl.classList.remove('race-finish'),1500)},1800)});
+
 </script><aside id="globalChatPanel" aria-label="Global sohbet">
   <div id="globalChatHeader">
     <div><strong>🌍 Global Chat</strong><div id="globalChatSub">Giriş yapan oyuncular</div></div>
